@@ -6,7 +6,7 @@ class Model{
 	public function __construct()
     {	
         $server = 'localhost';
-        $DBName = 'test';
+        $DBName = 'knowspicker';
         $user = 'root';
         $pass = '';
     
