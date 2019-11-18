@@ -28,7 +28,6 @@ class App
 			header("location:$this->login");
 			return;
 		}
-
 		$url = $this->parseURL();
 
 //setting the controller
