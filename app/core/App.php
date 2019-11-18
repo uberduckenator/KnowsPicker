@@ -2,7 +2,7 @@
 
 class App
 {
-	protected $controller = 'DefaultController';
+	protected $controller = 'HomeController';
 	protected $method = 'index';
 	protected $params = [];
 	//Please list all of the secured views in this array.
