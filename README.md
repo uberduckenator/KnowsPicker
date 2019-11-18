@@ -1,3 +1,2 @@
-# KnowsPicker - Kevin
+# KnowsPicker
 Vanier E-Commerce final project
----Kevin's Workspace---
