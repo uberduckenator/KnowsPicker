@@ -20,14 +20,14 @@
 	</div>
 	<div class="form-group">
 	<label for="password">Password Confirmation</label>
-	<input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" />
+	<input type="password" class="form-control" name="password_confirm" id="password_confirm" />
 	</div>
 	<div class="form-group">
 	<label for="password">Select account type: </label>
 	<select class="form-control" name="role" id="role">
-		<option value="student">Student</option>
-		<option value="employer">Employer</option>
-		<option value="teacher">Teacher</option>
+		<option value="student">User</option>
+		<option value="employer">Seller</option>
+		<option value="teacher">Admin</option>
 	</select>
 	</div>
 	<div class="form-group">

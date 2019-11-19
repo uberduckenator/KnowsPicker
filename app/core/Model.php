@@ -6,9 +6,9 @@ class Model{
 	public function __construct()
     {	
         $server = 'localhost';
-        $DBName = 'test';
-        $user = 'root';
-        $pass = '';
+        $DBName = 'knowspicker';
+        $user = 'user';
+        $pass = 'h6rs4FZkGq57Frad';
     
         self::$_connection = new PDO("mysql:host=$server;dbname=$DBName;charset=utf8", $user, $pass);
         self::$_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
