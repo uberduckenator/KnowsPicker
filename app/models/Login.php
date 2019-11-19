@@ -3,7 +3,11 @@
 class Login extends Model{
 	public $username;
 	public $password_hash;
+<<<<<<< HEAD
 	public $rolel;
+=======
+	public $role;
+>>>>>>> 34a8324aa86dbec7d71254d496cae50e46716eec
 
 	public function __construct(){
 		parent::__construct();

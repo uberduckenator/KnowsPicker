@@ -2,6 +2,7 @@
 class LoginController extends Controller{
 	public function index(){
 		if(!isset($_POST["action"])){
+<<<<<<< HEAD
 			$this->view("Login/index");
 		}
 		else{
@@ -40,6 +41,11 @@ class LoginController extends Controller{
 	public function logout(){
 		session_destroy();
 		header("location:/Login/index");
+=======
+			$this->view('Login/index');
+		}
+
+>>>>>>> 34a8324aa86dbec7d71254d496cae50e46716eec
 	}
 }
 ?>
