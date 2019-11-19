@@ -7,8 +7,8 @@ class Model{
     {	
         $server = 'localhost';
         $DBName = 'knowspicker';
-        $user = 'root';
-        $pass = '';
+        $user = 'user';
+        $pass = 'h6rs4FZkGq57Frad';
     
         self::$_connection = new PDO("mysql:host=$server;dbname=$DBName;charset=utf8", $user, $pass);
         self::$_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

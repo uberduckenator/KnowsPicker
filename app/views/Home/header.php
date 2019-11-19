@@ -6,7 +6,7 @@
 </head>
 <div class="topHeader">
 	<img src="" alt="Knowspicker Logo">
-	<input type="text">
+	<input type="text" name="search value">
 	<a href="Search"><img src="" alt="Search Button"></a>
 	<?php
 		if(!isset($SESSION['user_id']))
@@ -26,8 +26,7 @@
 			{
 				echo('<a href="Orders">My orders</a>');	
 				echo('<a href="Cart"><img src="" alt="Cart"></a>');
-			}
-		
+			}	
 			echo('<a href="Logout">Logout</a>');
 		}
 	?>
