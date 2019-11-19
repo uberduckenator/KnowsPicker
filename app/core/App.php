@@ -2,11 +2,33 @@
 
 class App
 {
-	protected $controller = 'DefaultController';
+	protected $controller = 'HomeController';
 	protected $method = 'index';
 	protected $params = [];
-	
-	public function __construct(){
+	//Please list all of the secured views in this array.
+	protected $secured = ['Cart'];
+	protected $login = '/Login/index';
+
+
+	public function loginFilter()
+	{
+		if(isset($_SESSION['user_id']))
+			return true;
+		$status = true;
+		$getURL = $_GET['url'];
+		foreach($this->secured as $url)
+			$status = $status && !preg_match("/$url/", $getURL);
+		return $status;
+	}
+
+	public function __construct()
+	{
+		if(!$this->loginFilter())
+		{
+			header("location:$this->login");
+			return;
+		}
+
 		$url = $this->parseURL();
 
 //setting the controller
