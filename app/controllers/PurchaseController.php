@@ -15,14 +15,15 @@ class PurchaseController extends Controller
 	{
 		//Also need the person information
 		//Need to add this...
-		$profile = $this->model('Profile');
-		
-
+		$userProfile = $this->model('UserProfile');
+		$profile = $userProfile->getUser($SESSION['login_id']);
+		$user_id = $profile->user_id;
+		$paymentInfo = $this->model('Payment')->get($user_id);
 		//We handle the purchase stuff like before
 		$purchase = $this->model('Purchase');
 		$cartID = $purchase->getCartID($SESSION['login_id']);
 		$purchaseDetails = $this->model('PurchaseDetails');
 		$inCart = $purchaseDetails->get($cartID);
-		$this->view('Purchase/index', $inCart);
+		$this->view('Purchase/index',['Cart'=>$inCart]);
 	}
 }
