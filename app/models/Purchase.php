@@ -61,5 +61,13 @@ class Purchase extends Model
 		return $stmt->fetch();
 	}
 
+	public function getCartID($login_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT purchase_id FROM purchase WHERE login_id = :login_id");
+		$stmt->execute(['login_id'=>$login_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();
+	}
+
 
 }
