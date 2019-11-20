@@ -3,7 +3,6 @@
 class Login extends Model{
 	public $username;
 	public $password_hash;
-	public $rolel;
 	public $role;
 
 	public function __construct(){
