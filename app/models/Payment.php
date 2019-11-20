@@ -31,7 +31,10 @@ class Payment extends Model
 
 	public function get($user_id)
 	{
-		
+		$stmt = self::$_connection->prepare("SELECT * FROM payment WHERE user_id = :user_id");
+        $stmt->execute(['payment_id'=>$payment_id]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Payment');
+        return $stmt->fetch();
 	}
 
 }
