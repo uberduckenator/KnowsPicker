@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<input type="submit" name="action" value="Login" />
 	</div>
-	<a href="../register">Don't have an account? Register here.</a> 
+	<a href="/Login/register">Don't have an account? Register here.</a> 
 	</form>
 </div>
 </body></html>
