@@ -11,6 +11,8 @@ class Purchase extends Model
 	public $login_id;
 	public $purchased_on = null;//Null on default
 	public $payment_confirm;
+	public $payment_id;
+	public $shipping_id = null;
 
 	public function __construct()
 	{
@@ -19,8 +21,8 @@ class Purchase extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO purchase (purchase_id, status, total, payment_id, login_id, purchased_on, payment_confirm) VALUES (:purchase_id, :status, :total, :payment_id, :login_id, :purchased_on, :payment_confirm)");
-		$stmt->execute(['purchase_id'=>$this->purchase_id, 'status'=>$this->status,'total'=>$this->total, 'payment_id'=>$this->payment_id, 'login_id'=>$this->login_id, 'purchased_on'=>$this->purchased_on, 'payment_confirm'=>$this->payment_confirm]);
+		$stmt = self::$_connection->prepare("INSERT INTO purchase (purchase_id, status, total, payment_id, login_id, purchased_on, payment_confirm, shipping_id) VALUES (:purchase_id, :status, :total, :payment_id, :login_id, :purchased_on, :payment_confirm, :shipping_id)");
+		$stmt->execute(['purchase_id'=>$this->purchase_id, 'status'=>$this->status,'total'=>$this->total, 'payment_id'=>$this->payment_id, 'login_id'=>$this->login_id, 'purchased_on'=>$this->purchased_on, 'payment_confirm'=>$this->payment_confirm, 'shipping_id'=>$this->shipping_id]);
 	}
 
 	public function delete($purchase_id)

@@ -9,7 +9,7 @@
 	<input type="text" name="search value">
 	<a href="Search"><img src="" alt="Search Button"></a>
 	<?php
-		if(!isset($SESSION['user_id']))
+		if(!isset($SESSION['login_id']))
 			echo('<a href="Login">Login</a>');
 		else
 		{
