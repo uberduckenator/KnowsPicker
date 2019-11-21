@@ -9,7 +9,7 @@
 <div class="container">
 <h1>Signup</h1>
 
-<form method="post" action="/Login/signup" class="form-horizontal">
+<form method="post" action="" class="form-horizontal">
 	<div class="form-group">
 	<label for="username">Username</label>
 	<input type="text" class="form-control" name="username" id="username" />
