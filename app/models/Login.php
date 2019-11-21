@@ -3,8 +3,7 @@
 class Login extends Model{
 	public $username;
 	public $password_hash;
-	public $rolel;
-	public $role;
+	public $role = "user";
 
 	public function __construct(){
 		parent::__construct();
@@ -18,8 +17,8 @@ class Login extends Model{
 	}
 
 	public function insert(){
-		$stmt = self::$_connection->prepare("INSERT INTO Login(username, password_hash) VALUES (:username, :password_hash");
-		$stmt->execute(['username'=>$this->username, 'password_hash'=>$this->password_hash]);
+		$stmt = self::$_connection->prepare("INSERT INTO Login(username, password_hash, role) VALUES (:username, :password_hash, :role)");
+		$stmt->execute(['username'=>$this->username, 'password_hash'=>$this->password_hash, 'role'=>$this->role]);
 	}
 }
 

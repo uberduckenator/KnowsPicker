@@ -12,7 +12,7 @@ class App
 
 	public function loginFilter()
 	{
-		if(isset($_SESSION['user_id']))
+		if(isset($_SESSION['login_id']))
 			return true;
 		$status = true;
 		$getURL = $_GET['url'];
