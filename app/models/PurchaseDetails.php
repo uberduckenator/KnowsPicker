@@ -45,7 +45,7 @@ class PurchaseDetails extends Model
 		$stmt = self::$_connection->prepare("SELECT * FROM purchase_details");
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PurchaseDetails');
-		return $stmt->fetch();
+		return $stmt->fetchAll();
 	}
 
 	//Get Cart details
