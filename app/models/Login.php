@@ -9,9 +9,9 @@ class Login extends Model{
 		parent::__construct();
 	}
 
-	public function find($login_id){
-		$stmt = self::$_connection->prepare("SELECT * FROM Login WHERE login_id = :login_id");
-		$stmt->execute(['login_id'=>$login_id]);
+	public function find($username){
+		$stmt = self::$_connection->prepare("SELECT * FROM Login WHERE username = :username");
+		$stmt->execute(['username'=>$username]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Login');
 		return $stmt->fetch();
 	}

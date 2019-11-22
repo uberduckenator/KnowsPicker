@@ -1,12 +1,10 @@
 <?php
 class ProfileController extends Controller{
 	public function index(){
-		if(!isset($_POST["action"])){
-			$this->view("Profile/index");
-		}
-		else{
-
-		}
+			$profile = $this->model('UserProfile');
+			$login_id = $_SESSION['login_id'];
+			$profile->getUser($login_id);
+			$this->view("Profile/index", $profile);
 	}
 
 	public function create(){
