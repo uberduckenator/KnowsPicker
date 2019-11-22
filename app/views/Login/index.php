@@ -14,7 +14,7 @@
 	<h1>Log in</h1>
 	<form action="" method="post" class="form-horizontal">
 	<div class="form-group">
-		<label for="username">UserName:</label>
+		<label for="username">Username:</label>
 		<input type="text" class="form-control" name="username" id="username" />
 	</div>
 	<div class="form-group">
@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<input type="submit" name="action" value="Login" />
 	</div>
-	<a href="/Login/register">Don't have an account? Register here.</a> 
+	<a href="/Login/register/user">Don't have an account? Register here.</a> 
 	</form>
 </div>
 </body></html>

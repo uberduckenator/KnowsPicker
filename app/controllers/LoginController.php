@@ -18,10 +18,13 @@ class LoginController extends Controller{
 		}
 	}
 
-	public function register(){
+	public function register($role){
 		if(!isset($_POST["action"])){
-			$this->view("Login/register");
-
+			if ($role == "company") {
+				$this->view("Login/companyRegister");
+			}else{
+				$this->view("Login/register");
+			}
 		}
 		else{
 			if($_POST["password"] == $_POST["password_confirm"]){
@@ -32,6 +35,9 @@ class LoginController extends Controller{
 				//Hashing password
 				$user->password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 				//password_hash(string, PASSWORD_DEFAULT)
+				$user->role = $role;
+
+				$user->insert();
 
 				$_SESSION['login_id'] = $user->insert();
 				header("location:/Profile/create");
