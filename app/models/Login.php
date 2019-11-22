@@ -19,6 +19,8 @@ class Login extends Model{
 	public function insert(){
 		$stmt = self::$_connection->prepare("INSERT INTO Login(username, password_hash, role) VALUES (:username, :password_hash, :role)");
 		$stmt->execute(['username'=>$this->username, 'password_hash'=>$this->password_hash, 'role'=>$this->role]);
+
+		return self::$_connection->lastInsertId();
 	}
 }
 

@@ -31,9 +31,9 @@ class LoginController extends Controller{
 				//Hashing password
 				$user->password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 				//password_hash(string, PASSWORD_DEFAULT)
-				$user->insert();
 
-				header("location:/Login/index");
+				$_SESSION['login_id'] = $user->insert();
+				header("location:/Profile/create");
 
 			}
 		}
