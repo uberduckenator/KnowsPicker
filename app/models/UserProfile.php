@@ -14,6 +14,11 @@ class UserProfile extends Model
 	public $postal_code;
 	public $login_id;
 
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function insert()
 	{
 		$stmt = self::$_connection->prepare("INSERT INTO user_profile (first_name, last_name, email, country, city, street_address, postal_code, login_id) VALUES (:first_name, :last_name, :email, :country, :city, :street_address, :postal_code, :login_id)");

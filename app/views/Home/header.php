@@ -9,16 +9,19 @@
 	<input type="text" name="search value">
 	<a href="Search"><img src="" alt="Search Button"></a>
 	<?php
-		if(!isset($SESSION['login_id']))
+		if(!isset($_SESSION['login_id']))
+		{
 			echo('<a href="Login">Login</a>');
+			var_dump($_SESSION['login_id']);
+		}
 		else
 		{
-			if($SESSION['role'] == 'company')
+			if($_SESSION['role'] == 'company')
 			{
 				echo('<a href="Inventory">My inventory</a>');
 				echo('<a href=""></a>');
 			}
-			elseif ($SESSION['role'] == 'admin')
+			elseif ($_SESSION['role'] == 'admin')
 			{
 				echo('<a href="Ticket">My tickets</a>');
 			}
@@ -26,6 +29,7 @@
 			{
 				echo('<a href="Orders">My orders</a>');	
 				echo('<a href="Cart"><img src="" alt="Cart"></a>');
+				echo('<a href="Profile"><img src="" alt="Profile"></a>');
 			}	
 			echo('<a href="Logout">Logout</a>');
 		}
