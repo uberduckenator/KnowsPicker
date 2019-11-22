@@ -11,11 +11,11 @@
 		}
 		else
 		{
-			foreach($model as $item)
+			foreach($model as $purchase_detail)
 			{
-				//blah blah
+			 	echo("<p>");
 			}
-			echo('<a href="Purchase/checkout">Checkout</a>');
+			echo("<a href='Purchase/checkout'>Checkout</a>");
 		}
 		?>
 	</div>
