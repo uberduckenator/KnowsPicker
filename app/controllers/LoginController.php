@@ -19,8 +19,11 @@ class LoginController extends Controller{
 
 	public function register($role){
 		if(!isset($_POST["action"])){
-			$this->view("Login/register");
-
+			if ($role == "company") {
+				$this->view("Login/companyRegister");
+			}else{
+				$this->view("Login/register");
+			}
 		}
 		else{
 			if($_POST["password"] == $_POST["password_confirm"]){

@@ -7,38 +7,26 @@
 </head>
 <body>
 <div class="container">
-<h1>Signup</h1>
+	<h1>Customer Signup</h1>
 
-<form method="post" action="" class="form-horizontal">
-	<div class="form-group">
-	<label for="username">Username</label>
-	<input type="text" class="form-control" name="username" id="username" />
-	</div>
-	<div class="form-group">
-	<label for="password">Password</label>
-	<input type="password" class="form-control" name="password" id="password" />
-	</div>
-	<div class="form-group">
-	<label for="password">Password Confirmation</label>
-	<input type="password" class="form-control" name="password_confirm" id="password_confirm" />
-	</div>
-<!--
-	<div class="form-group">
-	<label for="password">Select account type: </label>
-	<select class="form-control" name="role" id="role">
-		<option value="student">User</option>
-		<option value="employer">Seller</option>
-		<option value="teacher">Admin</option>
-	</select>
-	</div>
--->
-	<div class="form-group">
-	<input type="submit" class="btn btn-default" name="action" value="Register" />
-	</div>
-	<a href="../register/company">Register here for a business account.</a>
-</form>
-
-
+	<form method="post" action="" class="form-horizontal">
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" class="form-control" name="username" id="username" />
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" name="password" id="password" />
+		</div>
+		<div class="form-group">
+			<label for="password">Password Confirmation</label>
+			<input type="password" class="form-control" name="password_confirm" id="password_confirm" />
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-default" name="action" value="Register" />
+		</div>
+		<a href="../register/company">Register here for a business account.</a>
+	</form>
 <div>
 </body>
 </html>
