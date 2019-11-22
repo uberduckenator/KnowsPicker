@@ -17,7 +17,7 @@ class LoginController extends Controller{
 		}
 	}
 
-	public function register(){
+	public function register($role){
 		if(!isset($_POST["action"])){
 			$this->view("Login/register");
 
@@ -31,6 +31,8 @@ class LoginController extends Controller{
 				//Hashing password
 				$user->password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 				//password_hash(string, PASSWORD_DEFAULT)
+				$user->role = $role;
+
 				$user->insert();
 
 				header("location:/Login/index");
