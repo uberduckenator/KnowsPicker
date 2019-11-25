@@ -26,8 +26,31 @@ class Items extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_id = :item_id");
 		$stmt->execute(['item_id'=>$item_id]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetch();
 	}
+
+	public function getAll()
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items");
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
+	}
+
+
+	//Get top
+	public function getTop($table_name, $maximum)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items 
+											INNER JOIN :table_name USING item_id 
+											ORDER BY rating DESC
+											LIMIT :maximum");
+		$stmt->execute(['table_name'=>$table_name,'maximum'=>$maximum]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
+	}
+
+	
 
 }
