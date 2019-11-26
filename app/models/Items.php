@@ -1,4 +1,4 @@
-<?
+<?php
 class Items extends Model
 {
 	public $item_id; //Probably for admin

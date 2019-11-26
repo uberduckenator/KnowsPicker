@@ -1,6 +1,6 @@
 <?php
 
-class PcCase extends Model
+class PSU extends Model
 {
 	public $psu_id; //Probably for admin
 
