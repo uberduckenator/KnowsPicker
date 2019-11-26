@@ -18,5 +18,12 @@ class HomeController extends Controller{
 		$this->view('Home/index', ['CPU'=>$topCPU, 'GPU'=>$topGPU, 'Cooler'=>$topCooler, 'Motherboard'=>$topMotherboard,
 									'Storage'=>$topStorage, 'PSU'=>$topPSU, 'RAM'=>$topRam, 'Case'=>$topCase]);
 	}
+
+	public function search($searchString)
+	{
+		$items = $this->model('Items');
+		$results =$items->search($searchString);
+
+	}
 }
 ?>

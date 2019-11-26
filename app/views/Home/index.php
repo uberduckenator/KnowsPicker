@@ -13,7 +13,14 @@
 	}
 	else
 	{
-		//include ("Partials");
+		include ("Partials/topCompCaseList.php");
+		include ("Partials/topCoolerList.php");
+		include ("Partials/topCPUList.php");
+		include ("Partials/topGPUList.php");
+		include ("Partials/topMboardList.php");
+		include ("Partials/topPSUList.php");
+		include ("Partials/topRAMList.php");
+		include ("Partials/topStorageList.php");
 	}
 ?>
 

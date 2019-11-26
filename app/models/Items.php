@@ -36,15 +36,23 @@ class Items extends Model
 		return $stmt->fetchAll();
 	}
 
+	public function search($searchText)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_name LIKE %:searchText%");
+		$stmt->execute(['searchText'=>$searchText]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
+	}
+
 
 	//Get top
-	public function getTop($table_name, $maximum)
+	public function getTop($item_type)
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM items 
-											INNER JOIN :table_name USING item_id 
+											WHERE item_type = :item_type 
 											ORDER BY rating DESC
-											LIMIT :maximum");
-		$stmt->execute(['table_name'=>$table_name,'maximum'=>$maximum]);
+											LIMIT 5");
+		$stmt->execute(['item_type'=>$item_type]);//'maximum'=>$maximum]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();
 	}

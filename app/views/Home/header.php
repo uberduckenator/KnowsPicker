@@ -6,8 +6,8 @@
 </head>
 <div class="topHeader">
 	<img src="" alt="Knowspicker Logo">
-	<input type="text" name="search value">
-	<a href="Search"><img src="" alt="Search Button"></a>
+	<input type="text" name="searchBox">
+	<a href="Home/Search/"><img src="" alt="Search Button"></a>
 	<?php
 		if(!isset($SESSION['login_id']))
 			echo('<a href="Login">Login</a>');
