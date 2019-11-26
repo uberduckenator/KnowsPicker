@@ -28,7 +28,7 @@
 				echo('<a href="Cart"><img src="" alt="Cart"></a>');
 			}
 		
-			echo('<a href="Logout">Logout</a>');
+			echo('<a href="Login/logout">Logout</a>');
 		}
 	?>
 </div>

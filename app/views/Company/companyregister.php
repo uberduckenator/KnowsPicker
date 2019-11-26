@@ -9,7 +9,7 @@
 	<div class="container">
 		<h1>Company Signup</h1>
 
-		<form method="post" action="/Login/signup" class="form-horizontal">
+		<form method="post" action="" class="form-horizontal">
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" class="form-control" name="username" id="username" />
@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label for="password">Password Confirmation</label>
-				<input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" />
+				<input type="password" class="form-control" name="password_confirm" id="password_confirm" />
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-default" name="action" value="Register" />
