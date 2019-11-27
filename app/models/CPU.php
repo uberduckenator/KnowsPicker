@@ -22,7 +22,8 @@ class CPU extends Model
 
 	public function insert()
 	{
-
+		$stmt = self::$_connection->prepare("INSERT INTO cpu (model, socket, cores, clock_speed, wattage, series, integrated_graphics, cpu_cooler) VALUES (:model, :socket, :cores, :clock_speed, :wattage, :series, :integrated_graphics, :cpu_cooler)");
+		$stmt->execute(['model'=>$this->model, 'socket'=>$this->socket, 'cores'=>$this->cores, 'clock_speed'=>$this->clock_speed, 'wattage'=>$this->wattage, 'series'=>$this->series, 'integrated_graphics'=>$this->integrated_graphics, 'cpu_cooler'=>$this->cpu_cooler]);
 	}
 
 	public function get($cpu_id)
