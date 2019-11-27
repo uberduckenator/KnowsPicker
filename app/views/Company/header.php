@@ -18,18 +18,17 @@
 		{
 			if($_SESSION['role'] == 'company')
 			{
-				echo('<a href="Company/inventory">My inventory</a>');
-				echo('<a href=""></a>');
+				echo('<a href="/Company/inventory">My inventory</a>');
 			}
 			elseif ($_SESSION['role'] == 'admin')
 			{
-				echo('<a href="Ticket">My tickets</a>');
+				echo('<a href="/Ticket">My tickets</a>');
 			}
 			else
 			{
-				echo('<a href="Orders">My orders</a>');	
-				echo('<a href="Cart"><img src="" alt="Cart"></a>');
-				echo('<a href="Profile"><img src="" alt="Profile"></a>');
+				echo('<a href="/Orders">My orders</a>');	
+				echo('<a href="/Cart"><img src="" alt="Cart"></a>');
+				echo('<a href="/Profile"><img src="" alt="Profile"></a>');
 			}	
 			echo('<a href="/Login/logout">Logout</a>');
 		}
