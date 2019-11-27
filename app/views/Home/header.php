@@ -45,7 +45,13 @@
 </div>
 <div class ="navigation">
 	<ul>
-		<li><a href="Home">Home</a></li>
-		<li><a href="">Somewhere</a></li>
+		<li><a href="/Home">Home</a></li>
+		<li><a href="/Home/cpu">Somewhere</a></li>
+		<li><a href="/Home/gpu">GPUs</a></li>
+		<li><a href="/Home/motherboard">Motherboards</a></li>
+		<li><a href="/Home/case">Cases</a></li>
+		<li><a href="/Home/psu">Power Supplies</a></li>
+		<li><a href="/Home/ram">RAM</a></li>
+		<li><a href="/Home/storage">Storage</a></li>
 	</ul>
 </div>
