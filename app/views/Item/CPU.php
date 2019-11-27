@@ -35,8 +35,13 @@
 	<input type="text" class="form-control" name="series" id="series" />
 	</div>
 	<div class="form-group">
+<<<<<<< HEAD
 	<label for="username">Integrated Graphics</label>
 	<input type="text" class="form-control" name="integrated_graphics" id="integrated_graphics" />
+=======
+	<label for="username">Intergrated Graphics</label>
+	<input type="text" class="form-control" name="max_sale_quantity" id="max_sale_quantity" />
+>>>>>>> f3a238c08b405876824d53d5db1b2006baad0264
 	</div>
 	<div class="form-group">
 	<label for="username">CPU Cooler</label>

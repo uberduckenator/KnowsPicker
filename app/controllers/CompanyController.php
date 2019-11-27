@@ -57,6 +57,7 @@ class CompanyController extends Controller{
 
 			switch($item_type){
 				case "CPU":
+<<<<<<< HEAD
 					header("location:/Items/CPU");
 					break;
 				case "CPU Cooler":
@@ -79,6 +80,30 @@ class CompanyController extends Controller{
 					break;
 				case "Storage":
 					header("location:/Items/Storage");
+=======
+					$this->view("/Item/CPU");
+					break;
+				case "CPU Cooler":
+					$this->view("/Item/CPUCooler");
+					break;
+				case "GPU":
+					$this->view("/Item/GPU");
+					break;
+				case "Motherboard":
+					$this->view("/Item/Motherboard");
+					break;
+				case "PC Case":
+					$this->view("/Item/PCCase");
+					break;
+				case "PSU":
+					$this->view("/Item/PSU");
+					break;
+				case "RAM":
+					$this->view("/Item/RAM");
+					break;
+				case "Storage":
+					$this->view("/Item/Storage");
+>>>>>>> f3a238c08b405876824d53d5db1b2006baad0264
 					break;
 				default:
 					header("location:/Company/inventory");
