@@ -6,8 +6,19 @@
 </head>
 <div class="topHeader">
 	<img src="" alt="Knowspicker Logo">
-	<input type="text" name="searchBox">
-	<a href="Home/Search/"><img src="" alt="Search Button"></a>
+	<?php 
+
+		if (!isset($_POST["searchBox"]))
+		{
+			$_POST["searchBox"] = "empty";
+		}
+		echo("<form action=/Home/search/$_POST[searchBox]>");
+
+		
+	?>
+		<input type="text" name="searchBox">
+		<input type="submit" name="searchButton" value="Search">
+	</form>
 	<?php
 		if(!isset($SESSION['login_id']))
 			echo('<a href="Login">Login</a>');
@@ -15,19 +26,20 @@
 		{
 			if($SESSION['role'] == 'company')
 			{
-				echo('<a href="Inventory">My inventory</a>');
+				echo('<a href="/Inventory">My inventory</a>');
 				echo('<a href=""></a>');
 			}
 			elseif ($SESSION['role'] == 'admin')
 			{
-				echo('<a href="Ticket">My tickets</a>');
+				echo('<a href="/Ticket">My tickets</a>');
 			}
 			else
 			{
-				echo('<a href="Orders">My orders</a>');	
-				echo('<a href="Cart"><img src="" alt="Cart"></a>');
+				echo('<a href="/Orders">My orders</a>');
+				echo('<a href="/PCBuilds>My PC Builds</a>"');	
+				echo('<a href="/Cart"><img src="" alt="Cart"></a>');
 			}	
-			echo('<a href="Logout">Logout</a>');
+			echo('<a href="/Login/logout">Logout</a>');
 		}
 	?>
 </div>

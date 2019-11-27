@@ -38,7 +38,7 @@ class Items extends Model
 
 	public function search($searchText)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_name LIKE %:searchText%");
+		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_name LIKE :searchText");
 		$stmt->execute(['searchText'=>$searchText]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();

@@ -5,7 +5,6 @@ class HomeController extends Controller{
 	{
 		//We need to get the top 5 best rated CPUs, etc.
 		$items = $this->model('Items');
-
 		$topCPU = $items->getTop('cpu', '5');
 		$topGPU = $items->getTop('gpu', '5');
 		$topCooler = $items->getTop('cpu_cooler', '5');
@@ -19,11 +18,20 @@ class HomeController extends Controller{
 									'Storage'=>$topStorage, 'PSU'=>$topPSU, 'RAM'=>$topRam, 'Case'=>$topCase]);
 	}
 
-	public function search($searchString)
+	public function search()
 	{
+		$error = "";
 		$items = $this->model('Items');
-		$results =$items->search($searchString);
+		$searchString = $_GET['searchBox'];
+		$searchQuery = "%" . $searchString . "%";
+		$results =$items->search($searchQuery);
 
+		if($results == null)
+		{
+		 	$error = "Sorry no results were found for $searchString";
+		}
+
+		$this->view('Home/search', ['SearchString'=>$searchString, 'Results'=>$results, 'Error'=>$error]);
 	}
 }
 ?>
