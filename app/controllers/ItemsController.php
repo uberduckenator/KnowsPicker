@@ -3,9 +3,6 @@
 class ItemsController extends Controller
 {
 	public function index(){
-<<<<<<< HEAD
-		
-=======
 		$inventory =$this->model("Items");
 		$company_id = $this->model("CompanyProfile")->getCompany($_SESSION['login_id'])->company_id;
 		$companyItems = $inventory->getItemsFromCompany($company_id);
@@ -32,8 +29,24 @@ class ItemsController extends Controller
 			$inventory->insert();
 			header("location:/inventory");
 		}
->>>>>>> 29d05a6e19786642e4ecc252560031a32709ced6
 	}
 
-	
+	public function edit($item_id)
+	{
+		$Items = 
+		if (!isset($_POST["action"]))
+		{
+			$this->view("Item/edit");
+		}
+	}
+
+	public function details($item_id)
+	{
+
+	}
+
+	public function delete($item_id)
+	{
+
+	}	
 }
