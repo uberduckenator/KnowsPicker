@@ -27,12 +27,11 @@ class PurchaseController extends Controller
 		$purchaseDetails = $this->model('PurchaseDetails');
 		$inCart = $purchaseDetails->get($cartID);
 
-
 		$this->view('Purchase/index',['Profile'=>$profile, 'Payment'=>$paymentInfo, 'Cart'=>$inCart]);
 	}
 
 	public function something()
 	{
-
+		
 	}
 }

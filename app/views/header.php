@@ -6,19 +6,19 @@
 </head>
 <div class="topHeader">
 	<img src="" alt="Knowspicker Logo">
-	<input type="text">
-	<a href="Search"><img src="" alt="Search Button"></a>
+	<input type="text" name="searchBox">
+	<a href="Home/Search/"><img src="" alt="Search Button"></a>
 	<?php
-		if(!isset($SESSION['login_id']))
+		if(!isset($_SESSION['login_id']))
 			echo('<a href="Login">Login</a>');
 		else
 		{
-			if($SESSION['role'] == 'company')
+			if($_SESSION['role'] == 'company')
 			{
-				echo('<a href="Inventory">My inventory</a>');
+				echo('<a href="Items/index">My inventory</a>');
 				echo('<a href=""></a>');
 			}
-			elseif ($SESSION['role'] == 'admin')
+			elseif ($_SESSION['role'] == 'admin')
 			{
 				echo('<a href="Ticket">My tickets</a>');
 			}
@@ -26,8 +26,8 @@
 			{
 				echo('<a href="Orders">My orders</a>');	
 				echo('<a href="Cart"><img src="" alt="Cart"></a>');
+        echo('<a href="Profile"><img src="" alt="Profile"></a>');
 			}
-		
 			echo('<a href="Login/logout">Logout</a>');
 		}
 	?>
