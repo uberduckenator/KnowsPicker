@@ -1,9 +1,10 @@
 <?php
 
-class Items extends Controller
+class ItemsController extends Controller
 {
-	public function index()
-	{
-		//Handles url data/ search info here
+	public function index(){
+		
 	}
+
+	
 }

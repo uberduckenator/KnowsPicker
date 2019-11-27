@@ -17,6 +17,8 @@ class CompanyProfile extends Model{
 	public function getCompany($login_id){
 		$stmt = self::$_connection->prepare("SELECT * FROM company_profile WHERE login_id = :login_id");
 		$stmt->execute(['login_id' =>$login_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'CompanyProfile');
+		return $stmt->fetch();
 	}
 
 }
