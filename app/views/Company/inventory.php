@@ -11,7 +11,7 @@ include("header.php");
 <?php
 foreach($model as $items){
 	$item_id = $items->item_id;
-	echo "<img alt=picture for something>";
+	echo "<img alt=picture for item>";
 	echo "<tr><th>$items->item_name</th><th>$items->price</th><th>$items->item_type</th><th>$items->stock</th><th>$items->rebate</th>";
 	echo "<th><a href=Items/edit/$item_id>Edit</a><a href=Items/details/$item_id>Details</a><a href=Items/Delete/$item_id>Delete</a></th></tr>";
 }
