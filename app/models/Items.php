@@ -21,14 +21,9 @@ class Items extends Model
 	}
 
 	public function insert(){
-<<<<<<< HEAD
 		$stmt = self::$_connection->prepare("INSERT INTO items (item_name, price, item_type, rating, ratings_amount, stock, rebate, max_sale_quantity, company_id)
 											 VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id)");
 		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id]);
-=======
-		$stmt = self:$_connection->prepare("INSERT INTO items (item_name, price, item_type, rating, ratings_amount, stock, rebate, max_sale_quantity, company_id) VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id");
-		$stmt->execute(['item_name' =>$this->item_name, 'price' =>$this->price, 'item_type' =>$this->item_type 'rating' => $this->rating, 'ratings_amount' =>$this->ratings_amount, 'stock' =>$this->stock, 'rebate' =>$this->rebate, 'max_sale_quantity' =>$this->max_sale_quantity, 'company_id' =$this->company_id]);
->>>>>>> 29d05a6e19786642e4ecc252560031a32709ced6
 	}
 
 	public function get($item_id)
@@ -75,6 +70,18 @@ class Items extends Model
 		return $stmt->fetchAll();
 	}
 
-	
+	public function update($item_id)
+	{
+		$stmt = self::$_connection->prepare("UPDATE items
+											SET item_name = :item_name, price = :price, item_type = item_type, stock = :stock, rebate = :rebate, max_sale_quantity = :max_sale_quantity
+											WHERE item_id = :item_id");
+		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity]);
+	}
+
+	public function delete($item_id)
+	{
+		$stmt = self::$_connection->prepare("DELETE FROM items WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+	}
 
 }
