@@ -26,7 +26,8 @@ class Motherboard extends Model
 
 	public function insert()
 	{
-
+		$stmt = self::$_connection->prepare("INSERT INTO motherboard (model, socket, form_factor, ram_slots, max_ram, ram_type, memory_speed, pci_e_slots, onboard_ethernet, sata_ports, m2_slots, wifi, item_id) VALUES (:model, :socket, :form_factor, :ram_slots, :max_ram, :ram_type, :memory_speed, :pci_e_slots, :onboard_ethernet, :sata_ports, :m2_slots, :wifi, :item_id)");
+		$stmt->execute(['model'=>$this->model, 'socket'=>$this->socket, 'form_factor'=>$this->form_factor, 'ram_slots'=>$this->ram_slots, 'max_ram'=>$this->max_ram, 'ram_type'=>$this->ram_type, 'memory_speed'=>$this->memory_speed, 'pci_e_slots'=>$this->pci_e_slots, 'onboard_ethernet'=>$this->onboard_ethernet, 'sata_ports'=>$this->sata_ports, 'm2_slots'=>$this->m2_slots, 'wifi'=>$this->wifi, 'item_id'=>$this->item_id]);
 	}
 
 	public function get($motherboard_id)

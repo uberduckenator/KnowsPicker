@@ -20,7 +20,6 @@
 	</div>
 	<div class="form-group">
 	<label for="username">Item Type</label>
-<<<<<<< HEAD
 	<select name="item_type">		
 	<?php
 		foreach($model as $itemtype){
@@ -29,9 +28,6 @@
 		}
 	?>
 	</select>
-=======
-	<input type="text" class="form-control" name="item_type" id="item_type" />
->>>>>>> 29d05a6e19786642e4ecc252560031a32709ced6
 	</div>
 	<div class="form-group">
 	<label for="username">Rating</label>

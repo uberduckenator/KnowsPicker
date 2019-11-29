@@ -23,7 +23,6 @@
 		if(!isset($_SESSION['login_id']))
 		{
 			echo('<a href="Login">Login</a>');
-			var_dump($_SESSION['login_id']);
 		}
 		else
 		{

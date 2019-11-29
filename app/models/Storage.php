@@ -21,7 +21,8 @@ class Storage extends Model
 
 	public function insert()
 	{
-
+		$stmt = self::$_connection->prepare("INSERT INTO storage (part_no, capacity, type, cache, form_factor, interface, nvme, item_id) VALUES (:part_no, :capacity, :type, :cache, :form_factor, :interface, :nvme, :item_id)");
+		$stmt->execute(['part_no'=>$this->part_no, 'capacity'=>$this->capacity, 'type'=>$this->type, 'cache'=>$this->cache, 'form_factor'=>$this->form_factor, 'interface'=>$this->interface, 'nvme'=>$this->nvme, 'item_id'=>$this->item_id]);
 	}
 
 	public function get($storage_id)

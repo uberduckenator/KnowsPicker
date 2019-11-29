@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>Add CPU</title>
+	<title>Add PSU</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 	<script src="/js/jquery-3.2.1.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="container">
-<h1>Add CPU</h1>
+<h1>Add PSU</h1>
 
 <form method="post" action="" class="form-horizontal">
 	<div class="form-group">
@@ -15,32 +15,24 @@
 	<input type="text" class="form-control" name="model" id="model" />
 	</div>
 	<div class="form-group">
-	<label for="username">Socket</label>
-	<input type="text" class="form-control" name="socket" id="socket" />
+	<label for="username">Form Factor</label>
+	<input type="text" class="form-control" name="form_factor" id="form_factor" />
 	</div>
 	<div class="form-group">
-	<label for="username">Cores</label>
-	<input type="text" class="form-control" name="cores" id="cores" />
-	</div>
-	<div class="form-group">
-	<label for="username">Clock Speed</label>
-	<input type="text" class="form-control" name="clock_speed" id="clock_speed" />
+	<label for="username">Efficiency Rating</label>
+	<input type="text" class="form-control" name="efficiency_rating" id="efficiency_rating" />
 	</div>
 	<div class="form-group">
 	<label for="username">Wattage</label>
 	<input type="text" class="form-control" name="wattage" id="wattage" />
 	</div>
 	<div class="form-group">
-	<label for="username">Series</label>
-	<input type="text" class="form-control" name="series" id="series" />
+	<label for="username">Modular</label>
+	<input type="text" class="form-control" name="modular" id="modular" />
 	</div>
 	<div class="form-group">
-	<label for="username">Integrated Graphics</label>
-	<input type="text" class="form-control" name="integrated_graphics" id="integrated_graphics" />
-	</div>
-	<div class="form-group">
-	<label for="username">CPU Cooler</label>
-	<input type="text" class="form-control" name="cpu_cooler" id="cpu_cooler" />
+	<label for="username">Fanless</label>
+	<input type="text" class="form-control" name="fanless" id="fanless" />
 	</div>
 	<div class="form-group">
 	<input type="submit" class="btn btn-default" name="action" value="Add" />
