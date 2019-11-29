@@ -25,7 +25,6 @@ class Items extends Model
 											 VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id)");
 		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id]);
 		$this->item_id = self::$_connection->lastInsertId();
-
 	}
 
 	public function get($item_id)
@@ -51,19 +50,39 @@ class Items extends Model
 		return $stmt->fetchAll();
 	}
 
-
-	//Get top
-	public function getTop($table_name, $maximum)
+	public function search($searchText)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM items 
-											INNER JOIN :table_name USING item_id 
-											ORDER BY rating DESC
-											LIMIT :maximum");
-		$stmt->execute(['table_name'=>$table_name,'maximum'=>$maximum]);
+		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_name LIKE :searchText");
+		$stmt->execute(['searchText'=>$searchText]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();
 	}
 
-	
+
+	//Get top
+	public function getTop($item_type)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items 
+											WHERE item_type = :item_type 
+											ORDER BY rating DESC
+											LIMIT 5");
+		$stmt->execute(['item_type'=>$item_type]);//'maximum'=>$maximum]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
+	}
+
+	public function update($item_id)
+	{
+		$stmt = self::$_connection->prepare("UPDATE items
+											SET item_name = :item_name, price = :price, item_type = item_type, stock = :stock, rebate = :rebate, max_sale_quantity = :max_sale_quantity
+											WHERE item_id = :item_id");
+		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity]);
+	}
+
+	public function delete($item_id)
+	{
+		$stmt = self::$_connection->prepare("DELETE FROM items WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+	}
 
 }

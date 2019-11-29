@@ -32,4 +32,17 @@ class Storage extends Model
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Storage');
 		return $stmt->fetch();
 	}
+
+	public function delete($item_id)
+	{
+		$stmt = self::$_connection->prepare("DELETE FROM storage WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+	}
+
+	public function update($item_id)
+	{
+		$stmt = self::$_connection->prepare("UPDATE storage SET part_no = :part_no, capacity = :capacity, type = :type, cache = :cache, form_factor = :form_factor, interface = :interface, nvme = :nvme
+			 WHERE item_id = :item_id");
+		$stmt->execute(['part_no'=>$this->part_no, 'capacity'=>$this->capacity, 'type'=>$this->type, 'cache'=>$this->cache, 'form_factor'=>$this->form_factor, 'interface'=>$this->interface, 'nvme'=>$this->nvme, 'item_id'=>$this->item_id]);
+	}
 }
