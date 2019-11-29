@@ -1,53 +1,43 @@
 <?php
-class TicketController extends Controller{
+define("OPENED_STATUS", 0);
+define("IN_PROGRESS_STATUS",1);
+define("CLOSED_STATUS",2);
 
+class TicketController extends Controller{
+	
 	public function index()
 	{
 		//display all tickets to admin accounts
 		$ticket = $this->model('Ticket');
-		$all_tickets = $person->getAll(); 
-		$this->view('Home/index');
+		$all_tickets = $ticket->getAll(); 
+		$this->view('ticket/index');
 	}
 
 	public function create(){
 		if(!isset($_POST['action'])){
-			$this->view('Default/create');	
+			$this->view('Ticket/create');	
 		}else{
-			$person = $this->model('Person');
-			$person->first_name = $_POST['first_name'];
-			$person->last_name = $_POST['last_name'];
-			$person->insert();
+			$ticket = $this->model('Ticket');
+			$ticket->title = $_POST['title'];
+			$ticket->description = $_POST['description'];
+			$ticket->status = OPENED_STATUS;
+			$ticket->user_id = $this->model('UserProfile')->getUser($_SESSION["login_id"]);
+			$ticket->insert();
 			//redirecttoaction
-			header('location:/Default/index');
+			header('location:/Ticket/index');
 		}
 	}
 
-	public function edit($person_id){
-		$thePerson = $this->model('Person')->find($person_id);
+	public function close($ticket_id){
+		$theTicket = $this->model('Ticket')->find($ticket_id);
 		if(!isset($_POST['action'])){
-			$this->view('Default/edit', $thePerson);	
+			$this->view('Ticket/close', $theTicket);	
 		}else{
-			$thePerson->first_name = $_POST['first_name'];
-			$thePerson->last_name = $_POST['last_name'];
-			$thePerson->update();
+			$theTicket->status = CLOSED_STATUS;
+			$theTicket->close();
 			//redirecttoaction
-			header('location:/Default/index');
+			header('location:/Ticket/index');
 		}
-	}
-
-
-
-
-	public function delete($person_id){
-		$thePerson = $this->model('Person')->find($person_id);
-		if(!isset($_POST['action'])){
-			$this->view('Default/delete', $thePerson);	
-		}else{
-			$thePerson->delete();
-			//redirecttoaction
-			header('location:/Default/index');
-		}
-
 	}
 }
 ?>

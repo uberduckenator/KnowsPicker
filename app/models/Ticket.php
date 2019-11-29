@@ -31,19 +31,13 @@ class Ticket extends Model
     }
 
     public function insert(){
-	    $stmt = self::$_connection->prepare("INSERT INTO Tickets(title, description, status, user_id) VALUES(:first_name,:last_name)");
-        $stmt->execute(['first_name'=>$this->first_name,
-         'last_name'=>$this->last_name]);
+	    $stmt = self::$_connection->prepare("INSERT INTO Tickets(title, description, status, user_id) VALUES(:title,:description,:status,:user_id)");
+        $stmt->execute(['title'=>$this->title,
+         'description'=>$this->description, 'status'=>$this->status, 'user_id'=>$this->user_id]);
     }
 
-    public function delete(){
-        $stmt = self::$_connection->prepare("DELETE FROM Person WHERE person_id = :person_id");
-        $stmt->execute(['person_id'=>$this->person_id]);
-    }
-
-    public function update(){
-        $stmt = self::$_connection->prepare("UPDATE Person SET first_name = :first_name, last_name = :last_name WHERE person_id = :person_id");
-        $stmt->execute(['first_name'=>$this->first_name,
-         'last_name'=>$this->last_name, 'person_id'=>$this->person_id]);
+    public function close($ticket_id){
+        $stmt = self::$_connection->prepare("UPDATE Tickets SET status = :status WHERE ticket_id = :ticket_id");
+        $stmt->execute(['status'=>$this->status]);
     }
 }
