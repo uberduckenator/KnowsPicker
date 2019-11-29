@@ -13,6 +13,10 @@ class Model{
         self::$_connection = new PDO("mysql:host=$server;dbname=$DBName;charset=utf8", $user, $pass);
         self::$_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+
+    public function lastInsertId(){
+    	return self::$_connection->lastInsertId();
+    }
 /*
 	public function get($select,$classname){
         $stmt = self::$_connection->prepare($select);

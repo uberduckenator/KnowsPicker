@@ -7,12 +7,13 @@ class LoginController extends Controller{
 		else{
 			$user = $this->model("Login")->find($_POST["username"]);
 
-			if($user !=null && password_verify($_POST["password"], $user->password)){
-				$SESSION["login_id"] = $user->user_id;
-				return header("location:/Default/index");
+			if($user !=null && password_verify($_POST["password"], $user->password_hash)){
+				$_SESSION["login_id"] = $user->user_id;
+				return header("location:/Home");
 			}
 			else{
 				$this->view("Login/index",['error' => 'Bad username/password']);
+
 			}
 		}
 	}
@@ -38,7 +39,8 @@ class LoginController extends Controller{
 
 				$user->insert();
 
-				header("location:/Login/index");
+				$_SESSION['login_id'] = $user->insert();
+				header("location:/Profile/create");
 
 			}
 		}
