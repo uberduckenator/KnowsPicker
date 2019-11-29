@@ -54,56 +54,31 @@ class CompanyController extends Controller{
 			$inventory->company_id = $company_id;
 
 			$inventory->insert();
-
+			
 			switch($item_type){
 				case "CPU":
-<<<<<<< HEAD
-					header("location:/Items/CPU");
+					header("location:/Items/CPU/$inventory->item_id");
 					break;
 				case "CPU Cooler":
-					header("location:/Items/CPUCooler");
+					header("location:/Items/CPUCooler/$inventory->item_id");
 					break;
 				case "GPU":
-					header("location:/Items/GPU");
+					header("location:/Items/GPU/$inventory->item_id");
 					break;
 				case "Motherboard":
-					header("location:/Items/Motherboard");
+					header("location:/Items/Motherboard/$inventory->item_id");
 					break;
 				case "PC Case":
-					header("location:/Items/PCCase");
+					header("location:/Items/PCCase/$inventory->item_id");
 					break;
 				case "PSU":
-					header("location:/Items/PSU");
+					header("location:/Items/PSU/$inventory->item_id");
 					break;
 				case "RAM":
-					header("location:/Items/RAM");
+					header("location:/Items/RAM/$inventory->item_id");
 					break;
 				case "Storage":
-					header("location:/Items/Storage");
-=======
-					$this->view("/Item/CPU");
-					break;
-				case "CPU Cooler":
-					$this->view("/Item/CPUCooler");
-					break;
-				case "GPU":
-					$this->view("/Item/GPU");
-					break;
-				case "Motherboard":
-					$this->view("/Item/Motherboard");
-					break;
-				case "PC Case":
-					$this->view("/Item/PCCase");
-					break;
-				case "PSU":
-					$this->view("/Item/PSU");
-					break;
-				case "RAM":
-					$this->view("/Item/RAM");
-					break;
-				case "Storage":
-					$this->view("/Item/Storage");
->>>>>>> f3a238c08b405876824d53d5db1b2006baad0264
+					header("location:/Items/Storage/$inventory->item_id");
 					break;
 				default:
 					header("location:/Company/inventory");

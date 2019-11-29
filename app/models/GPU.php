@@ -22,7 +22,8 @@ class GPU extends Model
 
 	public function insert()
 	{
-
+		$stmt = self::$_connection->prepare("INSERT INTO gpu (part_no, chipset, memory, memory_type, core_clock, interface, length, wattage, item_id) VALUES (:part_no, :chipset, :memory, :memory_type, :core_clock, :interface, :length, :wattage, :item_id)");
+		$stmt->execute(['part_no'=>$this->part_no, 'chipset'=>$this->chipset, 'memory'=>$this->memory, 'memory_type'=>$this->memory_type, 'core_clock'=>$this->core_clock, 'interface'=>$this->interface, 'length'=>$this->length, 'wattage'=>$this->wattage, 'item_id'=>$this->item_id]);
 	}
 
 	public function get($gpu_id)

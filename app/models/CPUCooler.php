@@ -18,7 +18,8 @@ class CPUCooler extends Model
 
 	public function insert()
 	{
-
+		$stmt = self::$_connection->prepare("INSERT INTO cpu_cooler (model, sockets, fan_rpm, height, item_id) VALUES (:model, :sockets, :fan_rpm, :height, :item_id)");
+		$stmt->execute(['model'=>$this->model, 'sockets'=>$this->sockets, 'fan_rpm'=>$this->fan_rpm, 'height'=>$this->height, 'item_id'=>$this->item_id]);
 	}
 
 	public function get($cpu_cooler_id)

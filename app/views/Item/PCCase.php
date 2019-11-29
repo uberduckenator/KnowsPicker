@@ -28,11 +28,11 @@
 	</div>
 	<div class="form-group">
 	<label for="username">Internal 2.5" Bays</label>
-	<input type="text" class="form-control" name="internal_2.5_bays" id="internal_2.5_bays" />
+	<input type="text" class="form-control" name="internal_2_5_bays" id="internal_2_5_bays" />
 	</div>
 	<div class="form-group">
 	<label for="username">Internal 3.5" Bays</label>
-	<input type="text" class="form-control" name="internal_3.5_bays" id="internal_3.5_bays" />
+	<input type="text" class="form-control" name="internal_3_5_bays" id="internal_3_5_bays" />
 	</div>
 	<div class="form-group">
 	<input type="submit" class="btn btn-default" name="action" value="Add" />

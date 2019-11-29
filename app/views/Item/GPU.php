@@ -36,7 +36,7 @@
 	</div>
 	<div class="form-group">
 	<label for="username">Length</label>
-	<input type="text" class="form-control" name="Length" id="length" />
+	<input type="text" class="form-control" name="length" id="length" />
 	</div>
 	<div class="form-group">
 	<label for="username">Wattage</label>
