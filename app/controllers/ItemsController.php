@@ -88,8 +88,8 @@ class ItemsController extends Controller
 	{
 		$items = $this->model('Items');
 		$theItem = $items->get($item_id);
-		$item_type = $this->model('ItemType')->getName($theItem->item_type);
-		$typeModel = getTypeModel($item_type);
+		$item_type = $theItem->item_type;
+		$typeModel = $this->getTypeModel($item_type);
 		$error = '';
 		if (!isset($_POST["action"]))
 		{	
@@ -104,7 +104,7 @@ class ItemsController extends Controller
 		$items->rebate = $_POST['rebate'];
 		$items->max_sale_quantity = $_POST['max_sale_quantity'];
 		$items->update($item_id);
-
+		
 		//Update item_type info
 		//Lots of code here
 		switch ($item_type)
@@ -203,7 +203,7 @@ class ItemsController extends Controller
 		$items = $this->model('Items');
 		$theItem = $items->get($item_id);
 		$item_type = $theItem->item_type;
-		$typeModel = getTypeModel($item_type);
+		$typeModel = $this->getTypeModel($item_type);
 		if (!isset($_POST["action"]))
 		{
 			$typeDetails = $typeModel->getItem($item_id);
@@ -216,7 +216,7 @@ class ItemsController extends Controller
 	}
 
 	//Returns a specific model based on the item_type value in the item table
-	private static function getTypeModel($item_type)
+	private function getTypeModel($item_type)
 	{
 		$model = [];
 		switch($item_type){

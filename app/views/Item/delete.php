@@ -14,7 +14,7 @@
 			echo "<p>$model->item_name</p></br>";
 			echo "<p>$model->price</p></br>";
 			echo "<p>$model->item_type</p></br>";
-			echo "<p>$model->ratings</p></br>";
+			echo "<p>$model->rating</p></br>";
 			echo "<p>$model->ratings_amount</p></br>";
 			echo "<p>$model->stock</p></br>";
 			echo "<p>$model->rebate</p></br>";
