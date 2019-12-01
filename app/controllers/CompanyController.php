@@ -54,31 +54,31 @@ class CompanyController extends Controller{
 			$inventory->company_id = $company_id;
 
 			$inventory->insert();
-
+			
 			switch($item_type){
 				case "CPU":
-					$this->view("/Item/CPU");
+					header("location:/Items/CPU/$inventory->item_id");
 					break;
 				case "CPU Cooler":
-					$this->view("/Item/CPUCooler");
+					header("location:/Items/CPUCooler/$inventory->item_id");
 					break;
 				case "GPU":
-					$this->view("/Item/GPU");
+					header("location:/Items/GPU/$inventory->item_id");
 					break;
 				case "Motherboard":
-					$this->view("/Item/Motherboard");
+					header("location:/Items/Motherboard/$inventory->item_id");
 					break;
 				case "PC Case":
-					$this->view("/Item/PCCase");
+					header("location:/Items/PCCase/$inventory->item_id");
 					break;
 				case "PSU":
-					$this->view("/Item/PSU");
+					header("location:/Items/PSU/$inventory->item_id");
 					break;
 				case "RAM":
-					$this->view("/Item/RAM");
+					header("location:/Items/RAM/$inventory->item_id");
 					break;
 				case "Storage":
-					$this->view("/Item/Storage");
+					header("location:/Items/Storage/$inventory->item_id");
 					break;
 				default:
 					header("location:/Company/inventory");

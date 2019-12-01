@@ -24,7 +24,7 @@
 	</div>
 	<div class="form-group">
 	<label for="username">Height</label>
-	<input type="text" class="form-control" name="heigh" id="height" />
+	<input type="text" class="form-control" name="height" id="height" />
 	</div>
 	<div class="form-group">
 	<input type="submit" class="btn btn-default" name="action" value="Add" />

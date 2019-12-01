@@ -56,14 +56,13 @@ class ItemsController extends Controller
 	}
 
 	public function Storage()
-	{
-
+  {
 		$item = $this->model('Items');
 		$itemGPU = $item->getType('8');
 		$this->view('Item/index', $itemGPU);
 	}
 
-	public function addItems(){
+		public function addItems(){
 		if(!isset($_POST["action"])){
 			$this->view("Company/additem");
 		}
@@ -250,4 +249,3 @@ class ItemsController extends Controller
 			}
 			return $model;
 	}	
-}

@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>Add GPU</title>
+	<title>Add Storage</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 	<script src="/js/jquery-3.2.1.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="container">
-<h1>Add GPU</h1>
+<h1>Add Storage</h1>
 
 <form method="post" action="" class="form-horizontal">
 	<div class="form-group">
@@ -15,32 +15,28 @@
 	<input type="text" class="form-control" name="part_no" id="part_no" />
 	</div>
 	<div class="form-group">
-	<label for="username">Chipset</label>
-	<input type="text" class="form-control" name="chipset" id="chipset" />
+	<label for="username">Capacity</label>
+	<input type="text" class="form-control" name="capacity" id="capacity" />
 	</div>
 	<div class="form-group">
-	<label for="username">Memory</label>
-	<input type="text" class="form-control" name="memory" id="memory" />
+	<label for="username">Type</label>
+	<input type="text" class="form-control" name="type" id="type" />
 	</div>
 	<div class="form-group">
-	<label for="username">Memory Type</label>
-	<input type="text" class="form-control" name="memory_type" id="memory_type" />
+	<label for="username">Cache</label>
+	<input type="text" class="form-control" name="cache" id="cache" />
 	</div>
 	<div class="form-group">
-	<label for="username">Core Clock</label>
-	<input type="text" class="form-control" name="core_clock" id="core_clock" />
+	<label for="username">Form Factor</label>
+	<input type="text" class="form-control" name="form_factor" id="form_factor" />
 	</div>
 	<div class="form-group">
 	<label for="username">Interface</label>
 	<input type="text" class="form-control" name="interface" id="interface" />
 	</div>
 	<div class="form-group">
-	<label for="username">Length</label>
-	<input type="text" class="form-control" name="length" id="length" />
-	</div>
-	<div class="form-group">
-	<label for="username">Wattage</label>
-	<input type="text" class="form-control" name="wattage" id="wattage" />
+	<label for="username">NVMe</label>
+	<input type="text" class="form-control" name="nvme" id="nvme" />
 	</div>
 	<div class="form-group">
 	<input type="submit" class="btn btn-default" name="action" value="Add" />
