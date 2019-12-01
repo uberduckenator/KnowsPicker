@@ -5,8 +5,7 @@ class HomeController extends Controller{
 	{
 		//We need to get the top 5 best rated CPUs, etc.
     
-    $items = $this->model('Items');
-		$items = $this->model('Items');
+    	$items = $this->model('Items');
 		$topCPU = $items->getTop('cpu', '5');
 		$topGPU = $items->getTop('gpu', '5');
 		$topCooler = $items->getTop('cpu_cooler', '5');
@@ -18,7 +17,6 @@ class HomeController extends Controller{
 
 		$this->view('Home/index', ['CPU'=>$topCPU, 'GPU'=>$topGPU, 'Cooler'=>$topCooler, 'Motherboard'=>$topMotherboard,
 									'Storage'=>$topStorage, 'PSU'=>$topPSU, 'RAM'=>$topRam, 'Case'=>$topCase]);
-									$this->view("Home/index");
 	}
 
 	public function search()

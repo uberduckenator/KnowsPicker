@@ -28,6 +28,7 @@
 		}
 	?>
 	</select>
+	<input type="text" class="form-control" name="item_type" id="item_type" />
 	</div>
 	<div class="form-group">
 	<label for="username">Rating</label>
