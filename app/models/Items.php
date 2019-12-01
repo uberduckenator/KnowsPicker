@@ -26,6 +26,14 @@ class Items extends Model
 		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id]);
 	}
 
+	public function getType($item_type)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_type = :item_type");
+		$stmt->execute(['item_type'=>$item_type]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
+	}
+
 	public function get($item_id)
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_id = :item_id");

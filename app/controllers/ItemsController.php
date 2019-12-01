@@ -3,10 +3,64 @@
 class ItemsController extends Controller
 {
 	public function index(){
-		$inventory =$this->model("Items");
-		$company_id = $this->model("CompanyProfile")->getCompany($_SESSION['login_id'])->company_id;
-		$companyItems = $inventory->getItemsFromCompany($company_id);
-		$this->view("Company/inventory");
+
+	}
+
+	public function CPU()
+	{
+		$item = $this->model('Items');
+		$itemCPU = $item->getType('1');
+		$this->view('Item/index', $itemCPU);
+	}
+
+	public function CPUCooler()
+	{
+		$item = $this->model('Items');
+		$itemCPUCooler = $item->getType('2');
+		$this->view('Item/index', $itemCPUCooler);
+	}
+
+	public function GPU()
+	{
+		$item = $this->model('Items');
+		$itemGPU = $item->getType('3');
+		$this->view('Item/index', $itemGPU);
+	}
+
+	public function Motherboard()
+	{
+		$item = $this->model('Items');
+		$itemMotherboard = $item->getType('4');
+		$this->view('Item/index', $itemGPU);
+	}
+
+	public function PCCase()
+	{
+		$item = $this->model('Items');
+		$itemPCCase = $item->getType('5');
+		$this->view('Item/index', $itemPCCase);
+	}
+
+	public function PSU()
+	{
+		$item = $this->model('Items');
+		$itemPSU = $item->getType('6');
+		$this->view('Item/index', $itemPSU);
+	}
+
+	public function RAM()
+	{
+		$item = $this->model('Items');
+		$itemRAM = $item->getType('7');
+		$this->view('Item/index', $itemRAM);
+	}
+
+	public function Storage()
+	{
+
+		$item = $this->model('Items');
+		$itemGPU = $item->getType('8');
+		$this->view('Item/index', $itemGPU);
 	}
 
 	public function addItems(){
