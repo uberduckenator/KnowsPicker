@@ -40,8 +40,8 @@ class PcCase extends Model
 
 	public function getAllUser($user_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM pc_build WHERE pc_build_id = :pc_build_id");
-		$stmt->execute(['pc_build_id'=>$pc_build_id]);
+		$stmt = self::$_connection->prepare("SELECT * FROM pc_build WHERE user_id = :user_id");
+		$stmt->execute(['user_id'=>$user_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PC_Build');
 		return $stmt->fetchAll();
 	}

@@ -8,7 +8,7 @@ class UserProfile extends Model
 	public $first_name;
 	public $last_name;
 	public $email;
-	public $country;
+	public $country_id;
 	public $city;
 	public $street_address;
 	public $postal_code;
@@ -21,8 +21,8 @@ class UserProfile extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO user_profile (first_name, last_name, email, country, city, street_address, postal_code, login_id) VALUES (:first_name, :last_name, :email, :country, :city, :street_address, :postal_code, :login_id)");
-		$stmt->execute(['first_name'=>$this->first_name, 'last_name'=>$this->last_name, 'email'=>$this->email, 'country'=>$this->country, 'city'=>$this->city, 'street_address'=>$this->street_address, 'postal_code'=>$this->postal_code, 'login_id'=>$this->login_id]);
+		$stmt = self::$_connection->prepare("INSERT INTO user_profile (first_name, last_name, email, country_id, city, street_address, postal_code, login_id) VALUES (:first_name, :last_name, :email, :country_id, :city, :street_address, :postal_code, :login_id)");
+		$stmt->execute(['first_name'=>$this->first_name, 'last_name'=>$this->last_name, 'email'=>$this->email, 'country_id'=>$this->country_id, 'city'=>$this->city, 'street_address'=>$this->street_address, 'postal_code'=>$this->postal_code, 'login_id'=>$this->login_id]);
 	}
 
 	//Edits only the user's info

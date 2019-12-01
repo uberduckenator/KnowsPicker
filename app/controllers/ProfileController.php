@@ -18,7 +18,7 @@ class ProfileController extends Controller{
 			$profile->first_name = $_POST["first_name"];
 			$profile->last_name = $_POST["last_name"];
 			$profile->email = $_POST["email"];
-			$profile->country = $_POST["countries"];
+			$profile->country_id = $_POST["countries"];
 			$profile->city = $_POST["city"];
 			$profile->street_address = $_POST["street_address"];
 			$profile->postal_code = $_POST["postal_code"];

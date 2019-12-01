@@ -70,15 +70,15 @@ class ItemsController extends Controller
 		else{
 			$inventory = $this->model("Items");
 
-			$inventory->item_name = $_POST('item_name');
-			$inventory->price = $_POST('price');
-			$inventory->item_type = $_POST('item_type');
-			$inventory->rating = $_POST('rating');
-			$inventory->ratings_amount = $_POST('ratings_amount');
-			$inventory->stock = $_POST('stock');
-			$inventory->rebate = $_POST('rebate');
-			$inventory->max_sale_quantity = $_POST('max_sale_quantity');
-			$inventory->company_id = $_SESSION('company_id');
+			$inventory->item_name = $_POST['item_name'];
+			$inventory->price = $_POST['price'];
+			$inventory->item_type = $_POST['item_type'];
+			$inventory->rating = $_POST['rating'];
+			$inventory->ratings_amount = $_POST['ratings_amount'];
+			$inventory->stock = $_POST['stock'];
+			$inventory->rebate = $_POST['rebate'];
+			$inventory->max_sale_quantity = $_POST['max_sale_quantity'];
+			$inventory->company_id = $this->model('CompanyProfile')->getCompany($_SESSION['company_id']);
 
 			$inventory->insert();
 			header("location:/inventory");
@@ -89,7 +89,7 @@ class ItemsController extends Controller
 	{
 		$items = $this->model('Items');
 		$theItem = $items->get($item_id);
-		$item_type = $theItem->item_type;
+		$item_type = $this->model('ItemType')->getName($theItem->item_type);
 		$typeModel = getTypeModel($item_type);
 		$error = '';
 		if (!isset($_POST["action"]))
