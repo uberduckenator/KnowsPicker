@@ -1,5 +1,6 @@
 <?php
 class CompanyController extends Controller{
+	
 	public function index(){
 		$company = $this->model('CompanyProfile');
 		$login_id = $_SESSION['login_id'];
@@ -13,11 +14,16 @@ class CompanyController extends Controller{
 		}
 		else{
 			$company = $this->model("CompanyProfile");
+			$picture = $this->model("Pictures");
+
+			$picture->filepath = $_POST['company_picture'];
+			$picture->insert();
 
 			$company->company_name = $_POST['company_name'];
+			$company->picture_id = $picture->picture_id;
 			$company->login_id = $_SESSION['login_id'];
-
 			$company->insert();
+			
 			header("location:/Home");
 		}
 	}
@@ -41,6 +47,10 @@ class CompanyController extends Controller{
 		else{
 			$inventory = $this->model("Items");
 			$company_id = $this->model("CompanyProfile")->getCompany($_SESSION['login_id'])->company_id;
+			$picture = $this->model("Pictures");
+
+			$picture->filepath = $_POST['item_image'];
+			$picture->insert();
 
 			$inventory->item_name = $_POST['item_name'];
 			$inventory->price = $_POST['price'];
@@ -52,6 +62,7 @@ class CompanyController extends Controller{
 			$inventory->rebate = $_POST['rebate'];
 			$inventory->max_sale_quantity = $_POST['max_sale_quantity'];
 			$inventory->company_id = $company_id;
+			$inventory->picture_id = $picture->picture_id;
 
 			$inventory->insert();
 			
