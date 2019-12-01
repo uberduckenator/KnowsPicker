@@ -13,4 +13,13 @@ class ItemType extends Model{
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'ItemType');
 		return $stmt->fetchAll();
 	}
+
+	public function getName($item_type_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT item_name FROM item_type
+											 WHERE item_type_id = :item_type_id");
+		$stmt->execute(['item_type_id']);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'ItemType');
+		return $stmt->fetch();
+	}
 }

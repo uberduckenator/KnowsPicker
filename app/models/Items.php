@@ -27,6 +27,14 @@ class Items extends Model
 		$this->item_id = self::$_connection->lastInsertId();
 	}
 
+	public function getType($item_type)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_type = :item_type");
+		$stmt->execute(['item_type'=>$item_type]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
+	}
+
 	public function get($item_id)
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_id = :item_id");
