@@ -31,7 +31,7 @@ class ItemsController extends Controller
 	{
 		$item = $this->model('Items');
 		$itemMotherboard = $item->getType('Motherboard');
-		$this->view('Item/index', $itemGPU);
+		$this->view('Item/index', $itemMotherboard);
 	}
 
 	public function PCCase()
@@ -56,10 +56,10 @@ class ItemsController extends Controller
 	}
 
 	public function Storage()
-  {
+  	{
 		$item = $this->model('Items');
-		$itemGPU = $item->getType('Storage');
-		$this->view('Item/index', $itemGPU);
+		$itemStorage = $item->getType('Storage');
+		$this->view('Item/index', $itemStorage);
 	}
 
 		public function addItems(){

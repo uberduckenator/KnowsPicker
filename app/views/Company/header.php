@@ -52,10 +52,10 @@
 <div class ="navigation">
 	<ul>
 		<li><a href="/Home">Home</a></li>
-		<li><a href="/Items/CPU">Somewhere</a></li>
+		<li><a href="/Items/CPU">CPUs</a></li>
 		<li><a href="/Items/GPU">GPUs</a></li>
 		<li><a href="/Items/Motherboard">Motherboards</a></li>
-		<li><a href="/Items/Case">Cases</a></li>
+		<li><a href="/Items/PCCase">Cases</a></li>
 		<li><a href="/Items/PSU">Power Supplies</a></li>
 		<li><a href="/Items/RAM">RAM</a></li>
 		<li><a href="/Items/Storage">Storage</a></li>

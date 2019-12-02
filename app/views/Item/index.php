@@ -19,11 +19,11 @@
 		echo "<th><h4>$item_name</h4></br>
 				  <img alt = picture for item></br>
 				  <form>
-				  	<input type=button action=/PCBuild/addPart/[] value=Add To Build>
-				  	<input type=button action= value=Add To Cart>
+				  	<a href=/PCBuild/addPart/[]><input type=button value='Add To Build'/></a>
+				  	<a href=/Purchase/addItem/[]><input type=button value='Add To Cart'/></a>
 				  </form>
 			  </th>";
-		echo "<th><p>'$'$price</p></br>
+		echo "<th><p>$$price</p></br>
 				  <p>$rating</p></br>
 				  <p>$numberofratings</p></br>
 				  <p>Items left: $stock</p></br>

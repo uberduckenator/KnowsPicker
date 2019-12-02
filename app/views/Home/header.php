@@ -42,7 +42,7 @@
 			}
 			else
 			{
-				echo('<a href="/Orders">My orders</a>');
+				echo('<a href="/Purchase/orders">My orders</a>');
 				echo('<a href="/PCBuilds/myBuilds>My PC Builds</a>"');	
 				echo('<a href="/Cart"><img src="" alt="Cart"></a>');
 				echo('<a href="/Profile"><img src="" alt="Profile"></a>');
@@ -55,10 +55,10 @@
 <div class ="navigation">
 	<ul>
 		<li><a href="/Home">Home</a></li>
-		<li><a href="/Items/CPU">Somewhere</a></li>
+		<li><a href="/Items/CPU">CPUs</a></li>
 		<li><a href="/Items/GPU">GPUs</a></li>
 		<li><a href="/Items/Motherboard">Motherboards</a></li>
-		<li><a href="/Items/Case">Cases</a></li>
+		<li><a href="/Items/PCCase">Cases</a></li>
 		<li><a href="/Items/PSU">Power Supplies</a></li>
 		<li><a href="/Items/RAM">RAM</a></li>
 		<li><a href="/Items/Storage">Storage</a></li>
