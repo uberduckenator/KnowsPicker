@@ -37,7 +37,7 @@ class PCBuildController extends Controller{
 		$this->view('PCBuild/index', $myBuilds);	
 	}
 
-	public function buildDetails($pc_build_id)
+	/*public function buildDetails($pc_build_id)
 	{
 		$build = $this->model('PCBuild');
 		$theBuild = $build->get($pc_build_id);
@@ -61,7 +61,7 @@ class PCBuildController extends Controller{
 		
 		$this->view("PCBuild/details", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 
-	} 
+	}*/
 
 
 	public function createNewBuild()
@@ -101,7 +101,6 @@ class PCBuildController extends Controller{
 			$typeInfo = $typeModel->getItem($item_id);
 			$itemDetails['Item Info'][] = $itemInfo;
 			$itemDetails['Item Type Info'][] = $typeInfo; 
-
 		}
 		
 		$this->view("PCBuild/setup", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);

@@ -10,6 +10,19 @@ class LoginController extends Controller{
 			if($user !=null && password_verify($_POST["password"], $user->password_hash)){
 				$_SESSION["login_id"] = $user->login_id;
 				$_SESSION["role"] = $user->role;
+				switch ($_SESSION['role']) {
+					case 'company':
+						$company = $this->model('CompanyProfile');
+						$_SESSION['company_id'] = $company->getCompany($_SESSION['login_id']);
+						break;
+
+					//case 'admin':
+						//$admin = $this->model('Admin');				
+					default:
+						$user = $this->model('UserProfile');
+						$_SESSION['user_id'] = $user->getUser($_SESSION['login_id']);
+						break;
+				}
 				return header("location:/Home");
 			}
 			else{

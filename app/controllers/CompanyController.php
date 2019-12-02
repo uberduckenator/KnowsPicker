@@ -23,6 +23,8 @@ class CompanyController extends Controller{
 			$company->picture_id = $picture->picture_id;
 			$company->login_id = $_SESSION['login_id'];
 			$company->insert();
+
+			$_SESSION['company_id'] = $company->company_id;
 			
 			header("location:/Home");
 		}
