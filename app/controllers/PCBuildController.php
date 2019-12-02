@@ -51,7 +51,7 @@ class PCBuildController extends Controller{
 		foreach ($buildDetails as $item)
 		{
 			$item_id = $item->item_id;
-			$itemInfo = $this-	>model('Items')->get($item_id);
+			$itemInfo = $this->model('Items')->get($item_id);
 			$typeModel = getTypeModel($itemInfo->item_type);
 			$typeInfo = $typeModel->getItem($item_id);
 			$itemDetails['Item Info'][] = $itemInfo;
