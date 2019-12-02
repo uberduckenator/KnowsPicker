@@ -59,7 +59,9 @@ class PurchaseController extends Controller
 
 	public function orders()
 	{
-		//Displays user's orders in progress and completed
-		
+		$purchase = $this->model('Purchase');
+		$purchase->getCartID($_SESSION['login_id']);
+		$user = $this->model('UserProfile');
+		$theUser = $user->getUser();
 	}
 }

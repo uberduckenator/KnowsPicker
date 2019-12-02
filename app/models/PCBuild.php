@@ -26,7 +26,7 @@ class PCBuild extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM pc_build WHERE pc_build_id = :pc_build_id");
 		$stmt->execute(['pc_build_id'=>$pc_build_id]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PC_Build');
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PCBuild');
 		return $stmt->fetch();
 	}
 
@@ -34,7 +34,7 @@ class PCBuild extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM pc_build");
 		$stmt->execute();
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PC_Build');
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PCBuild');
 		return $stmt->fetchAll();
 	}
 
@@ -42,7 +42,7 @@ class PCBuild extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM pc_build WHERE user_id = :user_id");
 		$stmt->execute(['user_id'=>$user_id]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PC_Build');
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PCBuild');
 		return $stmt->fetchAll();
 	}
 
