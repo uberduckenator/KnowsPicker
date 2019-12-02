@@ -9,57 +9,93 @@ class ItemsController extends Controller
 	public function CPU()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemCPU = $item->getType('1');
+=======
+		$itemCPU = $item->getType('CPU');
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$this->view('Item/index', $itemCPU);
 	}
 
 	public function CPUCooler()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemCPUCooler = $item->getType('2');
+=======
+		$itemCPUCooler = $item->getType('CPUCooler');
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$this->view('Item/index', $itemCPUCooler);
 	}
 
 	public function GPU()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemGPU = $item->getType('3');
+=======
+		$itemGPU = $item->getType('GPU');
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$this->view('Item/index', $itemGPU);
 	}
 
 	public function Motherboard()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemMotherboard = $item->getType('4');
 		$this->view('Item/index', $itemGPU);
+=======
+		$itemMotherboard = $item->getType('Motherboard');
+		$this->view('Item/index', $itemMotherboard);
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 	}
 
 	public function PCCase()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemPCCase = $item->getType('5');
+=======
+		$itemPCCase = $item->getType('PCCase');
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$this->view('Item/index', $itemPCCase);
 	}
 
 	public function PSU()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemPSU = $item->getType('6');
+=======
+		$itemPSU = $item->getType('PSU');
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$this->view('Item/index', $itemPSU);
 	}
 
 	public function RAM()
 	{
 		$item = $this->model('Items');
+<<<<<<< HEAD
 		$itemRAM = $item->getType('7');
+=======
+		$itemRAM = $item->getType('RAM');
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$this->view('Item/index', $itemRAM);
 	}
 
 	public function Storage()
+<<<<<<< HEAD
   {
 		$item = $this->model('Items');
 		$itemGPU = $item->getType('8');
 		$this->view('Item/index', $itemGPU);
+=======
+  	{
+		$item = $this->model('Items');
+		$itemStorage = $item->getType('Storage');
+		$this->view('Item/index', $itemStorage);
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 	}
 
 		public function addItems(){
@@ -248,4 +284,9 @@ class ItemsController extends Controller
 					return null;
 			}
 			return $model;
+<<<<<<< HEAD
 	}	
+=======
+	}
+}	
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238

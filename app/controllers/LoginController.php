@@ -42,7 +42,6 @@ class LoginController extends Controller{
 				$_SESSION['login_id'] = $user->insert();
 				$_SESSION['role'] = $user->role;
 				header("location:/Company/create");
-
 			}
 		}
 		else{

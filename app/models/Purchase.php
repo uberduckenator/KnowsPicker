@@ -55,14 +55,15 @@ class Purchase extends Model
 	}
 
 	//Get user's cart
-	public function get($login_id)
+	public function get($user_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE login_id = :login_id");
-		$stmt->execute(['login_id'=>$login_id]);
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status = 0");
+		$stmt->execute(['user_id'=>$user_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
 		return $stmt->fetch();
 	}
 
+<<<<<<< HEAD
 	//We set the variable to this value
 	public function getCartID($login_id)
 	{
@@ -72,4 +73,22 @@ class Purchase extends Model
 		$this->purchase_id = $stmt->fetch()->purchase_id;
 	}
 
+=======
+	public function getOrders($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status > 0 ");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetchAll();	
+	}
+
+	//We set the variable to this value
+	public function getCartID($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT purchase_id FROM purchase WHERE user_id = :user_id AND status = 0");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		$this->purchase_id = $stmt->fetch()->purchase_id;
+	}
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 }
