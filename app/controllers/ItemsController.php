@@ -248,4 +248,5 @@ class ItemsController extends Controller
 					return null;
 			}
 			return $model;
-	}	
+	}
+}	
