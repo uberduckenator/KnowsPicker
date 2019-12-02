@@ -21,9 +21,10 @@ class Items extends Model
 	}
 
 	public function insert(){
-		$stmt = self::$_connection->prepare("INSERT INTO items (item_name, price, item_type, rating, ratings_amount, stock, rebate, max_sale_quantity, company_id)
-											 VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id)");
-		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id]);
+		$stmt = self::$_connection->prepare("INSERT INTO items (item_name, price, item_type, rating, ratings_amount, stock, rebate, max_sale_quantity, company_id, picture_id)
+											 VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id, :picture_id)");
+		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id, 'picture_id'=>$this->picture_id]);
+		$this->item_id = self::$_connection->lastInsertId();
 	}
 
 	public function getType($item_type)

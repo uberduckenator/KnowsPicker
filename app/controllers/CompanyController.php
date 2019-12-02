@@ -1,5 +1,6 @@
 <?php
 class CompanyController extends Controller{
+	
 	public function index(){
 		$company = $this->model('CompanyProfile');
 		$login_id = $_SESSION['login_id'];
@@ -13,11 +14,16 @@ class CompanyController extends Controller{
 		}
 		else{
 			$company = $this->model("CompanyProfile");
+			$picture = $this->model("Pictures");
+
+			$picture->filepath = $_POST['company_picture'];
+			$picture->insert();
 
 			$company->company_name = $_POST['company_name'];
+			$company->picture_id = $picture->picture_id;
 			$company->login_id = $_SESSION['login_id'];
-
 			$company->insert();
+			
 			header("location:/Home");
 		}
 	}
@@ -41,6 +47,10 @@ class CompanyController extends Controller{
 		else{
 			$inventory = $this->model("Items");
 			$company_id = $this->model("CompanyProfile")->getCompany($_SESSION['login_id'])->company_id;
+			$picture = $this->model("Pictures");
+
+			$picture->filepath = $_POST['item_image'];
+			$picture->insert();
 
 			$inventory->item_name = $_POST['item_name'];
 			$inventory->price = $_POST['price'];
@@ -52,33 +62,34 @@ class CompanyController extends Controller{
 			$inventory->rebate = $_POST['rebate'];
 			$inventory->max_sale_quantity = $_POST['max_sale_quantity'];
 			$inventory->company_id = $company_id;
+			$inventory->picture_id = $picture->picture_id;
 
 			$inventory->insert();
-
+			
 			switch($item_type){
 				case "CPU":
-					$this->view("/Item/CPU");
+					header("location:/Items/CPU/$inventory->item_id");
 					break;
 				case "CPU Cooler":
-					$this->view("/Item/CPUCooler");
+					header("location:/Items/CPUCooler/$inventory->item_id");
 					break;
 				case "GPU":
-					$this->view("/Item/GPU");
+					header("location:/Items/GPU/$inventory->item_id");
 					break;
 				case "Motherboard":
-					$this->view("/Item/Motherboard");
+					header("location:/Items/Motherboard/$inventory->item_id");
 					break;
 				case "PC Case":
-					$this->view("/Item/PCCase");
+					header("location:/Items/PCCase/$inventory->item_id");
 					break;
 				case "PSU":
-					$this->view("/Item/PSU");
+					header("location:/Items/PSU/$inventory->item_id");
 					break;
 				case "RAM":
-					$this->view("/Item/RAM");
+					header("location:/Items/RAM/$inventory->item_id");
 					break;
 				case "Storage":
-					$this->view("/Item/Storage");
+					header("location:/Items/Storage/$inventory->item_id");
 					break;
 				default:
 					header("location:/Company/inventory");
