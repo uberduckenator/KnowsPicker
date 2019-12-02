@@ -14,7 +14,6 @@ class ProfileController extends Controller{
 		}
 		else{
 			$profile = $this->model('UserProfile');
-			$country_id = $this->model("Countries")->getCountryId($_POST['countries']);
 
 			$profile->first_name = $_POST["first_name"];
 			$profile->last_name = $_POST["last_name"];
@@ -23,7 +22,7 @@ class ProfileController extends Controller{
 			$profile->street_address = $_POST["street_address"];
 			$profile->postal_code = $_POST["postal_code"];
 			$profile->login_id = $_SESSION['login_id'];
-			$profile->country_id = $country_id;
+			$profile->country_id = $_POST['countries'];
 
 			$profile->insert();
 

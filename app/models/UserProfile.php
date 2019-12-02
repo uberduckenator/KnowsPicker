@@ -42,6 +42,8 @@ class UserProfile extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM user_profile WHERE user_id = :user_id");
 		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'UserProfile');
+		return $stmt->fetch();
 	}
 
 	//Gets the user's info based on their login_id (INCLUDES PAYMENT_ID FOR PAYMENT INFO)
@@ -49,5 +51,7 @@ class UserProfile extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM user_profile WHERE login_id = :login_id");
 		$stmt->execute(['login_id'=>$login_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'UserProfile');
+		return $stmt->fetch();
 	}
 }

@@ -27,18 +27,21 @@
 		}
 		else
 		{
-			if($_SESSION['role'] == 'company')
+			if(isset($_SESSION['role']))
 			{
-				echo('<a href="Company/inventory">My inventory</a>');
-			}
-			elseif ($_SESSION['role'] == 'admin')
-			{
-				echo('<a href="/Ticket">My tickets</a>');
+				if($_SESSION['role'] == 'company')
+				{
+					echo('<a href="Company/inventory">My inventory</a>');
+				}
+				elseif ($_SESSION['role'] == 'admin')
+				{
+					echo('<a href="/Ticket">My tickets</a>');
+				}	
 			}
 			else
 			{
 				echo('<a href="/Orders">My orders</a>');
-				echo('<a href="/PCBuilds>My PC Builds</a>"');	
+				echo('<a href="/PCBuilds/myBuilds>My PC Builds</a>"');	
 				echo('<a href="/Cart"><img src="" alt="Cart"></a>');
 				echo('<a href="/Profile"><img src="" alt="Profile"></a>');
 			}	
@@ -49,12 +52,13 @@
 <div class ="navigation">
 	<ul>
 		<li><a href="/Home">Home</a></li>
-		<li><a href="/Home/cpu">Somewhere</a></li>
-		<li><a href="/Home/gpu">GPUs</a></li>
-		<li><a href="/Home/motherboard">Motherboards</a></li>
-		<li><a href="/Home/case">Cases</a></li>
-		<li><a href="/Home/psu">Power Supplies</a></li>
-		<li><a href="/Home/ram">RAM</a></li>
-		<li><a href="/Home/storage">Storage</a></li>
+		<li><a href="/Items/CPU">CPUs</a></li>
+		<li><a href="/Items/GPU">GPUs</a></li>
+		<li><a href="/Items/Motherboard">Motherboards</a></li>
+		<li><a href="/Items/PCCase">Cases</a></li>
+		<li><a href="/Items/PSU">Power Supplies</a></li>
+		<li><a href="/Items/RAM">RAM</a></li>
+		<li><a href="/Items/Storage">Storage</a></li>
+		<li><a href="/PCBuild">PCBuilds</a></li>
 	</ul>
 </div>

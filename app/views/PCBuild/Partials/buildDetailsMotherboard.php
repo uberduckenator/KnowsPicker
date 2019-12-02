@@ -2,9 +2,9 @@
 $pc_build_id = $model['Build']->pc_build_id;
 if(!isset($model['Build Details']))
 	{
-		echo"<form action=/Items/CPUCooler>
+		echo"<form action=/Items/Motherboard>
 				<input type='hidden' name='pc_build_id' value=$pc_build_id>
-				<input type=submit value= 'Add a CPU cooler'/>
+				<input type=submit value= 'Add a Motherboard'/>
 			</form>";
 	}
 	else
@@ -13,9 +13,9 @@ if(!isset($model['Build Details']))
 		foreach($model['Build Details']['Item Info'] as $item)
 		{
 			$itemType = $item->item_type;
-			if($itemType == 'CPUCooler')
+			if($itemType == 'Motherboard')
 			{
-				echo"Success";
+				echo"";
 			}
 			else
 			{
@@ -24,9 +24,9 @@ if(!isset($model['Build Details']))
 		}
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
-			echo"<form action=/Items/CPUCooler>
+			echo"<form action=/Items/Motherboard>
 					<input type='hidden' name='pc_build_id' value=$pc_build_id>
-					<input type=submit value= 'Add a CPU cooler'/>
+					<input type=submit value= 'Add a Motherboard'/>
 				</form>";
 		}
 	}
