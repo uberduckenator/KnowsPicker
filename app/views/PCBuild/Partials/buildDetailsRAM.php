@@ -1,8 +1,10 @@
 <?php
+$pc_build_id = $model['Build']->pc_build_id;
 if(!isset($model['Build Details']))
 	{
-		echo"<form>
-				<a href=/Items/RAM><input type=button value = Add RAM sticks/></a>
+		echo"<form action=/Items/RAM>
+				<input type='hidden' name='pc_build_id' value=$pc_build_id>
+				<input type=submit value= 'Add RAM sticks'/>
 			</form>";
 	}
 	else
@@ -22,8 +24,9 @@ if(!isset($model['Build Details']))
 		}
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
-			echo"<form>
-					<a href=/Items/RAM><input type=button value = Add RAM sticks/></a>
+			echo"<form action=/Items/RAM>
+					<input type='hidden' name='pc_build_id' value=$pc_build_id>
+					<input type=submit value= 'Add a RAM sticks'/>
 				</form>";
 		}
 	}
