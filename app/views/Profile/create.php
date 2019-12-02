@@ -28,8 +28,8 @@
 	<?php
 		foreach($model as $country){
 			$country_name = $country->country_name;
-			$abbreviation = $country->country_code;
-			echo "<option value='$abbreviation'>$country_name</option>";
+			$country_id = $country->country_id;
+			echo "<option value='$country_id'>$country_name</option>";
 		}
 	?>
 	</select>

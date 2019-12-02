@@ -27,13 +27,16 @@
 		}
 		else
 		{
-			if($_SESSION['role'] == 'company')
+			if(isset($_SESSION['role']))
 			{
-				echo('<a href="Company/inventory">My inventory</a>');
-			}
-			elseif ($_SESSION['role'] == 'admin')
-			{
-				echo('<a href="/Ticket">My tickets</a>');
+				if($_SESSION['role'] == 'company')
+				{
+					echo('<a href="Company/inventory">My inventory</a>');
+				}
+				elseif ($_SESSION['role'] == 'admin')
+				{
+					echo('<a href="/Ticket">My tickets</a>');
+				}	
 			}
 			else
 			{
@@ -41,6 +44,7 @@
 				echo('<a href="/PCBuilds/myBuilds>My PC Builds</a>"');	
 				echo('<a href="/Cart"><img src="" alt="Cart"></a>');
 				echo('<a href="/Profile"><img src="" alt="Profile"></a>');
+				echo('<a href="/PCBuild/myBuilds">My Builds</a>');
 			}	
 			echo('<a href="/Login/logout">Logout</a>');
 		}
