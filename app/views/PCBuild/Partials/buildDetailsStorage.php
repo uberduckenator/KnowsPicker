@@ -2,7 +2,7 @@
 if(!isset($model['Build Details']))
 	{
 		echo"<form>
-				<a href=/Items/CPUCooler><input type=button value= Add a CPU cooler/></a>
+				<a href=/Items/Storage><input type=button value=Add a storage device></a>
 			</form>";
 	}
 	else
@@ -11,9 +11,9 @@ if(!isset($model['Build Details']))
 		foreach($model['Build Details']['Item Info'] as $item)
 		{
 			$itemType = $item->item_type;
-			if($itemType == 'CPUCooler')
+			if($itemType == 'Storage')
 			{
-				echo"Success";
+				echo"";
 			}
 			else
 			{
@@ -23,7 +23,7 @@ if(!isset($model['Build Details']))
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
 			echo"<form>
-					<a href=/Items/CPUCooler><input type=button action=/Items/CPUCooler value= Add a CPU cooler></a>
+					<a href=/Items/Storage><input type=button value = Add a storage device></a>
 				</form>";
 		}
 	}

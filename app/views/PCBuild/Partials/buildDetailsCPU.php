@@ -2,7 +2,7 @@
 if(!isset($model['Build Details']))
 	{
 		echo"<form>
-				<input type=button action=/Items/CPU>
+				<a href=/Items/CPU><input type=button value = Add a CPU/></a>
 			</form>";
 	}
 	else
@@ -23,7 +23,7 @@ if(!isset($model['Build Details']))
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
 			echo"<form>
-					<input type=button action=/Items/CPU>
+					<a href=/Items/CPU><input type=button value = Add a CPU/></a>
 				</form>";
 		}
 	}

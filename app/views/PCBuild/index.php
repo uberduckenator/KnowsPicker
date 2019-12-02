@@ -2,11 +2,12 @@
 	include('header.php');
 ?>
 
-<h3>PC Builds</h3>
+<h3>PC Builds</h3></br>
+<a href="/PCBuild/createNewBuild">Create Build</a>
 <div>
 <th>
 <?php
-	foreach ($model['PCBuilds'] as $item)
+	foreach ($model as $item)
 	{
 		$name = $item->name;
 		$description = $item->description;

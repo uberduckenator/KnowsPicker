@@ -1,6 +1,6 @@
 <?php
 
-class PcCase extends Model
+class PCBuild extends Model
 {
 	public $pc_build_id; //Admin
 
@@ -17,8 +17,8 @@ class PcCase extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO pc_build (name, descrition, user_id) VALUES (:name, :descrition, :user_id)");
-		$stmt->execute('name'=>$this->name, 'descrition'=>$this->descrition, 'user_id'=>$this->user_id);
+		$stmt = self::$_connection->prepare("INSERT INTO pc_build (name, description, user_id) VALUES (:name, :description, :user_id)");
+		$stmt->execute(['name'=>$this->name, 'description'=>$this->description, 'user_id'=>$this->user_id]);
 		$this->pc_build_id = self::$_connection->lastInsertId();
 	}
 

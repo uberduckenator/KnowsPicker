@@ -1,5 +1,5 @@
 <?php
-class PCBuild extends Controller{
+class PCBuildController extends Controller{
 	public function index(){
 		$build = $this->model('PCBuild');
 		$allBuilds = $build->getAll();
@@ -23,7 +23,8 @@ class PCBuild extends Controller{
 		$build = $this->model('PCBuild');
 		$user = $this->model('UserProfile');
 		$theUser = $user->getUser($_SESSION['login_id']);
-		$myBuilds = $build->getAllUser($theUser->user_id);
+		$user_id = $theUser->user_id;
+		$myBuilds = $build->getAllUser($user_id);
 		foreach($myBuilds as $item)
 		{
 			$first_name = $theUser->first_name;
@@ -33,7 +34,7 @@ class PCBuild extends Controller{
 			$item->first_name = $first_name;
 			$item->last_name = $last_name;
 		}
-		$this->view('PCBuild/index', $allBuilds);	
+		$this->view('PCBuild/index', $myBuilds);	
 	}
 
 	public function createNewBuild()
@@ -43,11 +44,14 @@ class PCBuild extends Controller{
 		{
 			$this->view('PCBuild/create');
 		}
-		$build->name = $_POST['build'];
-		$build->description = $_POST['description'];
-		$build->user_id = $this->model('UserProfile')->getUser($_SESSION['login_id']);
-		$build->insert();
-		header("location:/PCBuild/setupBuild/$build->pc_build_id");
+		else
+		{
+			$build->name = $_POST['name'];
+			$build->description = $_POST['description'];
+			$build->user_id = $this->model('UserProfile')->getUser($_SESSION['login_id'])->user_id;
+			$build->insert();
+			header("location:/PCBuild/setupBuild/$build->pc_build_id");	
+		}
 	}
 
 	public function setupBuild($pc_build_id)
@@ -73,7 +77,7 @@ class PCBuild extends Controller{
 
 		}
 		
-		$this->view("PCBuild/setup", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails])
+		$this->view("PCBuild/setup", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 	}
 
 	public function addPart($pc_build_id, $item_id)

@@ -9,56 +9,56 @@ class ItemsController extends Controller
 	public function CPU()
 	{
 		$item = $this->model('Items');
-		$itemCPU = $item->getType('1');
+		$itemCPU = $item->getType('CPU');
 		$this->view('Item/index', $itemCPU);
 	}
 
 	public function CPUCooler()
 	{
 		$item = $this->model('Items');
-		$itemCPUCooler = $item->getType('2');
+		$itemCPUCooler = $item->getType('CPUCooler');
 		$this->view('Item/index', $itemCPUCooler);
 	}
 
 	public function GPU()
 	{
 		$item = $this->model('Items');
-		$itemGPU = $item->getType('3');
+		$itemGPU = $item->getType('GPU');
 		$this->view('Item/index', $itemGPU);
 	}
 
 	public function Motherboard()
 	{
 		$item = $this->model('Items');
-		$itemMotherboard = $item->getType('4');
+		$itemMotherboard = $item->getType('Motherboard');
 		$this->view('Item/index', $itemGPU);
 	}
 
 	public function PCCase()
 	{
 		$item = $this->model('Items');
-		$itemPCCase = $item->getType('5');
+		$itemPCCase = $item->getType('PCCase');
 		$this->view('Item/index', $itemPCCase);
 	}
 
 	public function PSU()
 	{
 		$item = $this->model('Items');
-		$itemPSU = $item->getType('6');
+		$itemPSU = $item->getType('PSU');
 		$this->view('Item/index', $itemPSU);
 	}
 
 	public function RAM()
 	{
 		$item = $this->model('Items');
-		$itemRAM = $item->getType('7');
+		$itemRAM = $item->getType('RAM');
 		$this->view('Item/index', $itemRAM);
 	}
 
 	public function Storage()
   {
 		$item = $this->model('Items');
-		$itemGPU = $item->getType('8');
+		$itemGPU = $item->getType('Storage');
 		$this->view('Item/index', $itemGPU);
 	}
 
@@ -248,4 +248,5 @@ class ItemsController extends Controller
 					return null;
 			}
 			return $model;
-	}	
+	}
+}	

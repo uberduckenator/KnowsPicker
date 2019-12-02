@@ -1,6 +1,6 @@
 <?php
 
-class PcCase extends Model
+class PCBuildDetails extends Model
 {
 	public $pc_build_details_id; //Admin
 
