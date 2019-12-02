@@ -1,9 +1,11 @@
 <?php
+$pc_build_id = $model['Build']->pc_build_id;
 if(!isset($model['Build Details']))
 	{
-		echo"<form>
-				<a href=/Items/PCCase><input type=button value=Add a PC Case/></a>
-			</form>";
+		echo"<form action=/Items/PCCase>
+				<input type='hidden' name='pc_build_id' value=$pc_build_id>
+				<input type=submit value= 'Add a PC case'/>
+			</form>";;
 	}
 	else
 	{
@@ -22,8 +24,9 @@ if(!isset($model['Build Details']))
 		}
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
-			echo"<form>
-					<a href=/Items/PCCase><input type=button value=Add a PC Case/></a>
+			echo"<form action=/Items/PCCase>
+					<input type='hidden' name='pc_build_id' value=$pc_build_id>
+					<input type=submit value= 'Add a PC case'/>
 				</form>";
 		}
 	}
