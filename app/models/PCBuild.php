@@ -1,5 +1,4 @@
 <?php
-
 class PCBuild extends Model
 {
 	public $pc_build_id; //Admin

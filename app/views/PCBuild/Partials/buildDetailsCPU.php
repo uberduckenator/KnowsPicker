@@ -12,7 +12,6 @@ if(!isset($model['Build Details']))
 				<input type='hidden' name='pc_build_id' value=$pc_build_id>
 				<input type=submit value= 'Add a CPU'/>
 			</form>";
-		}
 	}
 	else
 	{

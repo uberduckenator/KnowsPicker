@@ -22,7 +22,11 @@ class PurchaseController extends Controller
 
 		//We handle the purchase stuff like before
 		$purchase = $this->model('Purchase');
+<<<<<<< HEAD
+		$shippingCost = $this->model('Shi')$purchase->shipping_id;
+=======
 		//$shippingCost = $this->model('Shi')$purchase->shipping_id;
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$cartID = $purchase->getCartID($_SESSION['login_id']);
 		$purchaseDetails = $this->model('PurchaseDetails');
 		$inCart = $purchaseDetails->get($cartID);
@@ -57,6 +61,12 @@ class PurchaseController extends Controller
 		header('location:/Purchase/index');
 	}
 
+<<<<<<< HEAD
+	public function orders()
+	{
+		//Displays user's orders in progress and completed
+		
+=======
 	//Purchase history
 	//Could list all details in one view
 	//Or could list the orders briefly and have a details view
@@ -68,5 +78,6 @@ class PurchaseController extends Controller
 		$user_id = $theUser->user_id;
 		$myOrders = $purchase->getOrders($user_id);
 		$this->view('Purchase/orders',$myOrders);
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 	}
 }

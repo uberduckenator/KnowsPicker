@@ -27,7 +27,7 @@
 			<?php
 				include('Partials/buildDetailsCPUCooler.php');
 			?>
-		</div>
+    </div>
 
 		<div class = "container">
 			<h4>GPU</h4>
@@ -64,6 +64,7 @@
 			?>
 		</div>
 
+
 		<div class = "container">
 			<h4>Storage</h4>
 			<?php
@@ -71,7 +72,6 @@
 			?>
 		</div>
 	</div>
-	
 </div>
 <?php
 	include('footer.php');

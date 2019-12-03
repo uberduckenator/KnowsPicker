@@ -25,7 +25,7 @@
 	<?php
 		foreach($model as $itemtype){
 			$name = $itemtype->item_name;
-			echo "<option value='$name'>$name</option>";
+			echo "<option value=$name>$name</option>";
 		}
 	?>
 	</select>
