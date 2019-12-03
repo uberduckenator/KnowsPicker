@@ -50,8 +50,6 @@ class LoginController extends Controller{
 				//password_hash(string, PASSWORD_DEFAULT)
 				$user->role = $role;
 
-				$user->insert();
-
 				$_SESSION['login_id'] = $user->insert();
 				$_SESSION['role'] = $user->role;
 				header("location:/Company/create");
@@ -67,8 +65,6 @@ class LoginController extends Controller{
 				$user->password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 				//password_hash(string, PASSWORD_DEFAULT)
 				$user->role = $role;
-
-				$user->insert();
 
 				$_SESSION['login_id'] = $user->insert();
 				header("location:/Profile/create");
