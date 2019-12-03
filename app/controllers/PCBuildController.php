@@ -75,7 +75,7 @@ class PCBuildController extends Controller{
 		{
 			$build->name = $_POST['name'];
 			$build->description = $_POST['description'];
-			$build->user_id = $this->model('UserProfile')->getUser($_SESSION['login_id'])->user_id;
+			$build->user_id = $_SESSION['user_id'];
 			$build->insert();
 			header("location:/PCBuild/setupBuild/$build->pc_build_id");	
 		}

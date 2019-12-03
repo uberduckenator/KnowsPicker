@@ -12,7 +12,7 @@ class CompanyProfile extends Model{
 	public function insert(){
 		$stmt = self::$_connection->prepare("INSERT INTO company_profile (company_name, picture_id, login_id) VALUES (:company_name, :picture_id, :login_id)");
 		$stmt->execute(['company_name' =>$this->company_name, 'picture_id' =>$this->picture_id, 'login_id' =>$this->login_id]);
-		$this->company_id = self::$_connection->getLastInsertId();
+		$this->company_id = self::$_connection->lastInsertId();
 	}
 
 	public function getCompany($login_id){

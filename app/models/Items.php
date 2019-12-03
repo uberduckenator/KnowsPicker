@@ -7,8 +7,8 @@ class Items extends Model
 	public $item_name;
 	public $price;
 	public $item_type;
-	public $rating;
-	public $ratings_amount;
+	public $rating = 0;
+	public $ratings_amount = 0;
 	public $stock;
 	public $rebate;
 	public $max_sale_quantity;

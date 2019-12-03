@@ -58,8 +58,6 @@ class CompanyController extends Controller{
 			$inventory->price = $_POST['price'];
 			$item_type = $_POST['item_type'];
 			$inventory->item_type = $item_type;
-			$inventory->rating = $_POST['rating'];
-			$inventory->ratings_amount = $_POST['ratings_amount'];
 			$inventory->stock = $_POST['stock'];
 			$inventory->rebate = $_POST['rebate'];
 			$inventory->max_sale_quantity = $_POST['max_sale_quantity'];
