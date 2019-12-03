@@ -2,10 +2,17 @@
 $pc_build_id = $model['Build']->pc_build_id;
 if(!isset($model['Build Details']))
 	{
+		if ($_SESSION['user_id'] != $model['Build']->user_id)
+		{
+			echo"<p>No Power Supply chosen!</p>";
+		}
+		else
+		{
 		echo"<form action=/Items/PSU>
 				<input type='hidden' name='pc_build_id' value=$pc_build_id>
 				<input type=submit value= 'Add a PSU'/>
-			</form>";;
+			</form>";
+		}
 	}
 	else
 	{
@@ -24,10 +31,17 @@ if(!isset($model['Build Details']))
 		}
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
-			echo"<form action=/Items/PSU>
+			if ($_SESSION['user_id'] != $model['Build']->user_id)
+			{
+				echo"<p>No Power Supply chosen!</p>";
+			}
+			else
+			{
+				echo"<form action=/Items/PSU>
 					<input type='hidden' name='pc_build_id' value=$pc_build_id>
 					<input type=submit value= 'Add a PSU'/>
 				</form>";
+			}
 		}
 	}
 ?>

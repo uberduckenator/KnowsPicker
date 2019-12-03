@@ -26,6 +26,8 @@ class ProfileController extends Controller{
 
 			$profile->insert();
 
+			$_SESSION['user_id'] = $profile->user_id;
+
 			header("location:/Home");
 
 		}

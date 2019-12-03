@@ -38,7 +38,7 @@ class PCBuildController extends Controller{
 		$this->view('PCBuild/index', $myBuilds);	
 	}
 
-	public function buildDetails($pc_build_id)
+	/*public function buildDetails($pc_build_id)
 	{
 		$build = $this->model('PCBuild');
 		$theBuild = $build->get($pc_build_id);
@@ -62,7 +62,7 @@ class PCBuildController extends Controller{
 		
 		$this->view("PCBuild/details", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 
-	} 
+	}*/
 
 	public function createNewBuild()
 	{
@@ -75,7 +75,7 @@ class PCBuildController extends Controller{
 		{
 			$build->name = $_POST['name'];
 			$build->description = $_POST['description'];
-			$build->user_id = $this->model('UserProfile')->getUser($_SESSION['login_id'])->user_id;
+			$build->user_id = $_SESSION['user_id'];
 			$build->insert();
 			header("location:/PCBuild/setupBuild/$build->pc_build_id");	
 		}
@@ -101,7 +101,6 @@ class PCBuildController extends Controller{
 			$typeInfo = $typeModel->getItem($item_id);
 			$itemDetails['Item Info'][] = $itemInfo;
 			$itemDetails['Item Type Info'][] = $typeInfo; 
-
 		}
 		$this->view("PCBuild/setup", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 	}
