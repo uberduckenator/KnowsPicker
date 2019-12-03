@@ -29,6 +29,14 @@ class RAM extends Model
 		return $stmt->fetch();
 	}
 
+	public function getItem($item_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM ram WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'RAM');
+		return $stmt->fetch();
+	}
+
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM ram WHERE item_id = :item_id");

@@ -50,9 +50,9 @@ class PurchaseDetails extends Model
 	//Get Cart details
 	public function get($purchase_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM purchase_details WHERE purchase_id = :purchase_id");
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase_details p JOIN Items i ON i.item_id = p.item_id WHERE purchase_id = :purchase_id");
 		$stmt->execute(['purchase_id'=>$purchase_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PurchaseDetails');
-		return $stmt->fetch();
+		return $stmt->fetchAll();
 	}
 }

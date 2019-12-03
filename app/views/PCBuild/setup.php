@@ -27,7 +27,7 @@
 			<?php
 				include('Partials/buildDetailsCPUCooler.php');
 			?>
-    </div>
+    	</div>
 
 		<div class = "container">
 			<h4>GPU</h4>
@@ -71,6 +71,10 @@
 				include('Partials/buildDetailsStorage.php');
 			?>
 		</div>
+
+		<form>
+		<a href="/PCBuild/index"><input type="button" value="Done"></a>
+		</form>
 	</div>
 </div>
 <?php

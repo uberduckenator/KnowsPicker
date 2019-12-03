@@ -87,7 +87,6 @@ class ItemsController extends Controller{
 	public function Motherboard()
 	{
 		$item = $this->model('Items');
-		$this->view('Item/index', $itemGPU);
 		$itemMotherboard = $item->getType('Motherboard');
 		$this->view('Item/index', $itemMotherboard);
 	}
