@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-class PcCase extends Model
-=======
 class PCBuildDetails extends Model
->>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 {
 	public $pc_build_details_id; //Admin
 

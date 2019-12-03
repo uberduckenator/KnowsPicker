@@ -111,7 +111,8 @@ class PCBuildController extends Controller{
 		$buildDetail->item_id = $item_id;
 		$buildDetail->pc_build_id = $_GET['pc_build_id'];
 		$buildDetail->insert();
-		header('location:/PCBuild/setupBuild');
+		$pc_build_id = $buildDetail->pc_build_id;
+		header("location:/PCBuild/setupBuild/$pc_build_id");
 	}
 
 	public function removePart($pc_build_details_id)
