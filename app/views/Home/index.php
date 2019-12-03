@@ -1,9 +1,6 @@
 <?php
 	include ("header.php");
 ?>
-
-<a href="Login/register/user">New customer? Sign up here</a>
-<p>Will be the base home view of our marketplace</p>
 <p>Welcome to the home page, this holds the top 5 of each marketplace item type in terms of ratings</p>
 
 <?php
@@ -24,8 +21,6 @@
 		include ("Partials/topStorageList.php");
 	}
 ?>
-
-
 
 <?php 
 	include("footer.php");

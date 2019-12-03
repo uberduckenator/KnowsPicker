@@ -38,7 +38,7 @@ class CPU extends Model
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM cpu WHERE item_id = :item_id");
 		$stmt->execute(['item_id'=>$item_id]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Cpu');
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'CPU');
 		return $stmt->fetch();
 	}
 
