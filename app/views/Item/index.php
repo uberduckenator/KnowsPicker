@@ -7,6 +7,7 @@
 <?php
 	foreach ($model as $item)
 	{
+
 		$item_id = $item->item_id;
 		$item_name = ucwords($item->item_name);
 		$price = $item->price;

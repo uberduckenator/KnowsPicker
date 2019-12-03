@@ -38,7 +38,6 @@ class CompanyController extends Controller{
 		$this->view("Company/inventory", $companyItems);
 	}
 
-
 	public function addItems(){
 		if(!isset($_POST["action"])){
 			$itemtype = $this->model("ItemType")->getAll();
@@ -68,28 +67,28 @@ class CompanyController extends Controller{
 			
 			switch($item_type){
 				case "CPU":
-					header("location:/Items/CPU/$inventory->item_id");
+					header("location:/Items/addCPU/$inventory->item_id");
 					break;
 				case "CPU Cooler":
-					header("location:/Items/CPUCooler/$inventory->item_id");
+					header("location:/Items/addCPUCooler/$inventory->item_id");
 					break;
 				case "GPU":
-					header("location:/Items/GPU/$inventory->item_id");
+					header("location:/Items/addGPU/$inventory->item_id");
 					break;
 				case "Motherboard":
-					header("location:/Items/Motherboard/$inventory->item_id");
+					header("location:/Items/addMotherboard/$inventory->item_id");
 					break;
 				case "PC Case":
-					header("location:/Items/PCCase/$inventory->item_id");
+					header("location:/Items/addPCCase/$inventory->item_id");
 					break;
 				case "PSU":
-					header("location:/Items/PSU/$inventory->item_id");
+					header("location:/Items/addPSU/$inventory->item_id");
 					break;
 				case "RAM":
-					header("location:/Items/RAM/$inventory->item_id");
+					header("location:/Items/addRAM/$inventory->item_id");
 					break;
 				case "Storage":
-					header("location:/Items/Storage/$inventory->item_id");
+					header("location:/Items/addStorage/$inventory->item_id");
 					break;
 				default:
 					header("location:/Company/inventory");

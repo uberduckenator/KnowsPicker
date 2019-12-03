@@ -25,11 +25,10 @@
 	<?php
 		foreach($model as $itemtype){
 			$name = $itemtype->item_name;
-			echo "<option value='$name'>$name</option>";
+			echo "<option value=$name>$name</option>";
 		}
 	?>
 	</select>
-	<input type="text" class="form-control" name="item_type" id="item_type" />
 	</div>
 	<div class="form-group">
 	<label for="username">Rating</label>

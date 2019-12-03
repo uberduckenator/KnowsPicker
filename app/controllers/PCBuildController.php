@@ -1,4 +1,5 @@
 <?php
+
 class PCBuildController extends Controller{
 	public function index(){
 		$build = $this->model('PCBuild');
@@ -63,7 +64,6 @@ class PCBuildController extends Controller{
 
 	} 
 
-
 	public function createNewBuild()
 	{
 		$build = $this->model('PCBuild');
@@ -103,7 +103,6 @@ class PCBuildController extends Controller{
 			$itemDetails['Item Type Info'][] = $typeInfo; 
 
 		}
-		
 		$this->view("PCBuild/setup", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 	}
 
