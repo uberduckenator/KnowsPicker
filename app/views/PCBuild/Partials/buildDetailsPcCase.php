@@ -22,7 +22,11 @@ if(!isset($model['Build Details']))
 			$itemType = $item->item_type;
 			if($itemType == 'PCCase')
 			{
-				echo"";
+				$item_name = $item->item_name;
+				$item_price = $item->price;
+				echo"<div><img alt = 'PC Case'><p>Name: $item_name</p>";
+				echo"<p>Price: $item_price</p>
+					</div>";
 			}
 			else
 			{

@@ -22,7 +22,11 @@ if(!isset($model['Build Details']))
 			$itemType = $item->item_type;
 			if($itemType == 'Storage')
 			{
-				echo"";
+				$item_name = $item->item_name;
+				$item_price = $item->price;
+				echo"<div><img alt = 'Storage'><p>Name: $item_name</p>";
+				echo"<p>Price: $item_price</p>
+					</div>";
 			}
 			else
 			{
