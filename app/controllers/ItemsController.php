@@ -226,8 +226,6 @@ class ItemsController extends Controller{
 			$inventory->item_name = $_POST['item_name'];
 			$inventory->price = $_POST['price'];
 			$inventory->item_type = $_POST['item_type'];
-			$inventory->rating = $_POST['rating'];
-			$inventory->ratings_amount = $_POST['ratings_amount'];
 			$inventory->stock = $_POST['stock'];
 			$inventory->rebate = $_POST['rebate'];
 			$inventory->max_sale_quantity = $_POST['max_sale_quantity'];
@@ -249,11 +247,12 @@ class ItemsController extends Controller{
 		if (!isset($_POST["action"]))
 		{	
 			$typeDetails = $typeModel->getItem($item_id);
-			$this->view("Item/edit", ['ItemInfo'=>$theItem, 'ItemDetailsInfo'=>$typeDetails]);
+			return $this->view("Item/edit", ['ItemInfo'=>$theItem, 'ItemDetailsInfo'=>$typeDetails]);
 		}
-	
+
+
 		//Update items
-		$items->item_name = $_POST['item_name'];
+		$items->item_name = $_POST['item_name'] ;
 		$items->price = $_POST['price'];
 		$items->item_type = $_POST['item_type'];
 		$items->stock = $_POST['stock'];
@@ -266,7 +265,7 @@ class ItemsController extends Controller{
 		switch ($item_type)
 		{
 				case "CPU":
-					$typeModel->model = $_POST['model'];
+					$typeModel->model = $_POST['modelType'];
 					$typeModel->socket = $_POST['socket'];
 					$typeModel->cores = $_POST['cores'];
 					$typeModel->clock_speed = $_POST['clock_speed'];
@@ -275,7 +274,7 @@ class ItemsController extends Controller{
 					$typeModel->integrated_graphics = $_POST['integrated_graphics'];
 					$typeModel->cpu_cooler = $_POST['cpu_cooler'];
 					break;
-				case "CPU Cooler":
+				case "Cooler":
 					$typeModel->model = $_POST['model'];
 					$typeModel->sockets = $_POST['sockets'];
 					$typeModel->fan_rpm = $_POST['fan_rpm'];
@@ -304,7 +303,7 @@ class ItemsController extends Controller{
 					$typeModel->m2_slots = $_POST['m2_slots'];
 					$typeModel->wifi = $_POST['wifi'];
 					break;
-				case "PC Case":
+				case "Case":
 					$typeModel->type = $_POST['type'];
 					$typeModel->power_supply = $_POST['power_supply'];
 					$typeModel->mb_form_factor = $_POST['mb_form_factor'];
@@ -348,7 +347,7 @@ class ItemsController extends Controller{
 		$items = $this->model('Items');
 		$theItem = $items->get($item_id);
 		$item_type = $theItem->item_type;
-		$typeModel = getTypeModel($item_type);
+		$typeModel = $this->getTypeModel($item_type);
 		$typeDetails = $typeModel->getItem($item_id);
 
 		$this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails]);
@@ -379,7 +378,7 @@ class ItemsController extends Controller{
 				case "CPU":
 					$model = $this->model("CPU");
 					break;
-				case "CPU Cooler":
+				case "Cooler":
 					$model = $this->model("CPUCooler");
 					break;
 				case "GPU":
@@ -388,7 +387,7 @@ class ItemsController extends Controller{
 				case "Motherboard":
 					$model = $this->model("Motherboard");
 					break;
-				case "PC Case":
+				case "Case":
 					$model = $this->model("PcCase");
 					break;
 				case "PSU":
