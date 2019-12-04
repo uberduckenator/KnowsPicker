@@ -49,7 +49,6 @@
 				echo("<a href='/Profile'><img src='' alt='Profile'></a>");
 				echo("<a href='/PCBuild/myBuilds'>My Builds</a>");
 			}	
-			echo('<a href="/Login/logout">Logout</a>');
 		}
 	?>
 </div>
