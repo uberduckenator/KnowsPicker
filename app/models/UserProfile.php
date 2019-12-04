@@ -47,6 +47,14 @@ class UserProfile extends Model
 		return $stmt->fetch();
 	}
 
+	public function getDetails($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM user_profile INNER JOIN countries USING (country_id) WHERE user_id = :user_id");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'UserProfile');
+		return $stmt->fetch();
+	}
+
 	//Gets the user's info based on their login_id (INCLUDES PAYMENT_ID FOR PAYMENT INFO)
 	public function getUser($login_id)
 	{

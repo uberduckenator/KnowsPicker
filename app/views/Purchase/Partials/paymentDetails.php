@@ -2,7 +2,7 @@
 if (!isset($model['Payment']))
 {
 	echo
-	"<form method='post' action=' class='form-horizontal'>
+	"<form method='post' class='form-horizontal'>
 		<div class='form-group'>
 			<label for='cardnumber'>Card Number</label>
 			<input type='text' class='form-control' name='cardnumber' id='cardnumber' />

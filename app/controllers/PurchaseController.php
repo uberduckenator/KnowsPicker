@@ -56,10 +56,71 @@ class PurchaseController extends Controller
 				$this->view('Purchase/checkout',['Profile'=>$profile, 'Payment'=>$paymentInfo, 'Cart'=>$theCart, 'CartDetails'=>$inCart]);
 			}
 		}
+		//Update payment information
 		else
 		{
-			
+			$payment->cardnumber = $_POST['cardnumber'];
+			$payment->cardholder = $_POST['cardholder'];
+			$payment->cvv2 = $_POST['cvv2'];
+			$expiration_date = $_POST['expiration_month'] . '/' . $_POST['expiration_year'];
+			$payment->expiration_date = $expiration_date;
+			$payment->user_id = $_SESSION['user_id'];
+
+			$payment->insert();
+
 			header('location:/Purchase/checkout');
+		}		
+	}
+
+	public function shipping()
+	{
+		$purchase = $this->model('Purchase');
+		if (!isset('action'))
+		{
+			
+			$user = $this->model('UserProfile');
+			$shipping = $this->model('Shipping');
+			$allShippingTypes = $shipping->getAll();
+			$theUser = $user->getDetails($_SESSION['user_id']);
+			$this->view('Purchase/shipping', ['Address'=>$theUser, 'Shipping Types'=>$allShipping]);
+		}
+		$purchase_id = $purchase->get($_SESSION['user_id']);
+		$purchase->puchase_id = $purchase_id;
+		$purchase->shipping_id = $_POST['shipping_id'];
+		$purchase->updateShipping();
+		header('location:/Purchase/placeOrder');
+	}
+
+	public function placeOrder()
+	{
+		//Also need the person information
+		//Need to add this...
+		$user = $this->model('UserProfile');
+		$purchase = $this->model('Purchase');
+		$theUser = $user->getDetails($_SESSION['user_id']);
+		$paymentInfo = $payment->get($_SESSION['user_id']);
+		//We handle the purchase stuff like before
+			
+		$purchaseDetails = $this->model('PurchaseDetails');
+		//$shippingCost = $this->model('Shi')$purchase->shipping_id;
+		$theCart = $purchase->get($_SESSION['user_id']);
+		$cartId = $theCart->purchase_id;
+		$inCart = $purchaseDetails->get($cartId);
+		$subtotal = $theCart->subtotal;
+		//Need Taxes
+
+		//Need shipping cost
+		
+		$total = $subtotal + 
+
+		if (!isset($_POST['action']))
+		{
+			$this->view('Purchase/checkout',['Profile'=>$profile, 'Payment'=>$paymentInfo, 'Cart'=>$theCart, 'CartDetails'=>$inCart]);
+		}
+		else
+		{
+			//Need to calculate tax and shipping cost
+			$purchase->total = 
 		}
 		
 	}

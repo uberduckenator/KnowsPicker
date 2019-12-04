@@ -57,6 +57,12 @@ class Purchase extends Model
 		$stmt->execute(['status'=>$this->status, 'purchase_id'=>$this->purchase_id]);
 	}
 
+	public function updateShipping()
+	{
+		$stmt = self::$_conneciton->prepare("UPDATE purchase SET shipping_id = :shipping_id WHERE purchase_id = :purchase_id");
+		$stmt->execute(['shipping_id'=>$this->shipping_id, 'purchase_id'=>$this->purchase_id]);
+	}
+
 	//Not sure about payment_confirm...
 
 	//Maybe used for admins or something

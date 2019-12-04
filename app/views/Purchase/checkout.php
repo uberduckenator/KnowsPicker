@@ -10,6 +10,7 @@
 				include('Partials/cartDetails.php');
 				include('Partials/cartInfo.php');
 			?>
+			<a></a>
 		</div>
 	</div>
 
