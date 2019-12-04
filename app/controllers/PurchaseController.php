@@ -5,9 +5,11 @@ class PurchaseController extends Controller
 	public function index()
 	{
 		$purchase = $this->model('Purchase');
-		$cartID = $purchase->getCartID($_SESSION['login_id']);
+		$theCart = $purchase->get($_SESSION['user_id']);
+		$cartId = $theCart->purchase_id;
 		$purchaseDetails = $this->model('PurchaseDetails');
-		$inCart = $purchaseDetails->get($cartID);
+		$inCart = $purchaseDetails->get($cartId);
+
 		$this->view('Purchase/index', $inCart);
 	}
 
@@ -22,11 +24,7 @@ class PurchaseController extends Controller
 
 		//We handle the purchase stuff like before
 		$purchase = $this->model('Purchase');
-<<<<<<< HEAD
-		$shippingCost = $this->model('Shi')$purchase->shipping_id;
-=======
 		//$shippingCost = $this->model('Shi')$purchase->shipping_id;
->>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$cartID = $purchase->getCartID($_SESSION['login_id']);
 		$purchaseDetails = $this->model('PurchaseDetails');
 		$inCart = $purchaseDetails->get($cartID);
@@ -37,36 +35,37 @@ class PurchaseController extends Controller
 	public function addItem($item_id)
 	{
 		$purchase = $this->model('Purchase');
-		$purchase->getCartID($_SESSION['login_id']);
+		$theCart = $purchase->get($_SESSION['user_id']);
+		$purchase_id;
 		//No open cart
-		if ($purchase->purchase_id == null)
+		if ($theCart == null)
 		{
 			$purchase->total = 0;
 			$purchase->payment_id = 0;
-			$purchase->user_id = $this->model['UserProfile']->getUser($_SESSION['login_id']);
+			$purchase->user_id = $_SESSION['user_id'];
 			$purchase->payment_confirm = 0;
 			$purchase->insert();
+			$purchase_id = $purchase->purchase_id;
+		}
+		else
+		{
+			$purchase_id = $theCart->purchase_id;
 		}
 		$purchaseDetails = $this->model('PurchaseDetails');
 		$purchaseDetails->item_id = $item_id;
-		$purchaseDetails->purchase_id = $purchase->purchase_id;
+		$purchaseDetails->purchase_id = $purchase_id;
+		//$purchaseDetails->quantity = $_POST['quantity'];
 
-		$item = $this->model('Items')->get($item_id);
-		$item_price = $item->price;
-		$purchasePrice = $item_price;
-
-		//$purchaseDetails->purchase_price = 0;
 		$purchaseDetails->quantity = 1;
 		$purchaseDetails->insert();
 		header('location:/Purchase/index');
 	}
 
-<<<<<<< HEAD
-	public function orders()
+	public function remove($purchase_details_id)
 	{
-		//Displays user's orders in progress and completed
 		
-=======
+	}
+
 	//Purchase history
 	//Could list all details in one view
 	//Or could list the orders briefly and have a details view
@@ -78,6 +77,5 @@ class PurchaseController extends Controller
 		$user_id = $theUser->user_id;
 		$myOrders = $purchase->getOrders($user_id);
 		$this->view('Purchase/orders',$myOrders);
->>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 	}
 }

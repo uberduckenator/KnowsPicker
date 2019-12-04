@@ -36,8 +36,7 @@ class RAM extends Model
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'RAM');
 		return $stmt->fetch();
 	}
-
-
+  
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM ram WHERE item_id = :item_id");

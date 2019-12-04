@@ -40,8 +40,7 @@ class Storage extends Model
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Storage');
 		return $stmt->fetch();
 	}
-
-
+  
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM storage WHERE item_id = :item_id");

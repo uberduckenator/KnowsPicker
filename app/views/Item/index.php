@@ -23,7 +23,7 @@
 		if (isset($_GET['pc_build_id']))
 		{
 			$pc_build_id = $_GET['pc_build_id'];
-			echo"<form action = '/PCBuild/addPart/'>
+			echo"<form action = '/PCBuild/addPart/$item_id'>
 				  	<input type='hidden' name='pc_build_id' value=$pc_build_id/>
 				  	<input type='submit' value='Add To Build'/></a>
 				  </form>";
