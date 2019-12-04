@@ -7,10 +7,8 @@
 <?php
 	foreach ($model as $item)
 	{
-<<<<<<< HEAD
-=======
+
 		$item_id = $item->item_id;
->>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 		$item_name = ucwords($item->item_name);
 		$price = $item->price;
 		$rating = $item->rating;
@@ -18,18 +16,6 @@
 		$stock = $item->stock;
 		$rebate = $item->rebate;
 		$max_sale_quantity = $item->max_sale_quantity;
-<<<<<<< HEAD
-		//Also need the picture
-
-		echo "<th><h4>$item_name</h4></br>
-				  <img alt = picture for item></br>
-				  <form>
-				  	<input type=button action=/PCBuild/addPart/[] value=Add To Build>
-				  	<input type=button action= value=Add To Cart>
-				  </form>
-			  </th>";
-		echo "<th><p>'$'$price</p></br>
-=======
 		
 		//Also need the picture
 		echo "<th><h4>$item_name</h4></br>
@@ -47,7 +33,6 @@
 			 </form></th>";
 
 		echo "<th><p>$$price</p></br>
->>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 				  <p>$rating</p></br>
 				  <p>$numberofratings</p></br>
 				  <p>Items left: $stock</p></br>
