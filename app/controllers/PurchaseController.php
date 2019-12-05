@@ -246,7 +246,21 @@ class PurchaseController extends Controller
 		$user = $this->model('UserProfile');
 		$thePurchase = $purchase->getOrder($purchase_id);
 		$theDetails = $this->model('PurchaseDetails')->get($purchase_id);
-		$this->view('Purchase/orderDetails', ['Purchase'=>$thePurchase, 'Details'=>$theDetails]);
+		$reviews=[];
+		foreach ($theDetails as $item)
+		{
+			$item_id = $item->item_id;
+			$userReview = $this->model('Reviews')->getItemUser($item_id, $_SESSION['user_id']);
+			$reviews[] = $userReview;
+		}
+		if ($reviews != null)
+		{
+			$this->view('Purchase/orderDetails', ['Purchase'=>$thePurchase, 'Details'=>$theDetails, 'Reviews'=>$reviews]);	
+		}
+		else
+		{
+			$this->view('Purchase/orderDetails', ['Purchase'=>$thePurchase, 'Details'=>$theDetails]);
+		}
 	}
 
 	public function arrive($purchase_id)

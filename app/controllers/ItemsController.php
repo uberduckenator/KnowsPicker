@@ -385,7 +385,7 @@ class ItemsController extends Controller{
 	{
 		if (!isset($_POST['action']))
 		{
-			$this->view('Item/review');
+			return $this->view('Item/review');
 		}
 
 		$reviews = $this->model('Reviews');
@@ -395,7 +395,7 @@ class ItemsController extends Controller{
 		$reviews->item_id = $item_id;
 		$reviews->user_id = $_SESSION['user_id'];
 		$reviews->insert();
-		header('location:/Item/details/$item_id');
+		header("location:/Item/details/$item_id");
 	}
 
 	//Returns a specific model based on the item_type value in the item table

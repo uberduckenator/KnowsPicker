@@ -30,4 +30,12 @@ class Reviews extends Model
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Reviews');
 		return $stmt->fetchAll();
 	}
+
+	public function getItemUser($item_id, $user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM reviews WHERE item_id = :item_id AND user_id = :user_id");
+		$stmt->execute(['item_id' =>$item_id, 'user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Reviews');
+		return $stmt->fetch();
+	}
 }
