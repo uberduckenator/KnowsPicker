@@ -339,15 +339,29 @@ class ItemsController extends Controller{
 
 	}
 
+	//Display item info with details info
 	public function details($item_id)
 	{
-		$items = $this->model('Items');
-		$theItem = $items->get($item_id);
-		$item_type = $theItem->item_type;
-		$typeModel = getTypeModel($item_type);
-		$typeDetails = $typeModel->getItem($item_id);
+		if(!isset($_POST['action']))
+		{
+			$items = $this->model('Items');
+			$theItem = $items->get($item_id);
+			$item_type = $theItem->item_type;
+			$typeModel = $this->getTypeModel($item_type);
+			$typeDetails = $typeModel->getItem($item_id);
+			$reviews = $this->model('Reviews')->getOf($item_id);
 
-		$this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails]);
+			return $this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails, 'Reviews'=>$reviews]);	
+		}
+
+		$reviews = $this->model('Reviews');
+		$reviews->title = $_POST['title'];
+		$reviews->message = $_POST['message'];
+		$reviews->created_on = date('Y-m-d H:i:s');
+		$reviews->item_id = $item_id;
+		$reviews->user_id = $_SESSION['user_id'];
+		$reviews->insert();
+		header("location:/Purchase/details/$item_id");
 	}
 
 	public function delete($item_id)
@@ -365,6 +379,23 @@ class ItemsController extends Controller{
 		$typeModel->delete($item_id);
 
 		header('location:/Company/inventory');
+	}
+
+	public function review($item_id)
+	{
+		if (!isset($_POST['action']))
+		{
+			$this->view('Item/review');
+		}
+
+		$reviews = $this->model('Reviews');
+		$reviews->title = $_POST['title'];
+		$reviews->message = $_POST['message'];
+		$reviews->created_on = date('Y-m-d H:i:s');
+		$reviews->item_id = $item_id;
+		$reviews->user_id = $_SESSION['user_id'];
+		$reviews->insert();
+		header('location:/Item/details/$item_id');
 	}
 
 	//Returns a specific model based on the item_type value in the item table

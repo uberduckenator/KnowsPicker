@@ -26,7 +26,7 @@
 						<p>Rebate: $rebate</p>
 						<p>Type of item: $item_type</p>
 						<p>Quantity: $quantity</p>
-						<a href='Items/review/$item_id'>Click to review item</a>
+						<a href='/Items/review/$item_id'>Click to review item</a>
 					</div>";
 			}
 			echo"<h4>Subtotal: $subtotal</h4>";

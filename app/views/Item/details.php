@@ -1,30 +1,77 @@
-<html>
-<head>
-	<title><?php echo("$model->item_name"); ?>: Details </title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-	<script src="/js/jquery-3.2.1.min.js"></script>
-	<script src="/js/bootstrap.js"></script>
-</head>
+<?php
+	include('header.php');
+?>
 <body>
-	<h2><?php echo("$model->item_name");?></h2>
-	<div>
+	<div class = "container">
 	<?php
-		echo "<img alt=Item picture>";
-		echo "<div id=itemDetails>";
-			echo "<p>$model->item_name</p></br>";
-			echo "<p>$model->price</p></br>";
-			echo "<p>$model->item_type</p></br>";
-			echo "<p>$model->ratings</p></br>";
-			echo "<p>$model->ratings_amount</p></br>";
-			echo "<p>$model->stock</p></br>";
-			echo "<p>$model->rebate</p></br>";
-			echo "<p>$model->max_sale_quantity</p></br>";
-			echo "<div>";
-				echo "";
-			echo"</div>";
+		$item = $model['Item'];
+		$type = $model['ItemType'];
 
-		echo "</div>";
+		$item_name = $item->item_name;
+		if ($item->filepath != null)
+		{
+			$picture_location = $item->filepath;
+		}
+		else
+		{
+			$picture_location = '/Pictures/defaultItem.png';
+		}
+		$company = $item->company_name;
+		$price = $item->price;
+		$item_type = $item->item_type;
+		$rating = $item->rating;
+		$ratings_amount = $item->ratings_amount;
+		$stock = $item->stock;
+		$rebate = $item->rebate;
+		$rebatePrice = $rebate * $price;
+		$newprice = $price - $rebatePrice;
+
+		echo"<div class='container'>
+				<div class='container'>
+				<table>
+					<tr>
+						<td>
+							<h3>$item_name</h3>
+							<img src=$picture_location>
+							<h5>Sold By: $company</h5>
+						</td>
+						<td>
+							<p>$$newprice</p>
+							<p>$rebate% Off</p>
+							<p>Type: $item_type</p>
+							<p>Rating: $rating</p>
+							<p>#of Ratings: $ratings_amount</p>
+							<p>Stock: $stock</p>
+						</td>
+					</tr>
+				</table>
+				</div>";
+		$hasReviewed = false;
+		if ($model['Reviews'] == null)
+		{
+			include('Partials/newReview.php');
+		}
+		else
+		{
+			foreach ($model['Reviews'] as $item)
+			{
+				if ($item->user_id == $_SESSION['user_id'])
+				{
+					$hasReviewed = true;
+				}
+			}
+			if (!$hasReviewed)
+			{
+				include('Partials/newReview.php');
+			}
+		}
+		
+		include('Partials/allReviews.php');
+		echo"</div>";
 	?>
 	</div>
 </body>
+<?php
+	include('footer.php');
+?>
 </html>

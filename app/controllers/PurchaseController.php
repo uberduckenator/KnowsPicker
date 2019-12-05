@@ -148,7 +148,7 @@ class PurchaseController extends Controller
 		{
 			//Need to calculate tax and shipping cost
 			$purchase->purchase_id = $theCart->purchase_id;
-			$purchase->total = 0;
+			$purchase->total = $total;
 			$purchase->status = 1;
 			$purchase->purchased_on = date('Y-m-d H:i:s');
 			$purchase->updateTotal();

@@ -37,7 +37,10 @@ class Items extends Model
 
 	public function get($item_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_id = :item_id");
+		$stmt = self::$_connection->prepare("SELECT * FROM items i 
+											 JOIN pictures p ON i.picture_id = p.picture_id 
+											 JOIN company_profile c ON i.company_id = c.company_id 
+											 WHERE item_id = :item_id");
 		$stmt->execute(['item_id'=>$item_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetch();
