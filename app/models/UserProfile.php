@@ -23,6 +23,7 @@ class UserProfile extends Model
 	{
 		$stmt = self::$_connection->prepare("INSERT INTO user_profile (first_name, last_name, email, city, street_address, postal_code, login_id, country_id) VALUES (:first_name, :last_name, :email, :city, :street_address, :postal_code, :login_id, :country_id)");
 		$stmt->execute(['first_name'=>$this->first_name, 'last_name'=>$this->last_name, 'email'=>$this->email, 'city'=>$this->city, 'street_address'=>$this->street_address, 'postal_code'=>$this->postal_code, 'login_id'=>$this->login_id, 'country_id'=>$this->country_id]);
+		$this->user_id = self::$_connection->lastInsertId();
 	}
 
 	//Edits only the user's info

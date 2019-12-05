@@ -38,7 +38,7 @@ class PCBuildController extends Controller{
 		$this->view('PCBuild/index', $myBuilds);	
 	}
 
-	public function buildDetails($pc_build_id)
+	/*public function buildDetails($pc_build_id)
 	{
 		$build = $this->model('PCBuild');
 		$theBuild = $build->get($pc_build_id);
@@ -62,7 +62,7 @@ class PCBuildController extends Controller{
 		
 		$this->view("PCBuild/details", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 
-	} 
+	}*/
 
 	public function createNewBuild()
 	{
@@ -75,7 +75,7 @@ class PCBuildController extends Controller{
 		{
 			$build->name = $_POST['name'];
 			$build->description = $_POST['description'];
-			$build->user_id = $this->model('UserProfile')->getUser($_SESSION['login_id'])->user_id;
+			$build->user_id = $_SESSION['user_id'];
 			$build->insert();
 			header("location:/PCBuild/setupBuild/$build->pc_build_id");	
 		}
@@ -88,22 +88,24 @@ class PCBuildController extends Controller{
 		$theBuild = $build->get($pc_build_id);
 		$buildDetails = $this->model('PCBuildDetails')->getAll($pc_build_id);
 		$itemDetails = [];
-		if (!isset($buildDetails))
+		if ($buildDetails == null)
 		{
 			$this->view("PCBuild/setup", ['Build'=>$theBuild]);
 		}
-		//Loop through the buildDetails and get required information
-		foreach ($buildDetails as $item)
+		else
 		{
-			$item_id = $item->item_id;
-			$itemInfo = $this->model('Items')->get($item_id);
-			$typeModel = getTypeModel($itemInfo->item_type);
-			$typeInfo = $typeModel->getItem($item_id);
-			$itemDetails['Item Info'][] = $itemInfo;
-			$itemDetails['Item Type Info'][] = $typeInfo; 
-
+			//Loop through the buildDetails and get required information
+			foreach ($buildDetails as $item)
+			{
+				$item_id = $item->item_id;
+				$itemInfo = $this->model('Items')->get($item_id);
+				$typeModel = $this->getTypeModel($itemInfo->item_type);
+				$typeInfo = $typeModel->getItem($item_id);
+				$itemDetails['Item Info'][] = $itemInfo;
+				$itemDetails['Item Type Info'][] = $typeInfo; 
+			}
+			$this->view("PCBuild/setup", ['Build'=>$theBuild, 'Build Details'=>$itemDetails]);
 		}
-		$this->view("PCBuild/setup", ['Build'=>$theBuild, 'BuildDetails'=>$itemDetails]);
 	}
 
 	public function addPart($item_id)
@@ -112,7 +114,8 @@ class PCBuildController extends Controller{
 		$buildDetail->item_id = $item_id;
 		$buildDetail->pc_build_id = $_GET['pc_build_id'];
 		$buildDetail->insert();
-		header('location:/PCBuild/setupBuild');
+		$pc_build_id = $buildDetail->pc_build_id;
+		header("location:/PCBuild/setupBuild/$pc_build_id");
 	}
 
 	public function removePart($pc_build_details_id)
@@ -123,9 +126,9 @@ class PCBuildController extends Controller{
 	}
 
 	//Function to return the type model
-	private static function getTypeModel($item_type)
+	private function getTypeModel($item_type)
 	{
-		$model = [];
+		$model;
 		switch($item_type){
 				case "CPU":
 					$model = $this->model("CPU");

@@ -52,5 +52,16 @@ class PSU extends Model
 		$stmt = self::$_connection->prepare("UPDATE psu SET model = :model, form_factor = :form_factor, efficiency_rating = :efficiency_rating, wattage = :wattage, modular = :modular, fanless = :fanless
 			WHERE item_id = :item_id");
 		$stmt->execute(['model'=>$this->model, 'form_factor'=>$this->form_factor, 'efficiency_rating'=>$this->efficiency_rating, 'wattage'=>$this->wattage, 'modular'=>$this->modular, 'fanless'=>$this->fanless, 'item_id'=>$item_id]);
+<<<<<<< HEAD
+=======
+	}
+
+	public function getItem($item_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM psu WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PSU');
+		return $stmt->fetch();
+>>>>>>> c8e26c5c5941d14dc7f262b3043d3c694a4261be
 	}
 }

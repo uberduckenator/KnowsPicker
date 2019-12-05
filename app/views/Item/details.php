@@ -53,6 +53,7 @@
 				echo("No items to edit");
 			}
 			else{
+<<<<<<< HEAD
 				switch($model['Item']->item_type){
 					case "CPU":
 						$this->view('Item/Partials/Details/detailsCPU', $model['ItemType']);
@@ -90,5 +91,9 @@
 						break;
 					}
 				}
+=======
+				$this->view('Item/Partials/Details/detailsCPU',$model['ItemType']);
+			}
+>>>>>>> c8e26c5c5941d14dc7f262b3043d3c694a4261be
 		?>
 </html>

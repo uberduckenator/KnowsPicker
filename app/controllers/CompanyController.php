@@ -23,6 +23,8 @@ class CompanyController extends Controller{
 			$company->picture_id = $picture->picture_id;
 			$company->login_id = $_SESSION['login_id'];
 			$company->insert();
+
+			$_SESSION['company_id'] = $company->company_id;
 			
 			header("location:/Home");
 		}
@@ -55,8 +57,6 @@ class CompanyController extends Controller{
 			$inventory->price = $_POST['price'];
 			$item_type = $_POST['item_type'];
 			$inventory->item_type = $item_type;
-			$inventory->rating = $_POST['rating'];
-			$inventory->ratings_amount = $_POST['ratings_amount'];
 			$inventory->stock = $_POST['stock'];
 			$inventory->rebate = $_POST['rebate'];
 			$inventory->max_sale_quantity = $_POST['max_sale_quantity'];

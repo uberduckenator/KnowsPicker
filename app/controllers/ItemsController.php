@@ -87,7 +87,6 @@ class ItemsController extends Controller{
 	public function Motherboard()
 	{
 		$item = $this->model('Items');
-		$this->view('Item/index', $itemGPU);
 		$itemMotherboard = $item->getType('Motherboard');
 		$this->view('Item/index', $itemMotherboard);
 	}
@@ -176,7 +175,6 @@ class ItemsController extends Controller{
 
 	public function addRAM($item_id){
 		if(!isset($_POST["action"])){
-			$this->view("Company/additem");
 			$this->view("Item/RAM");
 		}
 		else{
