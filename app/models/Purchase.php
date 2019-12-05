@@ -39,10 +39,16 @@ class Purchase extends Model
 		$stmt->execute(['purchase_id'=>$purchase_id]);
 	}
 
-	public function updateDate($purchase_id)
+	public function updateTotal()
+	{
+		$stmt = self::$_connection->prepare("UPDATE purchase SET total = :total WHERE purchase_id = :purchase_id");
+		$stmt->execute(['total'=>$this->total, 'purchase_id'=>$this->purchase_id]);	
+	}
+
+	public function updateDate()
 	{
 		$stmt = self::$_connection->prepare("UPDATE purchase SET purchased_on = :purchased_on WHERE purchase_id = :purchase_id");
-		$stmt->execute(['purchased_on'=>$this->purchased_on, 'purchase_id'=>$purchase_id]);
+		$stmt->execute(['purchased_on'=>$this->purchased_on, 'purchase_id'=>$this->purchase_id]);
 	}
 
 	public function updateSubtotal()
@@ -53,13 +59,13 @@ class Purchase extends Model
 
 	public function updateStatus()
 	{
-		$stmt = self::$_conneciton->prepare("UPDATE purchase SET status = :status WHERE purchase_id = :purchase_id");
+		$stmt = self::$_connection->prepare("UPDATE purchase SET status = :status WHERE purchase_id = :purchase_id");
 		$stmt->execute(['status'=>$this->status, 'purchase_id'=>$this->purchase_id]);
 	}
 
 	public function updateShipping()
 	{
-		$stmt = self::$_conneciton->prepare("UPDATE purchase SET shipping_id = :shipping_id WHERE purchase_id = :purchase_id");
+		$stmt = self::$_connection->prepare("UPDATE purchase SET shipping_id = :shipping_id WHERE purchase_id = :purchase_id");
 		$stmt->execute(['shipping_id'=>$this->shipping_id, 'purchase_id'=>$this->purchase_id]);
 	}
 
@@ -78,6 +84,31 @@ class Purchase extends Model
 	public function get($user_id)
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status = 0");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();
+	}
+
+	public function getPurchase($purchase_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE purchase_id = :purchase_id AND status = 0");
+		$stmt->execute(['purchase_id'=>$purchase_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();	
+	}
+
+	public function getOrder($purchase_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE purchase_id = :purchase_id");
+		$stmt->execute(['purchase_id'=>$purchase_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();	
+	}
+
+	//If we also need shipping information...
+	public function getWithShipping($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase INNER JOIN shipping USING (shipping_id) WHERE user_id = :user_id AND status = 0");
 		$stmt->execute(['user_id'=>$user_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
 		return $stmt->fetch();

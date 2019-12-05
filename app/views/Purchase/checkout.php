@@ -10,7 +10,7 @@
 				include('Partials/cartDetails.php');
 				include('Partials/cartInfo.php');
 			?>
-			<a></a>
+			<a href="/Purchase/placeOrder"><input type='button' value='Continue'></a>
 		</div>
 	</div>
 

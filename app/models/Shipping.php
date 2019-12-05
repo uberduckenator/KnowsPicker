@@ -16,7 +16,7 @@ class Shipping extends Model
 		$stmt = self::$_connection->prepare("SELECT * FROM shipping");
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Shipping');
-		return $stmt->fetch();
+		return $stmt->fetchAll();
 	}
 
 	public function get($shipping_id)

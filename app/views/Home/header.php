@@ -42,7 +42,6 @@
 			}
 			else
 			{
-				echo("<a href='/Orders'>My orders</a>");
 				echo("<a href='/Purchase/orders'>My orders</a>");
 				echo("<a href='/PCBuilds/myBuilds'>My PC Builds</a>");	
 				echo("<a href='/Purchase'><img alt='Cart'></a>");
