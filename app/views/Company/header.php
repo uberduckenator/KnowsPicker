@@ -31,7 +31,7 @@
 			{
 				if($_SESSION['role'] == 'company')
 				{
-					echo('<a href="Company/inventory">My inventory</a>');
+					echo('<a href="inventory">My inventory</a>');
 				}
 				elseif ($_SESSION['role'] == 'admin')
 				{

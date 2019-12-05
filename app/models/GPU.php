@@ -34,6 +34,14 @@ class GPU extends Model
 		return $stmt->fetch();
 	}
 
+	public function getItem($item_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM gpu WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'GPU');
+		return $stmt->fetch();
+	}
+
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM gpu WHERE item_id = :item_id");
@@ -44,6 +52,6 @@ class GPU extends Model
 	{
 		$stmt = self::$_connection->prepare("UPDATE gpu SET part_no = :part_no, chipset = :chipset, memory = :memory, memory_type = :memory_type, core_clock = :core_clock, interface = :interface, length = :length, wattage = :wattage
 			WHERE item_id = :item_id");
-		$stmt->execute(['part_no'=>$this->part_no, 'chipset'=>$this->chipset, 'memory'=>$this->memory, 'memory_type'=>$this->memory_type, 'core_clock'=>$this->core_clock, 'interface'=>$this->interface, 'length'=>$this->length, 'wattage'=>$this->wattage, 'item_id'=>$this->item_id]);
+		$stmt->execute(['part_no'=>$this->part_no, 'chipset'=>$this->chipset, 'memory'=>$this->memory, 'memory_type'=>$this->memory_type, 'core_clock'=>$this->core_clock, 'interface'=>$this->interface, 'length'=>$this->length, 'wattage'=>$this->wattage, 'item_id'=>$item_id]);
 	}
 }

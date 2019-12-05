@@ -31,14 +31,6 @@
 	</select>
 	</div>
 	<div class="form-group">
-	<label for="username">Rating</label>
-	<input type="text" class="form-control" name="rating" id="rating" />
-	</div>
-	<div class="form-group">
-	<label for="username">Ratings Amount</label>
-	<input type="text" class="form-control" name="ratings_amount" id="ratings_amount" />
-	</div>
-	<div class="form-group">
 	<label for="username">Stock</label>
 	<input type="text" class="form-control" name="stock" id="stock" />
 	</div>

@@ -48,6 +48,6 @@ class CPUCooler extends Model
 	{
 		$stmt = self::$_connection->prepare("UPDATE cpu_cooler SET model = :model, sockets = :sockets, fan_rpm = :fan_rpm, height = :height
 			WHERE item_id = :item_id");
-		$stmt->execute(['model'=>$this->model, 'sockets'=>$this->sockets, 'fan_rpm'=>$this->fan_rpm, 'height'=>$this->height, 'item_id'=>$this->item_id]);
+		$stmt->execute(['model'=>$this->model, 'sockets'=>$this->sockets, 'fan_rpm'=>$this->fan_rpm, 'height'=>$this->height, 'item_id'=>$item_id]);
 	}
 }

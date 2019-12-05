@@ -52,10 +52,6 @@
 		}
 	?>
 </div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 <div class ="navigation">
 	<ul>
 		<li><a href="/Home">Home</a></li>
@@ -69,6 +65,4 @@
 		<li><a href="/PCBuild">PCBuilds</a></li>
 	</ul>
 </div>
->>>>>>> 5b203f413cea1d86a350a5d3631005ada8f7f879
->>>>>>> 5a5cff0cfdda917cf86201cccc2e95c185a7fd0c
 </html>
