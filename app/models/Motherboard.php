@@ -42,6 +42,14 @@ class Motherboard extends Model
 		return $stmt->fetch();
 	}
 
+	public function getItem($item_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM motherboard WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Motherboard');
+		return $stmt->fetch();
+	}
+
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM gpu WHERE item_id = :item_id");
@@ -52,6 +60,6 @@ class Motherboard extends Model
 	{
 		$stmt = self::$_connection->prepare("UPDATE gpu SET part_no = :part_no, chipset = :chipset, memory = :memory, memory_type = :memory_type, core_clock = :core_clock, interface = :interface, length = :length, wattage = :wattage
 			WHERE item_id = :item_id");
-		$stmt->execute(['part_no'=>$this->part_no, 'chipset'=>$this->chipset, 'memory'=>$this->memory, 'memory_type'=>$this->memory_type, 'core_clock'=>$this->core_clock, 'interface'=>$this->interface, 'length'=>$this->length, 'wattage'=>$this->wattage, 'item_id'=>$this->item_id]);
+		$stmt->execute(['socket'=>$this->socket, 'form_factor'=>$this->form_factor, 'ram_slots'=>$this->ram_slots, 'max_ram'=>$this->max_ram, 'ram_type'=>$this->ram_type, 'memory_speed'=>$this->memory_speed, 'pci_e_slots'=>$this->pci_e_slots, 'onboard_ethernet'=>$this->onboard_ethernet, 'sata_ports'=>$this->sata_ports, 'm2_slots'=>$this->m2_slots, 'wifi'=>$this->wifi, 'item_id'=>$item_id]);
 	}
 }

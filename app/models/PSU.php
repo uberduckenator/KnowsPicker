@@ -33,6 +33,14 @@ class PSU extends Model
 		return $stmt->fetch();
 	}
 
+	public function getItem($item_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM psu WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$item_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PSU');
+		return $stmt->fetch();
+	}
+
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM psu WHERE item_id = :item_id");
@@ -43,7 +51,7 @@ class PSU extends Model
 	{
 		$stmt = self::$_connection->prepare("UPDATE psu SET model = :model, form_factor = :form_factor, efficiency_rating = :efficiency_rating, wattage = :wattage, modular = :modular, fanless = :fanless
 			WHERE item_id = :item_id");
-		$stmt->execute(['model'=>$this->model, 'form_factor'=>$this->form_factor, 'efficiency_rating'=>$this->efficiency_rating, 'wattage'=>$this->wattage, 'modular'=>$this->modular, 'fanless'=>$this->fanless, 'item_id'=>$this->item_id]);
+		$stmt->execute(['model'=>$this->model, 'form_factor'=>$this->form_factor, 'efficiency_rating'=>$this->efficiency_rating, 'wattage'=>$this->wattage, 'modular'=>$this->modular, 'fanless'=>$this->fanless, 'item_id'=>$item_id]);
 	}
 
 	public function getItem($item_id)

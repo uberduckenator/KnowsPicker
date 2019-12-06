@@ -52,7 +52,6 @@
 			{
 				echo("<a href='/Login/logout'>Logout</a>");
 			}	
-			echo('<a href="/Login/logout">Logout</a>');
 		}
 	?>
 </div>
