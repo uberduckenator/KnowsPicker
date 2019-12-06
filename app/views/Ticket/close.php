@@ -9,19 +9,13 @@
 			<h1>Close Ticket</h1>
 			<form method="post" action="" class="form-horizontal">
 				<div class="form-group">
-					<label for="title">Title</label>
-					<?php
-						echo("$model->title");
-					?>
+					<label for="title">Title</label><?php echo("$model->title");?>
 				</div>
 				<div class="form-group">
-					<label for="description">Description</label>
-					<?php
-						echo("$model->description");
-					?>
+					<label for="description">Description</label><?php echo("$model->description");?>
 				</div>
 				<div class="form-group">
-					<input type="submit" name="action" value="Close" />
+					<input type="submit" name="action" value="Close" /><a href="/Ticket/index" class="btn btn-light" >Cancel</a>
 				</div>
 			</form>
 		</div>

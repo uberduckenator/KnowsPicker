@@ -37,7 +37,9 @@
 					 	$status = $tickets->status;
 					 	$status = displayStatus($status);
 					 	echo("<div class='panel panel-default'>");
-			 			echo("<h3 class='panel-heading'><a href=''>$tickets->title</a></h3>");//TODO add link to ticket details
+			 			echo("<div class='panel-heading'>");
+			 			echo("<h3><a href=''>$tickets->title</a></h3>");//TODO add link to ticket details
+			 			echo("</div>");
 					 	echo("<p>$tickets->description</p></br>");
 					 	echo("<p>$tickets->created_on</>");
 					 	echo("<h5>$status</h5>");
@@ -60,12 +62,14 @@
 					 	$status = $tickets->status;
 					 	$status = displayStatus($status);
 					 	echo("<div class='panel panel-default'>");
-			 			echo("<h3 class='panel-heading'><a href=''>$tickets->title</a></h3>");//TODO add link to ticket details
+					 	echo("<div class='panel-heading'>");
+			 			echo("<h3><a href=''>$tickets->title</a></h3>");//TODO add link to ticket details
+			 			echo("</div>");
 					 	echo("<p>$tickets->description</p></br>");
 					 	echo("<p>$tickets->created_on</>");
 					 	echo("<h5>$status</h5>");
 					 	if ($status == "Open" || $status == "In Progress") {
-					 		echo("<a class='btn' href='Ticket/close/$ticketId'>Close Ticket</a>");
+					 		echo("<a class='btn btn-light' href='Ticket/close/$ticketId'>Close Ticket</a>");
 					 	}
 					 	echo("</div>");
 					}
@@ -84,7 +88,9 @@
 					 	$status = $tickets->status;
 					 	$status = displayStatus($status);
 					 	echo("<div class='panel panel-default'>");
-			 			echo("<h3 class='panel-heading'><a href=''>$tickets->title</a></h3>");//TODO add link to ticket details
+			 			echo("<div class='panel-heading'>");
+			 			echo("<h3><a href=''>$tickets->title</a></h3>");//TODO add link to ticket details
+			 			echo("</div>");
 					 	echo("<p>$tickets->description</p></br>");
 					 	echo("<p>$tickets->created_on</>");
 					 	echo("<h5>$status</h5>");
