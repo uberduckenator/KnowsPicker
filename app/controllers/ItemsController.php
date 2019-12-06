@@ -389,6 +389,11 @@ class ItemsController extends Controller{
 		header("location:/Items/details/$item_id");
 	}
 
+	public function inventoryDetails()
+	{
+		
+	}
+
 	public function delete($item_id)
 	{
 		$items = $this->model('Items');
