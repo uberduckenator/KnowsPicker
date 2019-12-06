@@ -5,9 +5,6 @@
 	<h3>PC Build Setup</h3>
 	<?php
 		$pc_build_id = $model['Build']->pc_build_id;
-		echo "<form action='Purchase/addBuild'>
-				<input type='submit' value='Add all to cart'/>
-			  </form>";
 	?>
 	<div class = "container">
 		<?php
