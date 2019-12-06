@@ -29,7 +29,10 @@ class Items extends Model
 
 	public function getType($item_type)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_type = :item_type");
+		$stmt = self::$_connection->prepare("SELECT * FROM items i
+											JOIN pictures p ON i.picture_id = p.picture_id 
+											JOIN company_profile c ON i.company_id = c.company_id
+											WHERE item_type = :item_type");
 		$stmt->execute(['item_type'=>$item_type]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();
@@ -47,7 +50,10 @@ class Items extends Model
 	}
 
 	public function getItemsFromCompany($company_id){
-		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE company_id = :company_id");
+		$stmt = self::$_connection->prepare("SELECT * FROM items i
+											 JOIN pictures p ON i.picture_id = p.picture_id 
+											 JOIN company_profile c ON i.company_id = c.company_id
+											 WHERE company_id = :company_id");
 		$stmt->execute(['company_id' =>$company_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();
@@ -63,7 +69,7 @@ class Items extends Model
 
 	public function search($searchText)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_name LIKE :searchText");
+		$stmt = self::$_connection->prepare("SELECT * FROM items INNER JOIN company_profile USING (company_id) WHERE item_name LIKE :searchText OR item_type LIKE :searchText OR company_name LIKE :searchText ");
 		$stmt->execute(['searchText'=>$searchText]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();

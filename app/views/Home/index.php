@@ -1,8 +1,9 @@
 <?php
 	include ("header.php");
 ?>
-<p>Welcome to the home page, this holds the top 5 of each marketplace item type in terms of ratings</p>
-
+<div class='container'>
+<h1 class='title'>Welcome to Knowspicker.com!</h1>
+<div class='container'>
 <?php
 	if($model == null)
 	{
@@ -21,7 +22,9 @@
 		include ("Partials/topStorageList.php");
 	}
 ?>
-
+</div>
+</div>
+</body>
 <?php 
 	include("footer.php");
 ?>
