@@ -366,7 +366,6 @@ class ItemsController extends Controller{
 		}
 
 		$items = $this->model('Items');
-<<<<<<< Kevin
 		$reviews = $this->model('Reviews');
 
 		//Insert review
@@ -377,12 +376,6 @@ class ItemsController extends Controller{
 		$reviews->item_id = $item_id;
 		$reviews->user_id = $_SESSION['user_id'];
 		$reviews->insert();
-=======
-		$theItem = $items->get($item_id);
-		$item_type = $theItem->item_type;
-		$typeModel = $this->getTypeModel($item_type);
-		$typeDetails = $typeModel->getItem($item_id);
->>>>>>> master
 
 		//Update rating
 		$previousRating = $items->get($item_id)->rating;
