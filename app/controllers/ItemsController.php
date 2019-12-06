@@ -340,15 +340,61 @@ class ItemsController extends Controller{
 
 	}
 
+	//Display item info with details info
 	public function details($item_id)
 	{
+		if(!isset($_POST['action']))
+		{
+			$items = $this->model('Items');
+			$theItem = $items->get($item_id);
+			$item_type = $theItem->item_type;
+			$typeModel = $this->getTypeModel($item_type);
+			$typeDetails = $typeModel->getItem($item_id);
+			$reviews = $this->model('Reviews')->getOf($item_id);
+
+			$purchaseModel = $this->model('Purchase');
+			$finishedPurchases = $purchaseModel->getCompletedOrders($_SESSION['user_id']);
+
+			$purchasedItems = [];
+			foreach ($finishedPurchases as $item)
+			{
+				$purchase_id = $item->purchase_id;
+				$purchasedItems[] = $this->model('PurchaseDetails')->get($purchase_id);
+			}
+
+			return $this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails, 'Reviews'=>$reviews, 'Purchases'=>$purchasedItems]);	
+		}
+
 		$items = $this->model('Items');
+<<<<<<< Kevin
+		$reviews = $this->model('Reviews');
+
+		//Insert review
+		$reviews->title = $_POST['title'];
+		$reviews->rating = $_POST['rating'];
+		$reviews->message = $_POST['message'];
+		$reviews->created_on = date('Y-m-d H:i:s');
+		$reviews->item_id = $item_id;
+		$reviews->user_id = $_SESSION['user_id'];
+		$reviews->insert();
+=======
 		$theItem = $items->get($item_id);
 		$item_type = $theItem->item_type;
 		$typeModel = $this->getTypeModel($item_type);
 		$typeDetails = $typeModel->getItem($item_id);
+>>>>>>> master
 
-		$this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails]);
+		//Update rating
+		$previousRating = $items->get($item_id)->rating;
+		$ratingsAmount = $items->get($item_id)->ratings_amount;
+		$newRatingsAmount = $ratingsAmount + 1;
+		$newRating = ($previousRating + $_POST['rating'])/$newRatingsAmount;
+		$items->item_id = $item_id;
+		$items->rating = round($newRating,2);
+		$items->ratings_amount = $newRatingsAmount;
+		$items->updateRating();
+
+		header("location:/Items/details/$item_id");
 	}
 
 	public function delete($item_id)
@@ -366,6 +412,38 @@ class ItemsController extends Controller{
 		$typeModel->delete($item_id);
 
 		header('location:/Company/inventory');
+	}
+
+	public function review($item_id)
+	{
+		if (!isset($_POST['action']))
+		{
+			return $this->view('Item/review');
+		}
+
+		$items = $this->model('Items');
+		$reviews = $this->model('Reviews');
+
+		//Insert review
+		$reviews->title = $_POST['title'];
+		$reviews->rating = $_POST['rating'];
+		$reviews->message = $_POST['message'];
+		$reviews->created_on = date('Y-m-d H:i:s');
+		$reviews->item_id = $item_id;
+		$reviews->user_id = $_SESSION['user_id'];
+		$reviews->insert();
+
+		//Update rating
+		$previousRating = $items->get($item_id)->rating;
+		$ratingsAmount = $items->get($item_id)->ratings_amount;
+		$newRatingsAmount = $ratingsAmount + 1;
+		$newRating = ($previousRating + $_POST['rating'])/$newRatingsAmount;
+		$items->item_id = $item_id;
+		$items->rating = round($newRating,2);
+		$items->ratings_amount = $newRatingsAmount;
+		$items->updateRating();
+		$reviews->insert();
+		header("location:/Items/details/$item_id");
 	}
 
 	//Returns a specific model based on the item_type value in the item table

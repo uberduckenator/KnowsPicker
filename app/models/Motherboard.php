@@ -1,6 +1,6 @@
 <?php
 
-class GPU extends Model
+class Motherboard extends Model
 {
 	public $motherboard_id; //Probably for admin
 

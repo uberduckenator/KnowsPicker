@@ -1,59 +1,102 @@
-<html>
-<head>
-	<title>Details</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-	<script src="/js/jquery-3.2.1.min.js"></script>
-	<script src="/js/bootstrap.js"></script>
-</head>
+<?php
+	include('header.php');
+?>
 <body>
-	<div class="container">
-	<h1>Item Details</h1>
-		<?php
-			$theItem = $model['Item'];
-			$item_name = $theItem->item_name;
-			$price = $theItem->price;
-			$item_type = $theItem->item_type;
-			$stock = $theItem->stock;
-			$rebate = $theItem->rebate;
-			$max_sale_quantity = $theItem->max_sale_quantity;
-	
-			echo "	<div class='form-group'>
-				  	<label for='username'>Item Name</label>
-				  	<input type='text' class='form-control' name='item_name' id='item_name' value=$item_name readonly /> 
-				  	</div>";
+	<div class = "container">
+	<?php
+		$item = $model['Item'];
+		$item_id = $item->item_id;
+		$type = $model['ItemType'];
 
-			echo "	<div class='form-group'>
-					<label for='username'>Price</label>
-					<input type='text' class='form-control' name='price' id='price' value=$price readonly> 
-					</div>";
+		$item_name = $item->item_name;
+		if ($item->filepath != null)
+		{
+			$picture_location = $item->filepath;
+		}
+		else
+		{
+			$picture_location = '/Pictures/defaultItem.png';
+		}
+		$company = $item->company_name;
+		$price = $item->price;
+		$item_type = $item->item_type;
+		$rating = $item->rating;
+		$ratings_amount = $item->ratings_amount;
+		$stock = $item->stock;
+		$rebate = $item->rebate;
+		$max_sale_quantity = $item->max_sale_quantity;
+		$rebatePercent = $rebate/100;
+		$rebatePrice = $rebatePercent * $price;
+		$newprice = $price - $rebatePrice;
 
-			echo "	<div class='form-group'>
-					<label for='username'>Item Type</label>
-					<input type='text' class='form-control' name='item_type' id='item_type' value=$item_type readonly> 
-					</div>";
-
-			echo "	<div class='form-group'>
-					<label for='username'>Stock</label>
-					<input type='text' class='form-control' name='stock' id='stock' value=$stock readonly> 
-					</div>";
-
-			echo "	<div class='form-group'>
-					<label for='username'>Rebate</label>
-					<input type='text' class='form-control' name='rebate' id='rebate' value=$rebate readonly> 
-					</div>";
-
-			echo "	<div class='form-group'>
-					<label for='username'>Max Sale Quantity</label>
-					<input type='text' class='form-control' name='max_sale_quantity' id='max_sale_quantity' value=$max_sale_quantity readonly> 
-					</div>";
-		?>
-
-		<?php 
-			if($model == null){
-				echo("No items to edit");
+		echo"<div class='container'>
+				<div class='container'>
+				<table>
+					<tr>
+						<td>
+							<h3>$item_name</h3>
+							<img src=$picture_location>
+							<h5>Sold By: $company</h5>";
+							echo"<form method='post' action = /Purchase/addItem/$item_id>
+								<select name='quantity' value='0'>";
+									$i = 1;
+									while($i<=$max_sale_quantity)
+									{
+										echo"<option value=$i>$i</option>";
+										$i++;
+									}
+									echo"</select>
+										<input type='submit' value='Add To Cart'/></a>
+									 </form></td>";
+						echo "<td>
+							<s>$$price</s>
+							<h4>$$newprice</h4>
+							<p>$rebate% Off</p>
+							<p>Type: $item_type</p>
+							<p>Rating: $rating</p>
+							<p>#of Ratings: $ratings_amount</p>
+							<p>Stock: $stock</p>
+						</td>
+					</tr>
+				</table>
+				</div>";
+		$hasReviewed = false;
+		if ($model['Reviews'] == null)
+		{
+			include('Partials/newReview.php');
+		}
+		else
+		{
+			foreach ($model['Reviews'] as $item)
+			{
+				if ($item->user_id == $_SESSION['user_id'])
+				{
+					$hasReviewed = true;
+				}
 			}
-			else{
-				$this->view('Item/Partials/Details/detailsCPU',$model['ItemType']);
+			if (!$hasReviewed)
+			{
+				$isPurchased = false;
+				foreach ($model['Purchases'] as $item)
+				{
+					if($item->item_id == $item_id)
+					{
+						$isPurchased = true;
+					}
+				}
+				if ($isPurchased)
+				{
+					include('Partials/newReview.php');
+				}
 			}
-		?>
+		}
+		
+		include('Partials/allReviews.php');
+		echo"</div>";
+	?>
+	</div>
+</body>
+<?php
+	include('footer.php');
+?>
 </html>

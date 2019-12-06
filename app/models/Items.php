@@ -37,7 +37,10 @@ class Items extends Model
 
 	public function get($item_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_id = :item_id");
+		$stmt = self::$_connection->prepare("SELECT * FROM items i 
+											 JOIN pictures p ON i.picture_id = p.picture_id 
+											 JOIN company_profile c ON i.company_id = c.company_id 
+											 WHERE item_id = :item_id");
 		$stmt->execute(['item_id'=>$item_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetch();
@@ -85,6 +88,13 @@ class Items extends Model
 											    SET item_name = :item_name, price = :price, item_type = :item_type, stock = :stock, rebate = :rebate, max_sale_quantity = :max_sale_quantity
 											  WHERE item_id = :item_id");
 		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'item_id'=>$item_id]);
+	}
+
+	public function updateRating()
+	{
+		$stmt = self::$_connection->prepare("UPDATE items
+												SET rating = :rating, ratings_amount = :ratings_amount WHERE item_id = :item_id");
+			$stmt->execute(['rating'=>$this->rating, 'ratings_amount'=>$this->ratings_amount, 'item_id'=>$this->item_id]);		
 	}
 
 	public function delete($item_id)

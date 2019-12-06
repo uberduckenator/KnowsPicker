@@ -18,6 +18,7 @@ class PurchaseDetails extends Model
 	{
 		$stmt = self::$_connection->prepare("INSERT INTO purchase_details (item_id, purchase_id, quantity) VALUES (:item_id, :purchase_id, :quantity)");
 		$stmt->execute(['item_id'=>$this->item_id, 'purchase_id'=>$this->purchase_id, 'quantity'=>$this->quantity]);
+		$this->purchase_details_id = self::$_connection->lastInsertId();
 	}
 
 	public function delete($purchase_details_id)
@@ -54,5 +55,21 @@ class PurchaseDetails extends Model
 		$stmt->execute(['purchase_id'=>$purchase_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PurchaseDetails');
 		return $stmt->fetchAll();
+	}
+
+	public function getDetails($purchase_details_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase_details p JOIN Items i ON i.item_id = p.item_id WHERE purchase_details_id = :purchase_details_id");
+		$stmt->execute(['purchase_details_id'=>$purchase_details_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PurchaseDetails');
+		return $stmt->fetch();
+	}
+
+	public function getSelf()
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase_details p JOIN Items i ON i.item_id = p.item_id WHERE purchase_details_id = :purchase_details_id");
+		$stmt->execute(['purchase_details_id'=>$this->purchase_details_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PurchaseDetails');
+		return $stmt->fetch();
 	}
 }

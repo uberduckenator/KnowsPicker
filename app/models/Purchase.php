@@ -6,6 +6,7 @@ class Purchase extends Model
 
 	//Use these
 	public $status = 0;
+	public $subtotal;
 	public $total;
 	public $user_id;
 	public $purchased_on = null;//Null on default
@@ -19,10 +20,18 @@ class Purchase extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO purchase (purchase_id, status, total, user_id, purchased_on, payment_confirm, shipping_id) VALUES (:purchase_id, :status, :total, :user_id, :purchased_on, :payment_confirm, :shipping_id)");
-		$stmt->execute(['purchase_id'=>$this->purchase_id, 'status'=>$this->status,'total'=>$this->total, 'user_id'=>$this->user_id, 'purchased_on'=>$this->purchased_on, 'payment_confirm'=>$this->payment_confirm, 'shipping_id'=>$this->shipping_id]);
+		$stmt = self::$_connection->prepare("INSERT INTO purchase (purchase_id, status, subtotal, total, user_id, purchased_on, payment_confirm, shipping_id) VALUES (:purchase_id, :status, :subtotal, :total, :user_id, :purchased_on, :payment_confirm, :shipping_id)");
+		$stmt->execute(['purchase_id'=>$this->purchase_id, 'status'=>$this->status, 'subtotal'=>$this->subtotal, 'total'=>$this->total, 'user_id'=>$this->user_id, 'purchased_on'=>$this->purchased_on, 'payment_confirm'=>$this->payment_confirm, 'shipping_id'=>$this->shipping_id]);
 		$this->purchase_id = self::$_connection->lastInsertId();
 	}
+
+	/*public function getSubtotal()
+	{
+		$stmt = self::$_connection->prepare("SELECT subtotal FROM purchase WHERE purchase_id = :purchase_id");
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();
+	}*/
 
 	public function delete($purchase_id)
 	{
@@ -30,16 +39,34 @@ class Purchase extends Model
 		$stmt->execute(['purchase_id'=>$purchase_id]);
 	}
 
-	public function updateDate($purchase_id)
+	public function updateTotal()
 	{
-		$stmt = self::$_connection->prepare("UPDATE purchase SET purchased_on = :purchased_on WHERE purchase_id = :purchase_id");
-		$stmt->execute(['purchased_on'=>$this->purchased_on, 'purchase_id'=>$purchase_id]);
+		$stmt = self::$_connection->prepare("UPDATE purchase SET total = :total WHERE purchase_id = :purchase_id");
+		$stmt->execute(['total'=>$this->total, 'purchase_id'=>$this->purchase_id]);	
 	}
 
-	public function updateStatus($purchase_id)
+	public function updateDate()
 	{
-		$stmt = self::$_conneciton->prepare("UPDATE purchase SET status = :status WHERE purchase_id = :purchase_id");
-		$stmt->execute(['status'=>$this->status, 'purchase_id'=>$purchase_id]);
+		$stmt = self::$_connection->prepare("UPDATE purchase SET purchased_on = :purchased_on WHERE purchase_id = :purchase_id");
+		$stmt->execute(['purchased_on'=>$this->purchased_on, 'purchase_id'=>$this->purchase_id]);
+	}
+
+	public function updateSubtotal()
+	{
+		$stmt = self::$_connection->prepare("UPDATE purchase SET subtotal = :subtotal WHERE purchase_id = :purchase_id");
+		$stmt->execute(['subtotal'=>$this->subtotal, 'purchase_id'=>$this->purchase_id]);
+	}
+
+	public function updateStatus()
+	{
+		$stmt = self::$_connection->prepare("UPDATE purchase SET status = :status WHERE purchase_id = :purchase_id");
+		$stmt->execute(['status'=>$this->status, 'purchase_id'=>$this->purchase_id]);
+	}
+
+	public function updateShipping()
+	{
+		$stmt = self::$_connection->prepare("UPDATE purchase SET shipping_id = :shipping_id WHERE purchase_id = :purchase_id");
+		$stmt->execute(['shipping_id'=>$this->shipping_id, 'purchase_id'=>$this->purchase_id]);
 	}
 
 	//Not sure about payment_confirm...
@@ -62,9 +89,42 @@ class Purchase extends Model
 		return $stmt->fetch();
 	}
 
+	public function getPurchase($purchase_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE purchase_id = :purchase_id AND status = 0");
+		$stmt->execute(['purchase_id'=>$purchase_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();	
+	}
+
+	public function getOrder($purchase_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE purchase_id = :purchase_id");
+		$stmt->execute(['purchase_id'=>$purchase_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();	
+	}
+
+	//If we also need shipping information...
+	public function getWithShipping($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase INNER JOIN shipping USING (shipping_id) WHERE user_id = :user_id AND status = 0");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetch();
+	}
+
 	public function getOrders($user_id)
 	{
 		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status > 0 ");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetchAll();	
+	}
+
+	public function getCompletedOrders($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status = 2 ");
 		$stmt->execute(['user_id'=>$user_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
 		return $stmt->fetchAll();	
