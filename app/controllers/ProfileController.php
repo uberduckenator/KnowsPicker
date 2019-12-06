@@ -14,17 +14,19 @@ class ProfileController extends Controller{
 		}
 		else{
 			$profile = $this->model('UserProfile');
-			
+
 			$profile->first_name = $_POST["first_name"];
 			$profile->last_name = $_POST["last_name"];
 			$profile->email = $_POST["email"];
-			$profile->country = $_POST["countries"];
 			$profile->city = $_POST["city"];
 			$profile->street_address = $_POST["street_address"];
 			$profile->postal_code = $_POST["postal_code"];
 			$profile->login_id = $_SESSION['login_id'];
+			$profile->country_id = $_POST['countries'];
 
 			$profile->insert();
+
+			$_SESSION['user_id'] = $profile->user_id;
 
 			header("location:/Home");
 

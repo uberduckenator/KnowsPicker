@@ -8,10 +8,9 @@ class Purchase extends Model
 	public $status = 0;
 	public $total;
 	public $payment_id;
-	public $login_id;
+	public $user_id;
 	public $purchased_on = null;//Null on default
 	public $payment_confirm;
-	public $payment_id;
 	public $shipping_id = null;
 
 	public function __construct()
@@ -21,8 +20,9 @@ class Purchase extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO purchase (purchase_id, status, total, payment_id, login_id, purchased_on, payment_confirm, shipping_id) VALUES (:purchase_id, :status, :total, :payment_id, :login_id, :purchased_on, :payment_confirm, :shipping_id)");
-		$stmt->execute(['purchase_id'=>$this->purchase_id, 'status'=>$this->status,'total'=>$this->total, 'payment_id'=>$this->payment_id, 'login_id'=>$this->login_id, 'purchased_on'=>$this->purchased_on, 'payment_confirm'=>$this->payment_confirm, 'shipping_id'=>$this->shipping_id]);
+		$stmt = self::$_connection->prepare("INSERT INTO purchase (purchase_id, status, total, payment_id, user_id, purchased_on, payment_confirm, shipping_id) VALUES (:purchase_id, :status, :total, :payment_id, :user_id, :purchased_on, :payment_confirm, :shipping_id)");
+		$stmt->execute(['purchase_id'=>$this->purchase_id, 'status'=>$this->status,'total'=>$this->total, 'payment_id'=>$this->payment_id, 'user_id'=>$this->user_id, 'purchased_on'=>$this->purchased_on, 'payment_confirm'=>$this->payment_confirm, 'shipping_id'=>$this->shipping_id]);
+		$this->purchase_id = self::$_connection->lastInsertId();
 	}
 
 	public function delete($purchase_id)
@@ -55,21 +55,40 @@ class Purchase extends Model
 	}
 
 	//Get user's cart
-	public function get($login_id)
+	public function get($user_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE login_id = :login_id");
-		$stmt->execute(['login_id'=>$login_id]);
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status = 0");
+		$stmt->execute(['user_id'=>$user_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
 		return $stmt->fetch();
 	}
 
+<<<<<<< HEAD
+	//We set the variable to this value
 	public function getCartID($login_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT purchase_id FROM purchase WHERE login_id = :login_id");
+		$stmt = self::$_connection->prepare("SELECT purchase_id FROM purchase WHERE login_id = :login_id AND status = 0");
 		$stmt->execute(['login_id'=>$login_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
-		return $stmt->fetch();
+		$this->purchase_id = $stmt->fetch()->purchase_id;
 	}
 
+=======
+	public function getOrders($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status > 0 ");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetchAll();	
+	}
 
+	//We set the variable to this value
+	public function getCartID($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT purchase_id FROM purchase WHERE user_id = :user_id AND status = 0");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		$this->purchase_id = $stmt->fetch()->purchase_id;
+	}
+>>>>>>> 8ac1a8ca910f132f053dd1e3e33d538143a8f238
 }

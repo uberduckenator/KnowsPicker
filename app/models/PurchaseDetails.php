@@ -7,7 +7,6 @@ class PurchaseDetails extends Model
 	//Use these
 	public $item_id;
 	public $purchase_id;
-	public $purchase_price;
 	public $quantity = 1;
 
 	public function __construct()
@@ -17,8 +16,8 @@ class PurchaseDetails extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO purchase_details (item_id, purchase_id, purchase_price, quantity) VALUES (:item_id, :purchase_id, :purchase_price, :quantity)");
-		$stmt->execute(['item_id'=>$this->item_id, 'purchase_id'=>$this->purchase_id, 'purchase_price'=>$this->purchase_price, 'quantity'=>$this->quantity]);
+		$stmt = self::$_connection->prepare("INSERT INTO purchase_details (item_id, purchase_id, quantity) VALUES (:item_id, :purchase_id, :quantity)");
+		$stmt->execute(['item_id'=>$this->item_id, 'purchase_id'=>$this->purchase_id, 'quantity'=>$this->quantity]);
 	}
 
 	public function delete($purchase_details_id)

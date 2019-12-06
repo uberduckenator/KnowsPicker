@@ -7,8 +7,8 @@ class Items extends Model
 	public $item_name;
 	public $price;
 	public $item_type;
-	public $rating;
-	public $ratings_amount;
+	public $rating = 0;
+	public $ratings_amount = 0;
 	public $stock;
 	public $rebate;
 	public $max_sale_quantity;
@@ -21,9 +21,18 @@ class Items extends Model
 	}
 
 	public function insert(){
-		$stmt = self::$_connection->prepare("INSERT INTO items (item_name, price, item_type, rating, ratings_amount, stock, rebate, max_sale_quantity, company_id)
-											 VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id)");
-		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id]);
+		$stmt = self::$_connection->prepare("INSERT INTO items (item_name, price, item_type, rating, ratings_amount, stock, rebate, max_sale_quantity, company_id, picture_id)
+											 VALUES (:item_name, :price, :item_type, :rating, :ratings_amount, :stock, :rebate, :max_sale_quantity, :company_id, :picture_id)");
+		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'rating'=> $this->rating, 'ratings_amount'=>$this->ratings_amount, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity, 'company_id'=>$this->company_id, 'picture_id'=>$this->picture_id]);
+		$this->item_id = self::$_connection->lastInsertId();
+	}
+
+	public function getType($item_type)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM items WHERE item_type = :item_type");
+		$stmt->execute(['item_type'=>$item_type]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
+		return $stmt->fetchAll();
 	}
 
 	public function get($item_id)
