@@ -112,12 +112,12 @@ class PurchaseController extends Controller
 		$inCart = $purchaseDetails->get($cartId);
 		$subtotal = $theCart->subtotal;
 		//Need Taxes
-		$GST = $subtotal * 0.0125;
-		$QST = $subtotal * 0.09975;
+		$GST = round(($subtotal * 0.0125),2);
+		$QST = round(($subtotal * 0.09975),2);
 
 		//Need shipping cost
 		$shippingCost = $theCart->shipping_cost;
-		$total = $subtotal + $GST + $QST + $shippingCost;
+		$total = round(($subtotal + $GST + $QST + $shippingCost),2);
 
 		if (!isset($_POST['action']) && !isset($_POST['shipping_id']))
 		{
@@ -135,12 +135,12 @@ class PurchaseController extends Controller
 			$inCart = $purchaseDetails->get($cartId);
 			$subtotal = $theCart->subtotal;
 			//Need Taxes
-			$GST = $subtotal * 0.0125;
-			$QST = $subtotal * 0.09975;
+			$GST = round(($subtotal * 0.0125),2);
+			$QST = round(($subtotal * 0.09975),2);
 
 			//Need shipping cost
-			$shippingCost = $theCart->shipping_cost;
-			$total = $subtotal + $GST + $QST + $shippingCost;
+			$shippingCost = round(($theCart->shipping_cost),2);
+			$total = round(($subtotal + $GST + $QST + $shippingCost),2);
 
 			$this->view('Purchase/placeOrder',['Address'=>$theUser, 'Payment'=>$paymentInfo, 'Cart'=>$theCart, 'CartDetails'=>$inCart, 'GST'=>$GST, 'QST'=>$QST, 'ShippingCost'=>$shippingCost,'Total'=>$total, 'ShippingTypes'=>$allShippingTypes]);
 		}
@@ -189,7 +189,11 @@ class PurchaseController extends Controller
 		//Get costs
 		$self = $purchaseDetails->getSelf();
 		$purchaseCost = $self->price;
-		$quantityCost = $purchaseCost * $self->quantity;
+		$rebate = $self->rebate;
+		$rebatePercent = $rebate/100;
+		$rebatePrice = $purchaseCost*$rebatePercent;
+		$newCost = $purchaseCost-$rebatePrice;
+		$quantityCost = $newCost * $self->quantity;
 
 		//Recalculate the subtotal
 		$subtotalPurchase = $this->model('Purchase');

@@ -5,7 +5,7 @@
 	//$total = $item->total;
 	echo"<div class='container'>
 			<div class='container'>
-				<p>Subtotal: $subtotal</p>
+				<p>Subtotal: $$subtotal</p>
 			</div>
 		</div>";
 ?>

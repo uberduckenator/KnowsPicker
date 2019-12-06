@@ -20,13 +20,25 @@
 					$rating = $item->rating;
 					$stock = $item->stock;
 					$rebate = $item->rebate;
+					$rebatePercent = $rebate/100;
+					$rebatePrice = $price*$rebatePercent;
+					$newPrice = $price-$rebatePrice;
 					echo"<div class='container'><h3>Name: $name</h3>
 							<a href=/Purchase/remove/$purchase_details_id>Remove</a>
-							<div class='container'>
-								<p>Price: $price</p>
-								<p>Rating: $rating</p>
+							<div class='container'>";
+								
+								if($rebate > 0)
+								{
+									echo"<s>$$price</s>
+									<p>$$newPrice</p>
+									<h4>$rebate% Off</h4>";
+								}
+								else
+								{
+									echo"<p>$$price</p>";
+								}
+								echo"<p>Rating: $rating</p>
 								<p>Stock: $stock</p>
-								<p>Rebate: $rebate</p>
 							</div>
 						</div>";
 				}
