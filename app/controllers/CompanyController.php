@@ -69,7 +69,7 @@ class CompanyController extends Controller{
 				case "CPU":
 					header("location:/Items/addCPU/$inventory->item_id");
 					break;
-				case "CPU Cooler":
+				case "Cooler":
 					header("location:/Items/addCPUCooler/$inventory->item_id");
 					break;
 				case "GPU":
@@ -78,7 +78,7 @@ class CompanyController extends Controller{
 				case "Motherboard":
 					header("location:/Items/addMotherboard/$inventory->item_id");
 					break;
-				case "PC Case":
+				case "Case":
 					header("location:/Items/addPCCase/$inventory->item_id");
 					break;
 				case "PSU":
