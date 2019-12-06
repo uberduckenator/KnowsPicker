@@ -1,7 +1,7 @@
 <?php
 	include ("header.php");
 ?>
-<h3>Search Results for <?php echo "$model[SearchString]"?></h3>
+<h3>Search Results for <?php echo "$model[SearchString]";?></h3>
 
 <table>
 <?php
@@ -9,15 +9,44 @@
 	echo("<h3>$model[Error]</h3>");
 	foreach ($model['Results'] as $item)
 	{
-		echo('<div class=item><tr><h3>$item->item_name</h3></br>');
-		echo('<p>$"$item->price"</p></br>');
-		echo('<p>Item type: "$item->item_type"</p></br>');
-		echo('<p>Rating: "$item->rating"</p></br>');
-		echo('<p>Stock: "$item->stock"</p></br>');
-		echo('<p>Rebate: "$item->rebate</p></br>');
-		echo('<h6>Company: </h6></br>');
-		echo('<img = alt = img for item></br>');
-		echo('<p></p></tr></div>');
+			$item_id = $item->item_id;
+			$item_name = ucwords($item->item_name);
+			$price = $item->price;
+			$rating = $item->rating;
+			$numberofratings = $item->ratings_amount;
+			$stock = $item->stock;
+			$rebate = $item->rebate;
+			$max_sale_quantity = $item->max_sale_quantity;
+			
+			//Also need the picture
+			echo "<tr><td><a href=/Items/details/$item_id><h4>$item_name</h4></a></br>
+					  <img alt = picture for item></br>";
+			if (isset($_GET['pc_build_id']))
+			{
+				$pc_build_id = $_GET['pc_build_id'];
+				echo"<form action = '/PCBuild/addPart/$item_id'>
+					  	<input type='hidden' name='pc_build_id' value=$pc_build_id/>
+					  	<input type='submit' value='Add To Build'/></a>
+					  </form>";
+			}
+			echo"<form method='post' action = /Purchase/addItem/$item_id>
+			<select name='quantity' value='0'>";
+				$i = 1;
+				while($i<=$max_sale_quantity)
+				{
+					echo"<option value=$i>$i</option>";
+					$i++;
+				}
+				echo"</select>
+					<input type='submit' value='Add To Cart'/></a>
+				 </form></td>";
+
+			echo "<td><p>$$price</p></br>
+					  <p>$rating</p></br>
+					  <p>$numberofratings</p></br>
+					  <p>Items left: $stock</p></br>
+					  <p>$rebate % off</p></br>
+					  <p>MAX sale quantity: $max_sale_quantity</p></td></tr>";
 	}
 
 ?>

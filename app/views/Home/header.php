@@ -7,8 +7,11 @@
 <head>
 	<title>Knowspicker.com:Home</title>
 </head>
-<div class="topHeader">
-	<img src="" alt="Knowspicker Logo">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">KnowsPicker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 	<?php 
 
 		if (!isset($_POST["searchBox"]))
@@ -16,16 +19,17 @@
 			$_POST["searchBox"] = "empty";
 		}
 		echo("<form action=/Home/search/$_POST[searchBox]>");
-
 		
 	?>
 		<input type="text" name="searchBox">
 		<input type="submit" name="searchButton" value="Search">
 	</form>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
 	<?php
 		if(!isset($_SESSION['login_id']))
 		{
-			echo('<a href="Login">Login</a>');
+			echo('<li class="nav-item"><a href="Login">Login</a></li>');
 		}
 		else
 		{
@@ -33,39 +37,39 @@
 			{
 				if($_SESSION['role'] == 'company')
 				{
-					echo('<a href="Company/inventory">My inventory</a>');
+					echo('<li class="nav-item"><a class="nav-link" href="Company/inventory">My inventory</a></li>');
 				}
 				elseif ($_SESSION['role'] == 'admin')
 				{
-					echo('<a href="/Ticket">My tickets</a>');
+					echo("<li class='nav-item'><a class='nav-link' href='/Ticket'>My tickets</a></li>");
 				}
 				else
 				{
-				echo("<a href='/Purchase/orders'>My orders</a>");
-				echo("<a href='/PCBuild/myBuilds'>My PC Builds</a>
-					  <a href='/Favorite'>Favorites</a>");
-				echo("<a href='/Purchase'><img alt='Cart'></a>");
-				echo("<a href='/Profile'><img src='' alt='Profile'></a>");
+				echo("<li class='nav-item'><a class='nav-link' href='/Purchase/orders'>My orders</a></li>");
+				echo("<li class='nav-item'><a class='nav-link' href='/PCBuild/myBuilds'>My PC Builds</a></li>
+					  <li class='nav-item'><a class='nav-link' href='/Favorite'>Favorites</a></li>");
+				echo("<li class='nav-item'><a class='nav-link' href='/Purchase'><img alt='Cart'></a></li>");
+				echo("<li class='nav-item'><a class='nav-link' href='/Profile'><img src='' alt='Profile'></a></li>");
 				}	
 			}
-			else
-			{
-				echo("<a href='/Login/logout'>Logout</a>");
-			}	
+			echo("<li class='nav-item'><a class='nav-link' href='/Login/logout'>Logout</a></li>");	
 		}
 	?>
-</div>
-<div class ="navigation">
-	<ul>
-		<li><a href="/Home">Home</a></li>
-		<li><a href="/Items/CPU">CPUs</a></li>
-		<li><a href="/Items/GPU">GPUs</a></li>
-		<li><a href="/Items/Motherboard">Motherboards</a></li>
-		<li><a href="/Items/PCCase">Cases</a></li>
-		<li><a href="/Items/PSU">Power Supplies</a></li>
-		<li><a href="/Items/RAM">RAM</a></li>
-		<li><a href="/Items/Storage">Storage</a></li>
-		<li><a href="/PCBuild">PCBuilds</a></li>
 	</ul>
+</nav>
+<nav class="navbar navbar-light bg-light">
+	<div class='container'>
+		<ul class="navbar-nav mr-auto">
+			<li class='nav-item'><a class="nav-link" href="/Home">Home</a></li>
+			<li class='nav-item'><a class="nav-link"href="/Items/CPU">CPUs</a></li>
+			<li class='nav-item'><a class="nav-link"href="/Items/GPU">GPUs</a></li>
+			<li class='nav-item'><a class="nav-link"href="/Items/Motherboard">Motherboards</a></li>
+			<li class='nav-item'><a class="nav-link" href="/Items/PCCase">Cases</a></li>
+			<li class='nav-item'><a class="nav-link"href="/Items/PSU">Power Supplies</a></li>
+			<li class='nav-item'><a class="nav-link"href="/Items/RAM">RAM</a></li>
+			<li class='nav-item'><a class="nav-link"href="/Items/Storage">Storage</a></li>
+			<li class='nav-item'><a class="nav-link"href="/PCBuild">PCBuilds</a></li>
+		</ul>
 </div>
-</html>
+</nav>
+<body>
