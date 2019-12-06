@@ -183,7 +183,7 @@ class PurchaseController extends Controller
 		$purchaseDetails = $this->model('PurchaseDetails');
 		$purchaseDetails->item_id = $item_id;
 		$purchaseDetails->purchase_id = $purchase_id;
-		$purchaseDetails->quantity = 1;
+		$purchaseDetails->quantity = $_POST['quantity'];
 		$purchaseDetails->insert();
 
 		//Get costs
@@ -225,7 +225,7 @@ class PurchaseController extends Controller
 		$purchase->updateSubtotal();
 
 		$purchaseDetails->delete($purchase_details_id);
-		header('location:/Purchase/remove');
+		header('location:/Purchase/index');
 	}
 
 	//Purchase history

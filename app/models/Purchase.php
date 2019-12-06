@@ -121,4 +121,12 @@ class Purchase extends Model
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
 		return $stmt->fetchAll();	
 	}
+
+	public function getCompletedOrders($user_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM purchase WHERE user_id = :user_id AND status = 2 ");
+		$stmt->execute(['user_id'=>$user_id]);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Purchase');
+		return $stmt->fetchAll();	
+	}
 }

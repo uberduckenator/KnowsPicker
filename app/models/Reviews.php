@@ -7,6 +7,7 @@ class Reviews extends Model
 	//Use these
 	public $title;
 	public $messsage;
+	public $rating;
 	public $created_on;
 	public $item_id;
 	public $user_id;
@@ -18,8 +19,8 @@ class Reviews extends Model
 
 	public function insert()
 	{
-		$stmt = self::$_connection->prepare("INSERT INTO reviews (title, message, created_on, item_id, user_id) VALUES (:title, :message, :created_on, :item_id, :user_id)");
-		$stmt->execute(['title'=>$this->title, 'message'=>$this->message, 'created_on'=>$this->created_on, 'item_id'=>$this->item_id, 'user_id'=>$this->user_id]);
+		$stmt = self::$_connection->prepare("INSERT INTO reviews (title, message, rating, created_on, item_id, user_id) VALUES (:title, :message, :rating, :created_on, :item_id, :user_id)");
+		$stmt->execute(['title'=>$this->title, 'message'=>$this->message,'rating'=>$this->rating, 'created_on'=>$this->created_on, 'item_id'=>$this->item_id, 'user_id'=>$this->user_id]);
 	}
 
 	public function getOf($item_id)

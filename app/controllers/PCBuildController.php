@@ -103,6 +103,7 @@ class PCBuildController extends Controller{
 				$typeInfo = $typeModel->getItem($item_id);
 				$itemDetails['Item Info'][] = $itemInfo;
 				$itemDetails['Item Type Info'][] = $typeInfo; 
+				$itemDetails['OtherInfo'][] = $item;
 			}
 			$this->view("PCBuild/setup", ['Build'=>$theBuild, 'Build Details'=>$itemDetails]);
 		}
@@ -121,8 +122,9 @@ class PCBuildController extends Controller{
 	public function removePart($pc_build_details_id)
 	{
 		$buildDetail = $this->model('PCBuildDetails');
+		$pc_build_id = $buildDetail->get($pc_build_details_id)->pc_build_id;
 		$buildDetail->delete($pc_build_details_id);
-		header('location:/PCBuild/setupBuild');
+		header("location:/PCBuild/setupBuild/$pc_build_id");
 	}
 
 	//Function to return the type model

@@ -351,17 +351,42 @@ class ItemsController extends Controller{
 			$typeDetails = $typeModel->getItem($item_id);
 			$reviews = $this->model('Reviews')->getOf($item_id);
 
-			return $this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails, 'Reviews'=>$reviews]);	
+			$purchaseModel = $this->model('Purchase');
+			$finishedPurchases = $purchaseModel->getCompletedOrders($_SESSION['user_id']);
+
+			$purchasedItems = [];
+			foreach ($finishedPurchases as $item)
+			{
+				$purchase_id = $item->purchase_id;
+				$purchasedItems[] = $this->model('PurchaseDetails')->get($purchase_id);
+			}
+
+			return $this->view('Item/details', ['Item'=>$theItem, 'ItemType'=>$typeDetails, 'Reviews'=>$reviews, 'Purchases'=>$purchasedItems]);	
 		}
 
+		$items = $this->model('Items');
 		$reviews = $this->model('Reviews');
+
+		//Insert review
 		$reviews->title = $_POST['title'];
+		$reviews->rating = $_POST['rating'];
 		$reviews->message = $_POST['message'];
 		$reviews->created_on = date('Y-m-d H:i:s');
 		$reviews->item_id = $item_id;
 		$reviews->user_id = $_SESSION['user_id'];
 		$reviews->insert();
-		header("location:/Purchase/details/$item_id");
+
+		//Update rating
+		$previousRating = $items->get($item_id)->rating;
+		$ratingsAmount = $items->get($item_id)->ratings_amount;
+		$newRatingsAmount = $ratingsAmount + 1;
+		$newRating = ($previousRating + $_POST['rating'])/$newRatingsAmount;
+		$items->item_id = $item_id;
+		$items->rating = round($newRating,2);
+		$items->ratings_amount = $newRatingsAmount;
+		$items->updateRating();
+
+		header("location:/Items/details/$item_id");
 	}
 
 	public function delete($item_id)
@@ -388,14 +413,29 @@ class ItemsController extends Controller{
 			return $this->view('Item/review');
 		}
 
+		$items = $this->model('Items');
 		$reviews = $this->model('Reviews');
+
+		//Insert review
 		$reviews->title = $_POST['title'];
+		$reviews->rating = $_POST['rating'];
 		$reviews->message = $_POST['message'];
 		$reviews->created_on = date('Y-m-d H:i:s');
 		$reviews->item_id = $item_id;
 		$reviews->user_id = $_SESSION['user_id'];
 		$reviews->insert();
-		header("location:/Item/details/$item_id");
+
+		//Update rating
+		$previousRating = $items->get($item_id)->rating;
+		$ratingsAmount = $items->get($item_id)->ratings_amount;
+		$newRatingsAmount = $ratingsAmount + 1;
+		$newRating = ($previousRating + $_POST['rating'])/$newRatingsAmount;
+		$items->item_id = $item_id;
+		$items->rating = round($newRating,2);
+		$items->ratings_amount = $newRatingsAmount;
+		$items->updateRating();
+		$reviews->insert();
+		header("location:/Items/details/$item_id");
 	}
 
 	//Returns a specific model based on the item_type value in the item table

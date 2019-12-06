@@ -90,6 +90,13 @@ class Items extends Model
 		$stmt->execute(['item_name'=>$this->item_name, 'price'=>$this->price, 'item_type'=>$this->item_type, 'stock'=>$this->stock, 'rebate'=>$this->rebate, 'max_sale_quantity'=>$this->max_sale_quantity]);
 	}
 
+	public function updateRating()
+	{
+		$stmt = self::$_connection->prepare("UPDATE items
+												SET rating = :rating, ratings_amount = :ratings_amount WHERE item_id = :item_id");
+			$stmt->execute(['rating'=>$this->rating, 'ratings_amount'=>$this->ratings_amount, 'item_id'=>$this->item_id]);		
+	}
+
 	public function delete($item_id)
 	{
 		$stmt = self::$_connection->prepare("DELETE FROM items WHERE item_id = :item_id");

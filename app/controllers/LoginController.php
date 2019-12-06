@@ -20,7 +20,7 @@ class LoginController extends Controller{
 						//$admin = $this->model('Admin');				
 					default:
 						$user = $this->model('UserProfile');
-						$_SESSION['user_id'] = $user->getUser($_SESSION['login_id']);
+						$_SESSION['user_id'] = $user->getUser($_SESSION['login_id'])->user_id;
 						break;
 				}
 				return header("location:/Home");

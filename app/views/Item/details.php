@@ -5,6 +5,7 @@
 	<div class = "container">
 	<?php
 		$item = $model['Item'];
+		$item_id = $item->item_id;
 		$type = $model['ItemType'];
 
 		$item_name = $item->item_name;
@@ -23,7 +24,9 @@
 		$ratings_amount = $item->ratings_amount;
 		$stock = $item->stock;
 		$rebate = $item->rebate;
-		$rebatePrice = $rebate * $price;
+		$max_sale_quantity = $item->max_sale_quantity;
+		$rebatePercent = $rebate/100;
+		$rebatePrice = $rebatePercent * $price;
 		$newprice = $price - $rebatePrice;
 
 		echo"<div class='container'>
@@ -33,10 +36,21 @@
 						<td>
 							<h3>$item_name</h3>
 							<img src=$picture_location>
-							<h5>Sold By: $company</h5>
-						</td>
-						<td>
-							<p>$$newprice</p>
+							<h5>Sold By: $company</h5>";
+							echo"<form method='post' action = /Purchase/addItem/$item_id>
+								<select name='quantity' value='0'>";
+									$i = 1;
+									while($i<=$max_sale_quantity)
+									{
+										echo"<option value=$i>$i</option>";
+										$i++;
+									}
+									echo"</select>
+										<input type='submit' value='Add To Cart'/></a>
+									 </form></td>";
+						echo "<td>
+							<s>$$price</s>
+							<h4>$$newprice</h4>
 							<p>$rebate% Off</p>
 							<p>Type: $item_type</p>
 							<p>Rating: $rating</p>
@@ -62,7 +76,18 @@
 			}
 			if (!$hasReviewed)
 			{
-				include('Partials/newReview.php');
+				$isPurchased = false;
+				foreach ($model['Purchases'] as $item)
+				{
+					if($item->item_id == $item_id)
+					{
+						$isPurchased = true;
+					}
+				}
+				if ($isPurchased)
+				{
+					include('Partials/newReview.php');
+				}
 			}
 		}
 		

@@ -22,11 +22,20 @@ if(!isset($model['Build Details']))
 			$itemType = $item->item_type;
 			if($itemType == 'GPU')
 			{
+				$item_id = $item->item_id;
 				$item_name = $item->item_name;
 				$item_price = $item->price;
 				echo"<div><img alt = 'GPU'><p>Name: $item_name</p>";
-				echo"<p>Price: $item_price</p>
-					</div>";
+				echo"<p>Price: $item_price</p>";
+				foreach ($model['Build Details']['OtherInfo'] as $pc_build_info) {
+					$other_item_id = $pc_build_info->item_id;
+					$pc_build_details_id = $pc_build_info->pc_build_details_id;
+					if ($other_item_id == $item_id)
+					{
+						echo"<a href='/PCBuild/removePart/$pc_build_details_id'>Remove</a>";
+					}
+				}
+					echo"</div>";
 			}
 			else
 			{
