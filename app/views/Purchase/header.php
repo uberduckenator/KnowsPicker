@@ -57,7 +57,7 @@
 	<ul>
 		<li><a href="/Home">Home</a></li>
 		<li><a href="/Items/CPU">CPUs</a></li>
-		<li><a href="/Items/CPUCooler">CPUs</a></li>
+		<li><a href="/Items/CPUCooler">CPU Cooler</a></li>
 		<li><a href="/Items/GPU">GPUs</a></li>
 		<li><a href="/Items/Motherboard">Motherboards</a></li>
 		<li><a href="/Items/PCCase">Cases</a></li>

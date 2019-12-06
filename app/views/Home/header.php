@@ -48,7 +48,8 @@
 				echo("<a href='/Purchase'><img alt='Cart'></a>");
 				echo("<a href='/Profile'><img src='' alt='Profile'></a>");
 				echo("<a href='/PCBuild/myBuilds'>My Builds</a>");
-			}	
+			}
+			echo('<a href="Login/logout">Logout</a>');
 		}
 	?>
 </div>
@@ -56,6 +57,7 @@
 	<ul>
 		<li><a href="/Home">Home</a></li>
 		<li><a href="/Items/CPU">CPUs</a></li>
+		<li><a href="/Items/CPUCooler">CPU Cooler</a></li>
 		<li><a href="/Items/GPU">GPUs</a></li>
 		<li><a href="/Items/Motherboard">Motherboards</a></li>
 		<li><a href="/Items/PCCase">Cases</a></li>

@@ -18,10 +18,6 @@ if(!isset($model['Build Details']))
 		foreach($model['Build Details']['Item Info'] as $item)
 		{
 			$itemType = $item->item_type;
-<<<<<<< HEAD
-
-=======
->>>>>>> c8e26c5c5941d14dc7f262b3043d3c694a4261be
 			if($itemType == 'CPUCooler')
 			{
 				$item_name = $item->item_name;
@@ -37,9 +33,7 @@ if(!isset($model['Build Details']))
 		}
 		if ($notExist == sizeof($model['Build Details']['Item Info']))
 		{
-<<<<<<< HEAD
-			echo"<form action=/Items/CPUCooler>
-=======
+
 			if ($_SESSION['user_id'] != $model['Build']->user_id)
 			{
 				echo"<p>No CPU Cooler chosen!</p>";
@@ -47,7 +41,6 @@ if(!isset($model['Build Details']))
 			else
 			{
 				echo"<form action=/Items/CPUCooler>
->>>>>>> c8e26c5c5941d14dc7f262b3043d3c694a4261be
 					<input type='hidden' name='pc_build_id' value=$pc_build_id>
 					<input type=submit value= 'Add a CPU cooler'/>
 				</form>";

@@ -24,7 +24,7 @@
 	<input type="text" class="form-control" name="mb_form_factor" id="mb_form_factor" />
 	</div>
 	<div class="form-group">
-	<label for="username">Max GPU Lenght</label>
+	<label for="username">Max GPU Length</label>
 	<input type="text" class="form-control" name="max_gpu_length" id="max_gpu_length" />
 	</div>
 	<div class="form-group">

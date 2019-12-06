@@ -273,7 +273,7 @@ class ItemsController extends Controller{
 					$typeModel->cpu_cooler = $_POST['cpu_cooler'];
 					break;
 				case "Cooler":
-					$typeModel->model = $_POST['model'];
+					$typeModel->model = $_POST['modelType'];
 					$typeModel->sockets = $_POST['sockets'];
 					$typeModel->fan_rpm = $_POST['fan_rpm'];
 					$typeModel->height = $_POST['height'];
@@ -362,9 +362,10 @@ class ItemsController extends Controller{
 			$typeDetails = $typeModel->getItem($item_id);
 			$this->view('Item/delete', ['Item'=>$theItem, 'ItemType'=>$typeDetails]);
 		}
-		$items->delete($item_id);
-		$typeModel->delete($item_id);
 
+		$typeModel->delete($item_id);
+		$items->delete($item_id);
+	
 		header('location:/Company/inventory');
 	}
 

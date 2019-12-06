@@ -96,7 +96,7 @@ class CompanyController extends Controller{
 		}
 	}
 
-	public function upload()
+	public function upload($theFile)
 	{
 		$target_dir = "uploads/";	//the folder where files will be saved
 		$allowedTypes = array("jpg", "png", "jpeg", "gif", "bmp");// Allow certain file formats
@@ -155,6 +155,14 @@ class CompanyController extends Controller{
 				}
 			}
 		}
-		echo $error; //Whatever view will be here
+		if($error != NULL)
+        {
+           $this->view('Company/inventory', ['error' => $error, 'message' => $message]);
+            
+        }
+        else
+        {
+            return $target_path;
+        }
 	}
 }

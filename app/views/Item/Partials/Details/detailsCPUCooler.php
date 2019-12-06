@@ -1,5 +1,5 @@
 
-<h1>CPU Cooler Cooler</h1>
+<h1>CPU Cooler</h1>
 	<?php
 		$typeDetails = $model;
 		$modelType = $typeDetails->model;
