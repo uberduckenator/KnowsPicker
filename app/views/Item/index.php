@@ -38,7 +38,8 @@
 				}
 				echo"</select>
 					<input type='submit' value='Add To Cart'/></a>
-				 </form></td>";
+				 </form>
+				 <a href=/Favorite/insert/$item_id>Favorite</a></td>";
 
 			echo "<td><p>$$price</p></br>
 					  <p>$rating</p></br>

@@ -15,9 +15,7 @@ class LoginController extends Controller{
 						$company = $this->model('CompanyProfile');
 						$_SESSION['company_id'] = $company->getCompany($_SESSION['login_id']);
 						break;
-
-					//case 'admin':
-						//$admin = $this->model('Admin');				
+										
 					default:
 						$user = $this->model('UserProfile');
 						$_SESSION['user_id'] = $user->getUser($_SESSION['login_id'])->user_id;
