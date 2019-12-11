@@ -39,7 +39,7 @@ class ProfileController extends Controller{
 			$theProfile = $this->model('UserProfile')->get($user_id);
 			$countries = $this->model("Countries")->getCountries();
 			
-			$this->view("Profile/edit", ['Profile'=>$profile,'Countries'=>$countries, 'Payment'=>$thePayment]);
+			$this->view("Profile/editProfile", ['Profile'=>$theProfile,'Countries'=>$countries]);
 		}
 		else{
 			$profile = $this->model('UserProfile');
@@ -56,9 +56,7 @@ class ProfileController extends Controller{
 
 			$profile->update();
 
-			$_SESSION['user_id'] = $profile->user_id;
-
-			header("location:/Home");	
+			header("location:/Profile");
 		}
 	}
 
@@ -66,17 +64,20 @@ class ProfileController extends Controller{
 	{
 		if(!isset($_POST['action']))
 		{
-			$thePayment = $this->model("Payment")->get($user_id);
-			$this->view("Profile/edit", $thePayment)
+			$thePayment = $this->model("Payment")->getPayment($payment_id);
+			$this->view("Profile/editPayment", $thePayment);
 		}
 		else
 		{
 			$payment = $this->model("Payment");
+			$payment->payment_id = $payment_id;
 			$payment->cardnumber = $_POST['cardnumber'];
 			$payment->cardholder = $_POST['cardholder'];
 			$payment->cvv2 = $_POST['cvv2'];
-			$payment->expiration_date = $_POST['expiration_date'];
-			$payment
+			$expiration_date = $_POST['expiration_month'] . '/' . $_POST['expiration_year'];
+			$payment->expiration_date = $expiration_date;
+			$payment->update();
+			header('location:/Profile');
 		}
 	}
 }

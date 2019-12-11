@@ -37,10 +37,18 @@ class Payment extends Model
         return $stmt->fetch();
 	}
 
+	public function getPayment($payment_id)
+	{
+		$stmt = self::$_connection->prepare("SELECT * FROM payment WHERE payment_id = :payment_id");
+        $stmt->execute(['payment_id'=>$payment_id]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Payment');
+        return $stmt->fetch();	
+	}
+
 	public function update()
 	{
 		$stmt = self::$_connection->prepare("UPDATE payment SET cardnumber = :cardnumber, cardholder = :cardholder, cvv2 = :cvv2, expiration_date = :expiration_date WHERE payment_id = :payment_id");
-        $stmt->execute(['payment_id'=>$payment_id]);
+        $stmt->execute(['cardnumber'=>$this->cardnumber, 'cardholder'=>$this->cardholder, 'cvv2'=>$this->cvv2, 'expiration_date'=>$this->expiration_date, 'payment_id'=>$this->payment_id]);
 	}
 
 }

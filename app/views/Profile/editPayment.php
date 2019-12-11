@@ -13,8 +13,8 @@
 	<h3>Original</h3>
 	<div class="container">
 	<?php
-		$item = $model['Payment'];
-			echo"<a href=/Profile/editPayment/$item->payment_id>Edit Payment</a><p>cardnumber: $item->cardnumber<br>
+		$item = $model;
+			echo"<p>cardnumber: $item->cardnumber<br>
 				cardholder: $item->cardholder<br>
 				cvv2: $item->cvv2<br>
 				expiration_date: $item->expiration_date</p>";

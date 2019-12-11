@@ -67,7 +67,7 @@ class UserProfile extends Model
 	public function update()
 	{
 		$stmt = self::$_connection->prepare("UPDATE user_profile SET first_name = :first_name, last_name = :last_name, email = :email, city = :city, street_address = :street_address, postal_code = :postal_code, country_id = :country_id WHERE user_id = :user_id");
-        $stmt->execute(['payment_id'=>$payment_id]);
+        $stmt->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name, 'email'=>$this->email, 'city'=>$this->city, 'street_address'=>$this->street_address, 'postal_code'=>$this->postal_code, 'country_id'=>$this->country_id, 'user_id'=>$this->user_id]);
 	}
 
 }

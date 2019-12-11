@@ -14,7 +14,7 @@
 	<div class="container">
 	<?php
 		$item = $model['Profile'];
-			echo "<a href=/Profile/edit/$item->user_id>Edit</a>
+			echo "
 			<p>first name: $item->first_name<br>
 				last name: $item->last_name<br>
 				email: $item->email<br>
@@ -42,7 +42,7 @@
 	<label for="countries">Country</label>
 	<select name="countries">		
 	<?php
-		foreach($model as $country){
+		foreach($model['Countries'] as $country){
 			$country_name = $country->country_name;
 			$country_id = $country->country_id;
 			echo "<option value='$country_id'>$country_name</option>";
@@ -63,7 +63,7 @@
 	<input type="text" class="form-control" name="postal_code" id="postal_code" />
 	</div>
 	<div class="form-group">
-	<input type="submit" name="action" value="Create" />
+	<input type="submit" name="action" value="Update" />
 	</div>
 	<a href='/Profile'>Cancel</a>
 </form>
