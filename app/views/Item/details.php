@@ -47,7 +47,8 @@
 									}
 									echo"</select>
 										<input type='submit' value='Add To Cart'/></a>
-									 </form></td>";
+									 </form>
+									 <a href=/Favorite/insert/$item_id>Favorite</a></td>";
 						echo "<td>
 							<s>$$price</s>
 							<h4>$$newprice</h4>

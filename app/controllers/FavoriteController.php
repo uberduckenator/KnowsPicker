@@ -8,11 +8,11 @@ class FavoriteController extends Controller{
 
 	public function insert($item_id)
 	{
-		$favorites = $this->model('Favorites');
+		$favorites = $this->model('Favorite');
 		$favorites->item_id = $item_id;
 		$favorites->user_id = $_SESSION['user_id'];
 		$favorites->insert();
-		header(':location');
+		header("location:/Favorite/index");
 	}
 }
 ?>
