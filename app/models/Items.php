@@ -52,9 +52,9 @@ class Items extends Model
 	public function getItemsFromCompany($company_id){
 		$stmt = self::$_connection->prepare("SELECT * FROM items i
 											 JOIN pictures p ON i.picture_id = p.picture_id 
-											 JOIN company_profile c ON i.company_id = c.company_id
+											 INNER JOIN company_profile USING (company_id)
 											 WHERE company_id = :company_id");
-		$stmt->execute(['company_id' =>$company_id]);
+		$stmt->execute(['company_id'=>$company_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Items');
 		return $stmt->fetchAll();
 	}
