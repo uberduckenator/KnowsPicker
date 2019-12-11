@@ -22,6 +22,12 @@ class Favorite extends Model{
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Favorite');
 		return $stmt->fetchAll();	
 	}
+
+	public function delete()
+	{
+		$stmt = self::$_connection->prepare("DELETE FROM favorite WHERE item_id = :item_id");
+		$stmt->execute(['item_id'=>$this->item_id]);
+	}
 }
 
 ?>

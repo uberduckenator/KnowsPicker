@@ -41,7 +41,7 @@ class UserProfile extends Model
 
 	public function get($user_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM user_profile WHERE user_id = :user_id");
+		$stmt = self::$_connection->prepare("SELECT * FROM user_profile INNER JOIN countries USING (country_id) WHERE user_id = :user_id");
 		$stmt->execute(['user_id'=>$user_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'UserProfile');
 		return $stmt->fetch();
@@ -63,4 +63,11 @@ class UserProfile extends Model
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'UserProfile');
 		return $stmt->fetch();
 	}
+
+	public function update()
+	{
+		$stmt = self::$_connection->prepare("UPDATE user_profile SET first_name = :first_name, last_name = :last_name, email = :email, city = :city, street_address = :street_address, postal_code = :postal_code, country_id = :country_id WHERE user_id = :user_id");
+        $stmt->execute(['payment_id'=>$payment_id]);
+	}
+
 }

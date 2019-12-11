@@ -8,7 +8,7 @@
 	<title>Knowspicker.com:Home</title>
 </head>
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a href='/Home' class="navbar-brand">KnowsPicker</a>
+    <a class="navbar-brand">KnowsPicker</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,7 +29,7 @@
 	<?php
 		if(!isset($_SESSION['login_id']))
 		{
-			echo('<li class="nav-item"><a href="/Login">Login</a></li>');
+			echo('<li class="nav-item"><a href="Login">Login</a></li>');
 		}
 		else
 		{
@@ -62,8 +62,6 @@
 		<ul class="navbar-nav mr-auto">
 			<li class='nav-item'><a class="nav-link" href="/Home">Home</a></li>
 			<li class='nav-item'><a class="nav-link"href="/Items/CPU">CPUs</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/CPU">CPU</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/CPUCooler">CPU Coolers</a></li>
 			<li class='nav-item'><a class="nav-link"href="/Items/GPU">GPUs</a></li>
 			<li class='nav-item'><a class="nav-link"href="/Items/Motherboard">Motherboards</a></li>
 			<li class='nav-item'><a class="nav-link" href="/Items/PCCase">Cases</a></li>

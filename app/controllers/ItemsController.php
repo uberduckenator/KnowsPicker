@@ -440,7 +440,6 @@ class ItemsController extends Controller{
 		$items->rating = round($newRating,2);
 		$items->ratings_amount = $newRatingsAmount;
 		$items->updateRating();
-		$reviews->insert();
 		header("location:/Items/details/$item_id");
 	}
 

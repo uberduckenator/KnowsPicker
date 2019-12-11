@@ -37,4 +37,10 @@ class Payment extends Model
         return $stmt->fetch();
 	}
 
+	public function update()
+	{
+		$stmt = self::$_connection->prepare("UPDATE payment SET cardnumber = :cardnumber, cardholder = :cardholder, cvv2 = :cvv2, expiration_date = :expiration_date WHERE payment_id = :payment_id");
+        $stmt->execute(['payment_id'=>$payment_id]);
+	}
+
 }

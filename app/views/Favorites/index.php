@@ -4,11 +4,21 @@
 
 <h2>Favorites</h2>
 <div class="container">
+	<table>
 	<?php
 		if ($model != null)
 		{
 			foreach ($model as $item)
 			{
+				$item_id = $item->item_id;
+			$item_name = ucwords($item->item_name);
+			$price = $item->price;
+			$rating = $item->rating;
+			$numberofratings = $item->ratings_amount;
+			$stock = $item->stock;
+			$rebate = $item->rebate;
+			$max_sale_quantity = $item->max_sale_quantity;
+
 			echo "<tr><td><a href=/Items/details/$item_id><h4>$item_name</h4></a></br>
 					  <img alt = picture for item></br>";
 			echo"<form method='post' action = /Purchase/addItem/$item_id>
@@ -21,7 +31,8 @@
 				}
 				echo"</select>
 					<input type='submit' value='Add To Cart'/></a>
-				 </form></td>";
+				 </form>
+				 <a href=/Favorite/unfavorite/$item_id>Unfavorite</a></td>";
 
 				echo "<td><p>$$price</p></br>
 					  <p>$rating</p></br>
@@ -36,6 +47,7 @@
 			echo "<h3>You have no favorites!</h3>";
 		}
 	?>
+</table>
 </div>
 
 <?php 

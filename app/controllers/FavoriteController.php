@@ -14,5 +14,13 @@ class FavoriteController extends Controller{
 		$favorites->insert();
 		header("location:/Favorite/index");
 	}
+
+	public function unfavorite($item_id)
+	{
+		$favorites = $this->model('Favorite');
+		$favorites->item_id = $item_id;
+		$favorites->delete();
+		header("location:/Favorite/index");
+	}
 }
 ?>
