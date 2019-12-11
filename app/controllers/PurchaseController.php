@@ -275,4 +275,11 @@ class PurchaseController extends Controller
 		$purchase->updateStatus();
 		header("location:/Purchase/orders");
 	}
+
+	public function addBuild($pc_build_id)
+	{
+		$build = $this->model('PCBuild');
+		$buildDetails = $this->model('PCBuildDetails');
+		$theDetails = $buildDetails->getAll($pc_build_id);
+	}
 }

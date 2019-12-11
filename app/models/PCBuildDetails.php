@@ -37,7 +37,7 @@ class PCBuildDetails extends Model
 
 	public function getAll($pc_build_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM pc_build_details WHERE pc_build_id = :pc_build_id");
+		$stmt = self::$_connection->prepare("SELECT * FROM pc_build_details INNER JOIN items USING (item_id) WHERE pc_build_id = :pc_build_id");
 		$stmt->execute(['pc_build_id'=>$pc_build_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'PCBuildDetails');
 		return $stmt->fetchAll();

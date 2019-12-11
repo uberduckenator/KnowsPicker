@@ -8,9 +8,12 @@
 	?>
 	<div class = "container">
 		<?php
+			$pc_build_id = $model['Build']->pc_build_id;	
 			$build_name = $model['Build']->name;
 			$description = $model['Build']->description;
 			echo"<h4>$build_name</h4>";
+			echo"<p>Description: $description</p>
+				<a href=/Purchase/addBuild/$pc_build_id>Add to Cart</a>";
 		?>
 		<div class = "container">
 		<h4>CPU</h4>
