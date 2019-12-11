@@ -8,7 +8,7 @@
 	<title>Knowspicker.com:Home</title>
 </head>
 	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a href='/Home' class="navbar-brand">KnowsPicker</a>
+    <a class="navbar-brand" href='/Home'>KnowsPicker</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,6 +26,19 @@
 	</form>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
+			<li class='nav-item dropdown'>
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Parts</a>
+				 <div class="dropdown-menu">
+					<a class="dropdown-item"href="/Items/CPU">CPUs</a>
+					<a class="dropdown-item"href="/Items/GPU">GPUs</a>
+					<a class="dropdown-item"href="/Items/Motherboard">Motherboards</a>
+					<a class="dropdown-item" href="/Items/PCCase">Cases</a>
+					<a class="dropdown-item"href="/Items/PSU">Power Supplies</a>
+					<a class="dropdown-item"href="/Items/RAM">RAM</a>
+					<a class="dropdown-item"href="/Items/Storage">Storage</a>
+					<a class="dropdown-item"href="/PCBuild">PCBuilds</a>
+				</div>
+			</li>
 	<?php
 		if(!isset($_SESSION['login_id']))
 		{
@@ -57,19 +70,7 @@
 	?>
 	</ul>
 </nav>
-<nav class="navbar navbar-light bg-light">
-	<div class='container'>
-		<ul class="navbar-nav mr-auto">
-			<li class='nav-item'><a class="nav-link" href="/Home">Home</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/CPU">CPUs</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/GPU">GPUs</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/Motherboard">Motherboards</a></li>
-			<li class='nav-item'><a class="nav-link" href="/Items/PCCase">Cases</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/PSU">Power Supplies</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/RAM">RAM</a></li>
-			<li class='nav-item'><a class="nav-link"href="/Items/Storage">Storage</a></li>
-			<li class='nav-item'><a class="nav-link"href="/PCBuild">PCBuilds</a></li>
-		</ul>
-</div>
-</nav>
+<br>
+<br>
+<br>
 <body>
