@@ -280,6 +280,8 @@ class PurchaseController extends Controller
 	{
 		$build = $this->model('PCBuild');
 		$buildDetails = $this->model('PCBuildDetails');
+		$puchase = $this->model('')
 		$theDetails = $buildDetails->getAll($pc_build_id);
+
 	}
 }
