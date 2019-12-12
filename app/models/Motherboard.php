@@ -36,14 +36,6 @@ class Motherboard extends Model
 
 	public function getItem($item_id)
 	{
-		$stmt = self::$_connection->prepare("SELECT * FROM gpu WHERE item_id = :item_id");
-		$stmt->execute(['item_id'=>$item_id]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Gpu');
-		return $stmt->fetch();
-	}
-
-	public function getItem($item_id)
-	{
 		$stmt = self::$_connection->prepare("SELECT * FROM motherboard WHERE item_id = :item_id");
 		$stmt->execute(['item_id'=>$item_id]);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Motherboard');
